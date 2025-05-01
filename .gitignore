@@ -1,24 +1,46 @@
-# Compiled class file
+# === JAVA ===
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
-*.nar
-*.ear
+*.log
+
+# IntelliJ / Eclipse / NetBeans
+.idea/
+*.iml
+*.ipr
+*.iws
+*.nbproject/
+*.project
+*.classpath
+target/
+bin/
+
+# === PYTHON ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+
+# === SISTEMA / EDITOR ===
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*.swo
+
+# === TESTES E DADOS TEMPORÁRIOS ===
+*.log
+*.tmp
+*.bak
+
+# === OUTROS ===
 *.zip
 *.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+*.7z
+*.sqlite
