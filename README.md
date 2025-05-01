@@ -69,9 +69,3 @@ A IA foi construída em **Python**, com foco em tomada de decisões estratégica
 | Raffael Wagner  | [@Raffael-Wagner](https://github.com/Raffael-Wagner) |
 
 ---
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
