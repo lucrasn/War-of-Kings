@@ -173,6 +173,39 @@
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
 
+   COMMERCIAL USE ADDENDUM — War of Kings (by Lucas Nóbrega)
+
+       Este software, War of Kings, é distribuído sob os termos da 
+       Apache License 2.0 com as seguintes condições adicionais aplicáveis 
+       especificamente a esta obra:
+
+   10. Termos Adicionais para Uso Comercial:
+
+      (a) Uso pessoal, educacional ou não comercial. É permitido o uso,
+          cópia, modificação e redistribuição deste software para fins não 
+          comerciais, desde que os termos da Apache License 2.0 sejam mantidos 
+          e respeitados.
+
+      (b) Uso comercial restrito. Qualquer uso comercial deste software – incluindo, 
+          mas não se limitando à venda direta, monetização indireta, veiculação em 
+          plataformas comerciais, distribuição com fins lucrativos ou integração com 
+          produtos pagos – exige autorização expressa por escrito do autor original.
+
+      (c) Royalties. Usuários autorizados para uso comercial devem concordar com o 
+          pagamento de royalties de 15% sobre a receita bruta gerada por qualquer 
+          produto, serviço ou sistema que utilize este software, em parte ou no todo.
+
+      (d) Contato para autorização comercial. Para obter autorização de uso comercial 
+          e negociar os termos de royalties, entre em contato com o autor em: 
+          lucrasnobrega.araujo@gmail.com
+
+      (e) Consequências do uso comercial sem autorização. O uso comercial não autorizado 
+          constitui violação direta desta licença e poderá gerar responsabilidade legal, 
+          civil e criminal, conforme a legislação vigente no Brasil e internacionalmente.
+
+       Esses termos adicionais prevalecem sobre a Apache License 2.0 somente no caso de uso 
+       comercial. Para demais fins, a licença original permanece aplicável.
+
    END OF TERMS AND CONDITIONS
 
    APPENDIX: How to apply the Apache License to your work.
@@ -186,7 +219,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [yyyy] [name of copyright owner]
+   Copyright 2025 Lucas Nóbrega de Araújo
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
