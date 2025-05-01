@@ -44,7 +44,7 @@ A IA foi construída em **Python**, com foco em tomada de decisões estratégica
 
 ## 📷 Capturas de Tela *(opcional)*
 
-> Adicione aqui imagens do tabuleiro em ação, menus, partidas com IA, etc.
+> Adicionar aqui imagens do tabuleiro em ação, menus, partidas com IA, etc.
 
 ---
 
