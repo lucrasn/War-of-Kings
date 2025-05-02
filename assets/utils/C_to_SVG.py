@@ -1,7 +1,6 @@
 import os
 import re
 
-# Parâmetros do sprite
 largura = 64
 altura = 64
 pixels_por_frame = largura * altura
@@ -19,19 +18,16 @@ name_frame2 = ["PeãoBase.svg", "BispoBase.svg", "TorreBase.svg", "CavaloBase.sv
 # name_frame2 = ["PeãoBase.svg", "BispoBase.svg", "TorreBase.svg", "CavaloBase.svg", "RainhaBase.svg", "ReiBase.svg"]
 
 for i in range(len(file_name)):
-    # Abrir o arquivo C
     caminho_arquivo_c = os.path.join(caminho_c, file_name[i])
     with open(caminho_arquivo_c, "r") as f:
         conteudo = f.read()
 
-    # Captura todos os hexadecimais do array
     hexadecimais = re.findall(r'0x[0-9a-fA-F]+', conteudo)
 
     if len(hexadecimais) < 2 * pixels_por_frame:
         print(f"Erro: foram encontrados apenas {len(hexadecimais)} pixels. Esperado: {2 * pixels_por_frame}.")
         exit()
 
-    # Converte para inteiros
     pixels = [int(hex_value, 16) for hex_value in hexadecimais]
 
     # Separa os frames
@@ -40,7 +36,6 @@ for i in range(len(file_name)):
         pixels[pixels_por_frame:2*pixels_por_frame]
     ]
 
-    # Gera um SVG para cada frame
     for idx, frame in enumerate(frames):
         svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{largura * pixel_size}" height="{altura * pixel_size}">']
         
