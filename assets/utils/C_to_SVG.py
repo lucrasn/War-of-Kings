@@ -10,12 +10,9 @@ caminho_c = r"assets\peças\C"
 saida_svg = r"assets\peças\svg"
 os.makedirs(saida_svg, exist_ok=True)
 
-file_name = ["Peão.c", "Bispo.c", "Torre.c", "Cavalo.c"]
-# file_name = ["Peão.c", "Bispo.c", "Torre.c", "Cavalo.c", "Rainha.c", "Rei.c"]
-name_frame1 = ["PeãoSilhueta.svg", "BispoSilhueta.svg", "TorreSilhueta.svg", "CavaloSilhueta.svg"]
-# name_frame1 = ["PeãoSilhueta.svg", "BispoSilhueta.svg", "TorreSilhueta.svg", "CavaloSilhueta.svg", "RainhaSilhueta.svg", "ReiSilhueta.svg"]
-name_frame2 = ["PeãoBase.svg", "BispoBase.svg", "TorreBase.svg", "CavaloBase.svg"]
-# name_frame2 = ["PeãoBase.svg", "BispoBase.svg", "TorreBase.svg", "CavaloBase.svg", "RainhaBase.svg", "ReiBase.svg"]
+file_name = ["Peão.c", "Bispo.c", "Torre.c", "Cavalo.c", "Rainha.c", "Rei.c"]
+name_frame1 = ["PeãoSilhueta.svg", "BispoSilhueta.svg", "TorreSilhueta.svg", "CavaloSilhueta.svg", "RainhaSilhueta.svg", "ReiSilhueta.svg"]
+name_frame2 = ["PeãoBase.svg", "BispoBase.svg", "TorreBase.svg", "CavaloBase.svg", "RainhaBase.svg", "ReiBase.svg"]
 
 for i in range(len(file_name)):
     caminho_arquivo_c = os.path.join(caminho_c, file_name[i])
