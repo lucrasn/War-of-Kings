@@ -2,14 +2,13 @@ import os
 import cairosvg
 import xml.etree.ElementTree as ET
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'peças'))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'pecas'))
 SVG_BASE = os.path.join(BASE_DIR, 'svg')
 PNG_BASE = os.path.join(BASE_DIR, 'png')
 
-name_path = ["bispo", "cavalo", "peão", "rainha", "rei", "torre"]
+name_path = ["bispo", "cavalo", "peao", "rainha", "rei", "torre"]
 tipos = ["Base", "Silhueta"]
 
-# Remove fundo branco do SVG
 def limpar_fundo_svg(caminho_svg):
     try:
         tree = ET.parse(caminho_svg)
