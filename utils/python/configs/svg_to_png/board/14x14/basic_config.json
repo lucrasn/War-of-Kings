@@ -1,0 +1,6 @@
+{
+    "svg_base": "assets/board/14x14/svg",
+    "png_base": "assets/board/14x14/png",
+    "name_path": ["tabuleirobordafina", "tabuleirobordagrossa", "tabuleirogigante"],
+    "shared_svg_names": ["Grade.svg", "GradeBorda.svg", "TabuleiroBorda.svg", "TabuleiroPintado.svg"]
+}

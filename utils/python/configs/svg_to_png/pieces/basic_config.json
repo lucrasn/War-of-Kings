@@ -1,0 +1,6 @@
+{
+    "svg_base": "assets/pieces/basic/svg",
+    "png_base": "assets/pieces/basic/png",
+    "name_path": ["bispo", "cavalo", "peao", "rainha", "rei", "torre"],
+    "tipos": ["Base", "Silhueta"]
+}

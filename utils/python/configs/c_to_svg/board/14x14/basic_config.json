@@ -1,0 +1,9 @@
+{
+    "input_dir": "assets/board/14x14/C",
+    "output_dir": "assets/board/14x14/svg",
+    "file_names": ["TabuleiroBordaFina.c", "TabuleiroBordaGrossa.c", "TabuleiroGigante.c"],
+    "shared_frame_names": ["Grade.svg", "GradeBorda.svg", "TabuleiroBorda.svg", "TabuleiroPintado.svg"],
+    "width": 128,
+    "height": 128,
+    "pixel_size": 10
+}
