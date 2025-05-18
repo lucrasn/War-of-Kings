@@ -5,118 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59161d9b-b373-4fca-8125-fb2738a4c7cc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/C/TabuleiroBordaFina.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/c/14TabuleiroBordaFina.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/C/TabuleiroBordaGrossa.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/c/14TabuleiroBordaGrossa.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/C/TabuleiroGigante.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/c/14TabuleiroGigante.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordafina/Grade.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordafina/14Grade.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordafina/GradeBorda.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordafina/14GradeBorda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordafina/TabuleiroBorda.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordafina/14TabuleiroBorda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordafina/TabuleiroPintado.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordafina/14TabuleiroPintado.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordagrossa/Grade.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordagrossa/14Grade.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordagrossa/GradeBorda.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordagrossa/14GradeBorda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordagrossa/TabuleiroBorda.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordagrossa/14TabuleiroBorda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirobordagrossa/TabuleiroPintado.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirobordagrossa/14TabuleiroPintado.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirogigante/Grade.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirogigante/14Grade.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirogigante/GradeBorda.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirogigante/14GradeBorda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirogigante/TabuleiroBorda.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirogigante/14TabuleiroBorda.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/png/tabuleirogigante/TabuleiroPintado.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/png/tabuleirogigante/14TabuleiroPintado.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/ref/TabuleiroVistoDeCimaChess.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/references/14TabuleiroVistoDeCimaChess.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/ref/TabulerioDeMadeira.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/references/14TabulerioDeMadeira.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordafina/Grade.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordafina/14Grade.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordafina/GradeBorda.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordafina/14GradeBorda.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordafina/TabuleiroBorda.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordafina/14TabuleiroBorda.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordafina/TabuleiroPintado.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordafina/14TabuleiroPintado.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordagrossa/Grade.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordagrossa/14Grade.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordagrossa/GradeBorda.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordagrossa/14GradeBorda.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordagrossa/TabuleiroBorda.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordagrossa/14TabuleiroBorda.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirobordagrossa/TabuleiroPintado.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirobordagrossa/14TabuleiroPintado.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirogigante/Grade.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirogigante/14Grade.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirogigante/GradeBorda.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirogigante/14GradeBorda.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirogigante/TabuleiroBorda.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirogigante/14TabuleiroBorda.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/board/14x14/svg/tabuleirogigante/TabuleiroPintado.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/svg/tabuleirogigante/14TabuleiroPintado.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/Bispo.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/bispo/Bispo.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/BispoBranco.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/bispo/BispoBranco.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/Cavalo.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/cavalo/Cavalo.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/CavaloBranco.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/cavalo/CavaloBranco.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/Peao.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/peao/Peao.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/PeaoBranco.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/peao/PeaoBranco.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/Rainha.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/rainha/Rainha.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/RainhaBranco.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/rainha/RainhaBranco.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/Rei.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/rei/Rei.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/ReiBranco.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/rei/ReiBranco.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/Torre.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/torre/Torre.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/C/TorreBranco.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/torre/TorreBranco.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/Cores Base.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/Cores Base.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/bispo/BispoBase.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/bispo/BispoBase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/bispo/BispoSilhueta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/bispo/BispoSilhueta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/cavalo/CavaloBase.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/cavalo/CavaloBase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/cavalo/CavaloSilhueta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/cavalo/CavaloSilhueta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/peao/PeaoBase.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/peao/PeaoBase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/peao/PeaoSilhueta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/peao/PeaoSilhueta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/rainha/RainhaBase.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/rainha/RainhaBase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/rainha/RainhaSilhueta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/rainha/RainhaSilhueta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/rei/ReiBase.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/rei/ReiBase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/rei/ReiSilhueta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/rei/ReiSilhueta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/torre/TorreBase.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/torre/TorreBase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/png/torre/TorreSilhueta.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/png/torre/TorreSilhueta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/bispo/BispoBase.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/bispo/BispoBase.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/bispo/BispoSilhueta.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/bispo/BispoSilhueta.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/bispobranco/BispoBranco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/bispo/BispoBranco.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/cavalo/CavaloBase.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/cavalo/CavaloBase.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/cavalo/CavaloSilhueta.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/cavalo/CavaloSilhueta.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/cavalobranco/CavaloBranco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/cavalo/CavaloBranco.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/peao/PeaoBase.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/peao/PeaoBase.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/peao/PeaoSilhueta.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/peao/PeaoSilhueta.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/peaobranco/PeaoBranco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/peao/PeaoBranco.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/rainha/RainhaBase.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/rainha/RainhaBase.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/rainha/RainhaSilhueta.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/rainha/RainhaSilhueta.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/rainhabranco/RainhaBranco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/rainha/RainhaBranco.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/rei/ReiBase.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/rei/ReiBase.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/rei/ReiSilhueta.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/rei/ReiSilhueta.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/reibranco/ReiBranco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/rei/ReiBranco.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/torre/TorreBase.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/torre/TorreBase.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/torre/TorreSilhueta.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/torre/TorreSilhueta.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/basic/svg/torrebranco/TorreBranco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/svg/torre/TorreBranco.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/fogo/C/peao/PeaoFogo.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/peao/PeaoFogo.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/fogo/C/rei/ReiFogo.c" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/c/rei/ReiFogo.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/ref/gpt/Bispo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/references/gpt/Bispo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/ref/gpt/Cavalo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/references/gpt/Cavalo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/ref/gpt/Peao.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/references/gpt/Peao.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/ref/gpt/Rainha.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/references/gpt/Rainha.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/ref/gpt/Rei.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/references/gpt/Rei.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pieces/ref/gpt/Torre.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/references/gpt/Torre.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/board_04_1617/14x14/TabuleiroBordaFina.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/piskel/14TabuleiroBordaFina.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/board_04_1617/14x14/TabuleiroBordaGrossa.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/piskel/14TabuleiroBordaGrossa.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/board_04_1617/14x14/TabuleiroGigante.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/board/piskel/14TabuleiroGigante.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Bispo.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Bispo.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Cavalo.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Cavalo.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Orientacao.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Orientacao.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Peao.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Peao.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/PeaoFogo.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/PeaoFogo.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Rei.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Rei.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/ReiFogo.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/ReiFogo.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Reinha.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Reinha.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backups/assets_202505/pieces_12_1453/Torre.piskel" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pieces/piskel/Torre.piskel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/diagrams/class/DiagramaDeClasses" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/diagrams/class/DiagramaDeClassesV2.drawio.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/diagrams/class/DiagramaDeClassesV2.drawio.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/seios/warofkings/warofkings/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/seios/warofkings/warofkings/layouts/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/c_to_svg/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/configs/README.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/c_to_svg/board/14x14/basic_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/configs/board/14x14/basic_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/c_to_svg/pieces/basic_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/configs/pieces/basic_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/c_to_svg/pieces/basic_white_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/configs/pieces/basic_white_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/svg_to_png/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/svg_to_png/configs/README.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/svg_to_png/board/14x14/basic_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/svg_to_png/configs/board/14x14/basic_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/configs/svg_to_png/pieces/basic_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/svg_to_png/configs/pieces/basic_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/lib/SVG_to_PNG.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/lib/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/lib/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/lib/c_to_svg_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/lib/c_to_svg_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/lib/svg_to_png_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/svg_to_png/lib/svg_to_png_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/scripts/c_to_svg_converter.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/c_to_svg/c_to_svg_converter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/python/scripts/svg_to_png_converter.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/python/svg_to_png/svg_to_png_converter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,13 +68,14 @@
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Gradle.War-of-Kings [:com.seios.warofkings.warofkings.HelloApplication.main()].executor": "Run",
+    "Gradle.War-of-Kings [:com.seios.warofkings.warofkings.ui.HelloApplication.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -195,7 +87,7 @@
       <recent name="C:\Users\lidia\OneDrive\Área de Trabalho\REPOSITÓRIOS\War-of-Kings\assets\pieces\svg\torre" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HelloApplication">
     <configuration name="HelloApplication" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.seios.warofkings.warofkings.ui.HelloApplication" />
       <module name="War-of-Kings.main" />
@@ -204,6 +96,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="War-of-Kings [:com.seios.warofkings.warofkings.ui.HelloApplication.main()]" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":com.seios.warofkings.warofkings.ui.HelloApplication.main()" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.HelloApplication" />
+      <item itemvalue="Gradle.War-of-Kings [:com.seios.warofkings.warofkings.ui.HelloApplication.main()]" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
