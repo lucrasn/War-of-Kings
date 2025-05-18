@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59161d9b-b373-4fca-8125-fb2738a4c7cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/board/Boardable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/board/Boardable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/game/enums/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/Positionable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/enums/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/types/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/types/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/King.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/types/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Knight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/types/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/types/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/pieces/types/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Rook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/ui/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/ui/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/ui/components/CustomControls.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/ui/components/CustomControls.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/warofkings/utils/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/utils/Helpers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/seios/warofkings/warofkings/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/seios/warofkings/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/seios/warofkings/warofkings/layouts/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/seios/warofkings/layouts/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +42,9 @@
         <option value="Python Script" />
         <option value="Record" />
         <option value="Interface" />
-        <option value="Enum" />
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -87,6 +73,7 @@
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Gradle.Build War-of-Kings.executor": "Run",
+    "Gradle.War-of-Kings [:com.seios.warofkings.ui.HelloApplication.main()].executor": "Run",
     "Gradle.War-of-Kings [:com.seios.warofkings.warofkings.HelloApplication.main()].executor": "Run",
     "Gradle.War-of-Kings [:com.seios.warofkings.warofkings.ui.HelloApplication.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
