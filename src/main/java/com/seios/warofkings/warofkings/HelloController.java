@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.seios.warofkings.warofkings;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

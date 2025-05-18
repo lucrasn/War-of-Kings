@@ -1,10 +1,23 @@
-# === JAVA ===
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### JAVA ###
 *.class
 *.jar
 *.war
 *.log
 
-# IntelliJ
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
@@ -35,7 +48,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-# === PYTHON ===
+### PYTHON ###
 __pycache__/
 *.py[cod]
 *.pyo
@@ -43,23 +56,19 @@ __pycache__/
 *.egg
 *.egg-info/
 dist/
-build/
 env/
 venv/
 
-# === SISTEMA / EDITOR ===
-.DS_Store
+### SISTEMA / EDITOR ###
 Thumbs.db
-.vscode/
 *.swp
 *.swo
 
-# === TESTES E DADOS TEMPORÁRIOS ===
-*.log
+### TESTES E DADOS TEMPORÁRIOS ###
 *.tmp
 *.bak
 
-# === OUTROS ===
+### OUTROS ###
 *.zip
 *.tar.gz
 *.7z

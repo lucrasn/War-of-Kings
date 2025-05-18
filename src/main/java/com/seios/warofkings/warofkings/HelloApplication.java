@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.seios.warofkings.warofkings;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
