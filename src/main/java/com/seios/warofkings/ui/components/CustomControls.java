@@ -1,4 +1,4 @@
-package com.seios.warofkings.warofkings.ui.components;
+package com.seios.warofkings.ui.components;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

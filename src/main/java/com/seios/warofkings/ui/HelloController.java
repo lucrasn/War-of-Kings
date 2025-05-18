@@ -1,4 +1,4 @@
-package com.seios.warofkings.warofkings.ui;
+package com.seios.warofkings.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
