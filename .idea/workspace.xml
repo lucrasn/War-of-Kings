@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59161d9b-b373-4fca-8125-fb2738a4c7cc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,10 +74,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "C:/Users/livia/Desktop/War-of-Kings",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.JavaFX"
   }
 }]]></component>
   <component name="RecentsManager">
