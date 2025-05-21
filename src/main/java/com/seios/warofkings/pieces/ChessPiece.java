@@ -2,6 +2,9 @@ package com.seios.warofkings.pieces;
 
 import com.seios.warofkings.pieces.enums.Type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class ChessPiece implements Movable, Positionable {
     protected int position;
     protected Type type;
@@ -9,6 +12,29 @@ public abstract class ChessPiece implements Movable, Positionable {
 
     public ChessPiece() {
         this.n_moves = 0; // teoricamente todas as peças começam com 0 movimentos, mas como antes de fazer isso eu tenho que fazer uma verificação acho q esse construtor se torna inutil
+    }
+
+    public boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
+        // TODO: lista booleana das possiveis movimentos das peças oponentes
+        /*
+        int positionKing = king.getPosition();
+        int positionPiece = piece.getPosition();
+        int relacao = positionPiece - positionKing;
+        List<ChessPiece> riscos = new ArrayList<ChessPiece>();
+        boolean flag = true;
+
+        while (flag) {
+            int position = positionPiece + relacao;
+            riscos.add(piecesMap[getX(position)][getY(position)]);
+            if ((getX(position) == 0 || getX(position) == 7) || (getY(position) == 0 || getY(position) == 7)) {
+                flag = false;
+            }
+        }
+        */
+        // TODO: verificação das peças da lista riscos
+
+        // TODO: alterar o return
+        return true;
     }
 
     @Override
