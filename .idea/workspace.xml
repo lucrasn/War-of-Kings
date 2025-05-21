@@ -6,13 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="59161d9b-b373-4fca-8125-fb2738a4c7cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/diagrams/DiagramaDeClasses.drawio.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/game/enums/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/ChessPiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Positionable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/enums/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Queen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +22,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand />
@@ -49,8 +47,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;allangrm&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:lucrasn/War-of-Kings.git&quot;,
+    &quot;accountId&quot;: &quot;a4482a0b-8b05-46db-bf87-0d697fe0099c&quot;
+  }
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -69,23 +84,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Gradle.Build War-of-Kings.executor": "Run",
-    "Gradle.War-of-Kings [:com.seios.warofkings.ui.HelloApplication.main()].executor": "Run",
-    "Gradle.War-of-Kings [:com.seios.warofkings.warofkings.HelloApplication.main()].executor": "Run",
-    "Gradle.War-of-Kings [:com.seios.warofkings.warofkings.ui.HelloApplication.main()].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Gradle.Build War-of-Kings.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.War-of-Kings [:com.seios.warofkings.ui.HelloApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.War-of-Kings [:com.seios.warofkings.warofkings.HelloApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.War-of-Kings [:com.seios.warofkings.warofkings.ui.HelloApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop/development/pieces&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\lidia\OneDrive\Área de Trabalho\REPOSITÓRIOS\War-of-Kings\src\main\resources\com\seios\warofkings" />
