@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="59161d9b-b373-4fca-8125-fb2738a4c7cc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/seios/warofkings/pieces/types/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
