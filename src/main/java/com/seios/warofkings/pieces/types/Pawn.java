@@ -23,36 +23,49 @@ public class Pawn extends ChessPiece {
     }
 
     @Override
-    public List<Integer> getPossibleMoves() {
-        // TODO: falta a verificação se o peão pode comer alguma outra peça;
-        List<Integer> possibilities = new ArrayList<Integer>();
-        if (super.n_moves == 0) {
-            possibilities.add(super.position + 1);
-            possibilities.add(super.position + 2);
-        } else {
-            possibilities.add(super.position + 1);
-        }
-
-        return possibilities;
-    }
-
-    @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
-        // TODO: falta a verificação se o peão pode comer alguma outra peça;
-        List<Integer> possibilities = new ArrayList<Integer>();
-        if (super.n_moves == 0) {
-            possibilities.add(super.position + 1);
-            possibilities.add(super.position + 2);
-        } else {
-            possibilities.add(super.position + 1);
+        List<Integer> possibleMoves = new ArrayList<Integer>();
+        int pos = this.position;
+
+        boolean isWhite = type.getValor() <= 5;
+        int forward = isWhite ? -10 : 10;
+        int doubleForward = isWhite ? -20 : 20;
+        int diagLeft = isWhite ? -11 : 9;
+        int diagRight = isWhite ? -9 : 11;
+
+        int fwdPos = pos + forward;
+        if (ChessPiece.isWithinBounds(fwdPos) && board[getX(fwdPos)][getY(fwdPos)] == null) {
+            possibleMoves.add(fwdPos);
+
+            // Duplo avanço inicial
+            int dblFwdPos = pos + doubleForward;
+            if (n_moves == 0 && ChessPiece.isWithinBounds(dblFwdPos) && board[getX(dblFwdPos)][getY(dblFwdPos)] == null) {
+                possibleMoves.add(dblFwdPos);
+            }
         }
 
-        return possibilities;
+        // Diagonal esquerda
+        int diagLPos = pos + diagLeft;
+        if (ChessPiece.isWithinBounds(diagLPos)) {
+            if (isOpponent(board[getX(diagLPos)][getY(diagLPos)])) {
+                possibleMoves.add(diagLPos);
+            }
+        }
+
+        // Diagonal direita
+        int diagRPos = pos + diagRight;
+        if (ChessPiece.isWithinBounds(diagRPos)) {
+            if (isOpponent(board[getX(diagRPos)][getY(diagRPos)])) {
+                possibleMoves.add(diagRPos);
+            }
+        }
+
+        return possibleMoves;
     }
 
     //TODO: fazer os coiso
     @Override
-    public boolean moveTo(int position, int[][] board) {
+    public boolean moveTo(int position, ChessPiece[][] board) {
         return super.moveTo(position, board);
     }
 }

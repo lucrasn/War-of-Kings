@@ -14,7 +14,9 @@ public abstract class ChessPiece implements Movable, Positionable {
         this.n_moves = 0;
     }
 
-    public boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
+    protected boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
+        if (king.getType().getValor() / 6 == piece.getType().getValor() / 6) return false; // TODO: podemos transformar isso em uma exeception, eu acho até melhor do que retornar false
+
         ChessPiece[][] simulatedMap = new ChessPiece[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -27,8 +29,8 @@ public abstract class ChessPiece implements Movable, Positionable {
         int toX = getX(toPosition);
         int toY = getY(toPosition);
 
-        simulatedMap[fromY][fromX] = null; // [linha][coluna]
-        simulatedMap[toY][toX] = piece;
+        simulatedMap[fromX][fromY] = null;
+        simulatedMap[toX][toY] = piece;
 
         int kingX = king.getX();
         int kingY = king.getY();
@@ -51,6 +53,16 @@ public abstract class ChessPiece implements Movable, Positionable {
         }
 
         return false; // movimento é seguro
+    }
+
+    public static boolean isWithinBounds(int position) {
+        return getX(position) >= 0 && getX(position) < 8 && getY(position) >= 0 && getY(position) < 8;
+    }
+
+    protected boolean isOpponent(ChessPiece other) {
+        if (other == null) return false;
+        return (this.type.getValor() <= 5 && other.getType().getValor() >= 6) ||
+                (this.type.getValor() >= 6 && other.getType().getValor() <= 5);
     }
 
     @Override
@@ -89,15 +101,15 @@ public abstract class ChessPiece implements Movable, Positionable {
     // o setPosition é pra uso interno de moveTo,
     // mas n pode ser private nem protected, somente public ai é peso.
     @Override
-    public boolean moveTo(int position, int[][] board) { // faz verificações antes de mudar
+    public boolean moveTo(int position, ChessPiece[][] board) { // faz verificações antes de mudar
         //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
 
         boolean exercito = this.type.getValor() <= 5; // if -> exercito branco; else -> exercito preto
-        if (board[getX(position)][getY(position)] <= 5 && !exercito) {
+        if (board[getX(position)][getY(position)].getType().getValor() <= 5 && !exercito) {
             setPosition(position);
             this.n_moves++;
             return true;
-        } else if (board[getX(position)][getY(position)] >= 6 && exercito) {
+        } else if (board[getX(position)][getY(position)].getType().getValor() >= 6 && exercito) {
             setPosition(position);
             this.n_moves++;
             return true;
