@@ -11,39 +11,55 @@ public abstract class ChessPiece implements Movable, Positionable {
     protected int n_moves;
 
     public ChessPiece() {
-        this.n_moves = 0; // teoricamente todas as peças começam com 0 movimentos, mas como antes de fazer isso eu tenho que fazer uma verificação acho q esse construtor se torna inutil
+        this.n_moves = 0;
     }
 
     public boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
-        // TODO: lista booleana das possiveis movimentos das peças oponentes
-        /*
-        int positionKing = king.getPosition();
-        int positionPiece = piece.getPosition();
-        int relacao = positionPiece - positionKing;
-        List<ChessPiece> riscos = new ArrayList<ChessPiece>();
-        boolean flag = true;
-
-        while (flag) {
-            int position = positionPiece + relacao;
-            riscos.add(piecesMap[getX(position)][getY(position)]);
-            if ((getX(position) == 0 || getX(position) == 7) || (getY(position) == 0 || getY(position) == 7)) {
-                flag = false;
+        ChessPiece[][] simulatedMap = new ChessPiece[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                simulatedMap[i][j] = piecesMap[i][j];
             }
         }
-        */
-        // TODO: verificação das peças da lista riscos
 
-        // TODO: alterar o return
-        return true;
+        int fromX = piece.getX();
+        int fromY = piece.getY();
+        int toX = getX(toPosition);
+        int toY = getY(toPosition);
+
+        simulatedMap[fromY][fromX] = null; // [linha][coluna]
+        simulatedMap[toY][toX] = piece;
+
+        int kingX = king.getX();
+        int kingY = king.getY();
+        if (piece == king) {
+            kingX = toX;
+            kingY = toY;
+        }
+
+        int kingPos = kingX * 10 + kingY;
+
+        for (ChessPiece[] row : simulatedMap) {
+            for (ChessPiece other : row) {
+                if (other != null && other.getType().getValor() / 6 != king.getType().getValor() / 6) {
+                    List<Integer> moves = other.getPossibleMoves(simulatedMap);
+                    if (moves.contains(kingPos)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false; // movimento é seguro
     }
 
     @Override
     public int getX() {
-        return (this.position / 10) % 10; // Dezena
+        return this.position / 10; // Dezena
     }
 
     public static int getX(int position) {
-        return (position / 10) % 10;
+        return position / 10;
     }
 
     @Override
@@ -89,8 +105,8 @@ public abstract class ChessPiece implements Movable, Positionable {
         return false;
     }
 
-    public int getType() {
-        return this.type.getValor();
+    public Type getType() {
+        return this.type;
     }
 
     public int getN_moves() {

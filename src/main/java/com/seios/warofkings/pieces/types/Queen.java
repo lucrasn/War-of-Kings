@@ -58,4 +58,46 @@ public class Queen extends ChessPiece {
         }*/
         return possibilities;
     }
+
+    @Override
+    public List<Integer> getPossibleMoves(ChessPiece[][] board) {
+        List<Integer> possibilities = new ArrayList<>();
+
+
+        /*while (true) { // verificacao linda, enquanto a posicao existir E nao estiver ocupada
+            possibilities.add(getX() - 1, getY());
+        }
+
+        while(true){
+            possibilities.add(getX() + 1, getY());
+        }
+
+        while (true){
+            possibilities.add(getX(), getY() - 1);
+        }
+
+        while (true){
+            possibilities.add(getX(), getY() + 1);
+
+        }
+
+        while (true){
+            possibilities.add(getX() - 1, getY() - 1);
+        }
+
+        while (true){
+            possibilities.add(getX() - 1, getY() + 1);
+
+        }
+
+        while (true){
+            possibilities.add(getX() + 1, getY() + 1);
+
+        }
+
+        while (true){
+            possibilities.add(getX() + 1, getY() - 1);
+        }*/
+        return possibilities;
+    }
 }
