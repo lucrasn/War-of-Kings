@@ -22,7 +22,7 @@ public class Queen extends ChessPiece {
         List<Integer> possibilities = new ArrayList<>();
 
 
-        while (true) { // verificacao linda, enquanto a posicao existir E nao estiver ocupada
+        /*while (true) { // verificacao linda, enquanto a posicao existir E nao estiver ocupada
             possibilities.add(getX() - 1, getY());
         }
 
@@ -55,6 +55,7 @@ public class Queen extends ChessPiece {
 
         while (true){
             possibilities.add(getX() + 1, getY() - 1);
-        }
+        }*/
+        return possibilities;
     }
 }
