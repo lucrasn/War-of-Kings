@@ -14,6 +14,10 @@ public abstract class ChessPiece implements Movable, Positionable {
         this.n_moves = 0;
     }
 
+    public ChessPiece(int n_moves) {
+        this.n_moves = n_moves;
+    }
+
     protected boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
         if (king.getType().getValor() / 6 == piece.getType().getValor() / 6) return false; // TODO: podemos transformar isso em uma exeception, eu acho até melhor do que retornar false
 

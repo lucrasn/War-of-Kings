@@ -22,6 +22,17 @@ public class Pawn extends ChessPiece {
         return new Pawn(position, type);
     }
 
+    /**
+     * Retorna as posições válidas para onde o peão pode se mover, considerando:
+     * <ul>
+     *   <li>Movimento para frente se a casa estiver livre</li>
+     *   <li>Duplo avanço no primeiro movimento</li>
+     *   <li>Capturas nas diagonais</li>
+     * </ul>
+     *
+     * @param board matriz representando o estado atual do tabuleiro
+     * @return lista de posições inteiras possíveis para o movimento
+     */
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
         List<Integer> possibleMoves = new ArrayList<Integer>();
@@ -61,6 +72,31 @@ public class Pawn extends ChessPiece {
         }
 
         return possibleMoves;
+    }
+
+    /**
+     * Substitui um peão por uma nova peça (rainha, torre, bispo ou cavalo) ao atingir a linha final.
+     * A peça resultante é baseada no tipo de promoção passado como parâmetro.
+     *
+     * @param promotionType Tipo da peça para promoção (deve ser compatível com a cor do peão)
+     * @return Nova peça promovida
+     * @throws IllegalArgumentException se o tipo de promoção for inválido ou incompatível com a cor do peão
+     */
+    public ChessPiece promoteIfEligible(Type promotionType) throws IllegalArgumentException {
+        boolean isWhite = this.type == Type.PAWN_WHITE;
+        int finalRow = isWhite ? 0 : 7;
+
+        if (this.getX() == finalRow) {
+            return switch (promotionType) {
+                case QUEEN_WHITE, QUEEN_BLACK -> new Queen(this.position, promotionType, this.n_moves);
+                case ROOK_WHITE, ROOK_BLACK -> new Rook(this.position, promotionType, this.n_moves);
+                case BISHOP_WHITE, BISHOP_BLACK -> new Bishop(this.position, promotionType, this.n_moves);
+                case KNIGHT_WHITE, KNIGHT_BLACK -> new Knight(this.position, promotionType, this.n_moves);
+                default -> throw new IllegalArgumentException("Tipo de promoção inválido: " + promotionType);
+            };
+        }
+
+        return this;
     }
 
     //TODO: Implementar lógica específica de promoção para peões ao alcançarem o fim do tabuleiro
