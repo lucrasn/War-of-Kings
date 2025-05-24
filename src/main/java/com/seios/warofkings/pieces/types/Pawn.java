@@ -16,7 +16,7 @@ public class Pawn extends ChessPiece {
     // Metodo de fábrica
     public static Pawn createPawn(int position, Type type) throws IllegalArgumentException {
         if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
         }
 
         return new Pawn(position, type);
@@ -27,7 +27,7 @@ public class Pawn extends ChessPiece {
         List<Integer> possibleMoves = new ArrayList<Integer>();
         int pos = this.position;
 
-        boolean isWhite = type.getValor() <= 5;
+        boolean isWhite = this.type == Type.PAWN_WHITE;
         int forward = isWhite ? -10 : 10;
         int doubleForward = isWhite ? -20 : 20;
         int diagLeft = isWhite ? -11 : 9;
@@ -63,7 +63,7 @@ public class Pawn extends ChessPiece {
         return possibleMoves;
     }
 
-    //TODO: fazer os coiso
+    //TODO: Implementar lógica específica de promoção para peões ao alcançarem o fim do tabuleiro
     @Override
     public boolean moveTo(int position, ChessPiece[][] board) {
         return super.moveTo(position, board);
