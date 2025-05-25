@@ -17,45 +17,75 @@ public class Queen extends ChessPiece {
         super.n_moves = 0;
     }
 
+
+    /** Retorna posições disponíveis para onde a Rainha pode se movimentar
+     *<ul>
+     *     <li> Movimentação na horizontal e vertical
+     *     <li> Movimentação nas laterais
+     *</ul>
+     *
+     * @param board matriz representando o estado atual do tabuleiro
+     * @return lista de posições inteiras possíveis para o movimento
+     */
+
+
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
-        List<Integer> possibilities = new ArrayList<>();
+        List<Integer> possibleMoves = new ArrayList<>();
+        int pos = this.position;
 
+        int forward = -10;
+        int backward = 10;
 
-        /*while (true) { // verificacao linda, enquanto a posicao existir E nao estiver ocupada
-            possibilities.add(getX() - 1, getY());
+        int right = 1;
+        int left = -1;
+
+        int northwest = -11;
+        int southwest = 9;
+
+        int northeast = -9;
+        int southeast = 11;
+
+        int forwardPos = forward + pos;
+        while(ChessPiece.isWithinBounds(forwardPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(forwardPos);
         }
 
-        while(true){
-            possibilities.add(getX() + 1, getY());
+        int backwardPos = backward + pos;
+        while(ChessPiece.isWithinBounds(backwardPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(backwardPos);
         }
 
-        while (true){
-            possibilities.add(getX(), getY() - 1);
+        int rightPos = right + pos;
+        while(ChessPiece.isWithinBounds(rightPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(rightPos);
         }
 
-        while (true){
-            possibilities.add(getX(), getY() + 1);
-
+        int leftPos = left + pos;
+        while(ChessPiece.isWithinBounds(leftPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(leftPos);
         }
 
-        while (true){
-            possibilities.add(getX() - 1, getY() - 1);
+        int northwestPos = northwest + pos;
+        while(ChessPiece.isWithinBounds(northwestPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(northwestPos);
         }
 
-        while (true){
-            possibilities.add(getX() - 1, getY() + 1);
-
+        int southwestPos = southwest + pos;
+        while(ChessPiece.isWithinBounds(southwestPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(southwestPos);
         }
 
-        while (true){
-            possibilities.add(getX() + 1, getY() + 1);
-
+        int northeastPos = northeast + pos;
+        while(ChessPiece.isWithinBounds(northeastPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(northeastPos);
         }
 
-        while (true){
-            possibilities.add(getX() + 1, getY() - 1);
-        }*/
-        return possibilities;
+        int southeastPos = southeast + pos;
+        while(ChessPiece.isWithinBounds(southeastPos) && !isOpponent(board[getX()][getY()])){
+            possibleMoves.add(southeastPos);
+        }
+
+        return possibleMoves;
     }
 }
