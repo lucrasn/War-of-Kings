@@ -6,6 +6,15 @@ import com.seios.warofkings.pieces.enums.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Esta classe é responsável pela implementação dos movimentos da peça Bispo
+ *
+ * @author allan
+ * @version 1.0
+ * @since 2025-05-24
+ */
+
 public class Bishop extends ChessPiece{
 
     public Bishop(int positon, Type type){
@@ -38,22 +47,22 @@ public class Bishop extends ChessPiece{
             int southeast = 11;
 
             int northwestPos = northwest + pos;
-            while(ChessPiece.isWithinBounds(northwestPos) && !isOpponent(board[getX()][getY()])){
+            while(ChessPiece.isWithinBounds(northwestPos) && isOpponent(board[getX()][getY()])){
                 possibleMoves.add(northwestPos);
             }
 
             int southwestPos = southwest + pos;
-            while(ChessPiece.isWithinBounds(southwestPos) && !isOpponent(board[getX()][getY()])){
+            while(ChessPiece.isWithinBounds(southwestPos) && isOpponent(board[getX()][getY()])){
                 possibleMoves.add(southwestPos);
             }
 
             int northeastPos = northeast + pos;
-            while(ChessPiece.isWithinBounds(northeastPos) && !isOpponent(board[getX()][getY()])){
+            while(ChessPiece.isWithinBounds(northeastPos) && isOpponent(board[getX()][getY()])){
                 possibleMoves.add(northeastPos);
             }
 
             int southeastPos = southeast + pos;
-            while(ChessPiece.isWithinBounds(southeastPos) && !isOpponent(board[getX()][getY()])){
+            while(ChessPiece.isWithinBounds(southeastPos) && isOpponent(board[getX()][getY()])){
                 possibleMoves.add(southeastPos);
             }
 
