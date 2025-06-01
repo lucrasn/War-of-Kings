@@ -19,15 +19,15 @@ public class Queen extends ChessPiece {
         if (!(type.getValor() == 4) && !(type.getValor() == 10)) {
             throw new IllegalArgumentException("Tipo inválido para rainha. Esperado QUEEN_WHITE (4) ou QUEEN_BLACK (10).");
         }
-        super.position =position;
-        super.type = type;
-        super.n_moves = n_moves;
+        this.position =position;
+        this.type = type;
+        this.n_moves = n_moves;
     }
 
     private Queen(int position, Type type) {
         super();
-        super.position =position;
-        super.type = type;
+        this.position =position;
+        this.type = type;
     }
 
     public static Queen createQueen(int position, Type type) throws IllegalArgumentException {

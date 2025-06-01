@@ -6,7 +6,6 @@ import com.seios.warofkings.pieces.enums.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Esta classe é responsável pela implementação dos movimentos da peça Bispo
  *
@@ -15,7 +14,7 @@ import java.util.List;
  * @since 2025-05-24
  */
 public class Bishop extends ChessPiece {
-    /*
+
     public Bishop(int position, Type type, int n_moves)  throws IllegalArgumentException {
         if (!(type.getValor() == 3) && !(type.getValor() == 9)) {
             throw new IllegalArgumentException("Tipo inválido para bispo. Esperado BISHOP_WHITE (3) ou BISHOP_BLACK (9).");
@@ -32,22 +31,11 @@ public class Bishop extends ChessPiece {
     }
 
     // Metodo de fábrica
-    public static Bishop createPawn(int position, Type type) throws IllegalArgumentException {
+    public static Bishop createBishop(int position, Type type) throws IllegalArgumentException {
         if (!(type.getValor() == 3) && !(type.getValor() == 9)) {
             throw new IllegalArgumentException("Tipo inválido para bispo. Esperado BISHOP_WHITE (3) ou BISHOP_BLACK (9).");
         }
         return new Bishop(position, type);
-    }
-    */
-
-    public Bishop(int positon, Type type) {
-        if (!(type.getValor() == 3) && !(type.getValor() == 9)) {
-            throw new IllegalArgumentException("");
-        }
-
-        super.position = position;
-        super.type = type;
-        super.n_moves = 0;
     }
 
     /**
