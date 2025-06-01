@@ -5,6 +5,13 @@ import com.seios.warofkings.pieces.enums.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta classe é responsável pela abstração dos movimentos das peças de xadrez
+ *
+ * @author lucas
+ * @version 1.0
+ * @since 2025-05-14
+ */
 public abstract class ChessPiece implements Movable, Positionable {
     protected int position;
     protected Type type;
@@ -18,6 +25,7 @@ public abstract class ChessPiece implements Movable, Positionable {
         this.n_moves = n_moves;
     }
 
+    // TODO: mudar esse metodo para ele fazer isso para uma lista de movimentos
     protected boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
         if (king.getType().getValor() / 6 == piece.getType().getValor() / 6) return false; // TODO: podemos transformar isso em uma exeception, eu acho até melhor do que retornar false
 
@@ -105,7 +113,7 @@ public abstract class ChessPiece implements Movable, Positionable {
     // o setPosition é pra uso interno de moveTo,
     // mas n pode ser private nem protected, somente public ai é peso.
     @Override
-    public boolean moveTo(int position, ChessPiece[][] board) { // faz verificações antes de mudar
+    public boolean moveTo(int position, ChessPiece[][] board) { // faz verificações antes de mover
         //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
 
         boolean exercito = this.type.getValor() <= 5; // if -> exercito branco; else -> exercito preto

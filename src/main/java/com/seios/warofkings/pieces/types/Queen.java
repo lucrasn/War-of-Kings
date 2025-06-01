@@ -14,45 +14,40 @@ import java.util.List;
  * @version 1.0
  * @since 2025-05-24
  */
-
 public class Queen extends ChessPiece {
-
-    private Queen(int position, Type type){
-        super();
-        super.position =position;
-        super.type = type;
-
-    }
-
-    public Queen(int position, Type type, int n_moves){
+    public Queen(int position, Type type, int n_moves)  throws IllegalArgumentException {
         if (!(type.getValor() == 4) && !(type.getValor() == 10)) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Tipo inválido para rainha. Esperado QUEEN_WHITE (4) ou QUEEN_BLACK (10).");
         }
         super.position =position;
         super.type = type;
         super.n_moves = n_moves;
-
     }
 
-    public static Queen createQueen(int position, Type type) {
+    private Queen(int position, Type type) {
+        super();
+        super.position =position;
+        super.type = type;
+    }
+
+    public static Queen createQueen(int position, Type type) throws IllegalArgumentException {
         if (!(type.getValor() == 4) && !(type.getValor() == 10)) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Tipo inválido para rainha. Esperado QUEEN_WHITE (4) ou QUEEN_BLACK (10).");
         }
         return new Queen(position, type);
     }
 
 
-    /** Retorna posições disponíveis para onde a Rainha pode se movimentar
-     *<ul>
-     *     <li> Movimentação na horizontal e vertical
-     *     <li> Movimentação nas laterais
-     *</ul>
+    /**
+     * Retorna posições disponíveis para onde a Rainha pode se movimentar
+     * <ul>
+     *     <li>Movimentação na horizontal e vertical</li>
+     *     <li>Movimentação nas laterais</li>
+     * </ul>
      *
      * @param board matriz representando o estado atual do tabuleiro
      * @return lista de posições inteiras possíveis para o movimento
      */
-
-
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
         List<Integer> possibleMoves = new ArrayList<>();
@@ -110,6 +105,15 @@ public class Queen extends ChessPiece {
             possibleMoves.add(southeastPos);
         }
 
+        // Usar o kingCheck antes de retornar a lista
+
         return possibleMoves;
+    }
+
+    // Faltou isso
+    @Override
+    public boolean moveTo(int position, ChessPiece[][] board) {
+        //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
+        return super.moveTo(position, board);
     }
 }

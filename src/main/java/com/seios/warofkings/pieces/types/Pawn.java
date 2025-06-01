@@ -6,7 +6,23 @@ import java.util.List;
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
 
+/**
+ * Esta classe é responsável pela implementação dos movimentos da peça Peão
+ *
+ * @author lucas
+ * @version 1.0
+ * @since 2025-05-14
+ */
 public class Pawn extends ChessPiece {
+    public Pawn(int position, Type type, int n_moves)  throws IllegalArgumentException {
+        if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
+            throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
+        }
+        this.position = position;
+        this.type = type;
+        this.n_moves = n_moves;
+    }
+
     private Pawn(int position, Type type) {
         super();
         this.position = position;
@@ -18,7 +34,6 @@ public class Pawn extends ChessPiece {
         if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
             throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
         }
-
         return new Pawn(position, type);
     }
 
@@ -71,6 +86,8 @@ public class Pawn extends ChessPiece {
             }
         }
 
+        // Usar o kingCheck antes de retornar a lista
+
         return possibleMoves;
     }
 
@@ -99,9 +116,9 @@ public class Pawn extends ChessPiece {
         return this;
     }
 
-    //TODO: Implementar lógica específica de promoção para peões ao alcançarem o fim do tabuleiro
     @Override
     public boolean moveTo(int position, ChessPiece[][] board) {
+        //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
         return super.moveTo(position, board);
     }
 }

@@ -1,5 +1,12 @@
 package com.seios.warofkings.pieces.enums;
 
+/**
+ * Este Enum é responsável pela classificação dos tipos das peças de xadrez
+ *
+ * @author lucas
+ * @version 1.0
+ * @since 2025-05-14
+ */
 public enum Type {
     PAWN_WHITE(0),
     ROOK_WHITE(1),
