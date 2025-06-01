@@ -58,7 +58,7 @@ public class Knight extends ChessPiece  {
         Map<String, Integer> moves = new HashMap<String, Integer>() {{
             put("northNortheast", -19); // NNE
             put("eastNortheast", -8); // ENE
-            put("East-Southeast", 12); // ESE
+            put("EastSoutheast", 12); // ESE
             put("southSoutheast", 21); // SSE
             put("southSouthwest", 19); // SSW
             put("westSouthwest", 8); // WSW
@@ -70,7 +70,7 @@ public class Knight extends ChessPiece  {
             int newPos = pos + offset;
             if (ChessPiece.isWithinBounds(newPos)) {
                 ChessPiece target = board[getX(newPos)][getY(newPos)];
-                if (target == null || isOpponent(target)) {
+                if ((target == null || isOpponent(target))) {
                     possibleMoves.add(newPos);
                 }
             }

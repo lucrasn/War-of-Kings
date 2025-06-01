@@ -25,7 +25,6 @@ public abstract class ChessPiece implements Movable, Positionable {
         this.n_moves = n_moves;
     }
 
-    // TODO: mudar esse metodo para ele fazer isso para uma lista de movimentos
     protected boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
         if (king.getType().getValor() / 6 == piece.getType().getValor() / 6) return false; // TODO: podemos transformar isso em uma exeception, eu acho até melhor do que retornar false
 
