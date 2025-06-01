@@ -66,10 +66,6 @@ public abstract class ChessPiece implements Movable, Positionable {
         return false; // movimento é seguro
     }
 
-    public static boolean isWithinBounds(int position) {
-        return getX(position) >= 0 && getX(position) < 8 && getY(position) >= 0 && getY(position) < 8;
-    }
-
     protected boolean isOpponent(ChessPiece other) {
         if (other == null) return false;
         return (this.type.getValor() <= 5 && other.getType().getValor() >= 6) ||

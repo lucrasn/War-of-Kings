@@ -2,6 +2,7 @@ package com.seios.warofkings.pieces.types;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.PieceUtils;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -42,9 +43,7 @@ public class Knight extends ChessPiece  {
     /**
      * Retorna as posições válidas para onde o peão pode se mover, considerando:
      * <ul>
-     *   <li>Movimento para frente se a casa estiver livre</li>
-     *   <li>Duplo avanço no primeiro movimento</li>
-     *   <li>Capturas nas diagonais</li>
+     *   <li>Movimentos em 'L' do cavalo</li>
      * </ul>
      *
      * @param board matriz representando o estado atual do tabuleiro
@@ -68,7 +67,7 @@ public class Knight extends ChessPiece  {
 
         for (Integer offset : moves.values()) {
             int newPos = pos + offset;
-            if (ChessPiece.isWithinBounds(newPos)) {
+            if (PieceUtils.isWithinBounds(newPos)) {
                 ChessPiece target = board[getX(newPos)][getY(newPos)];
                 if ((target == null || isOpponent(target))) {
                     possibleMoves.add(newPos);

@@ -2,6 +2,7 @@ package com.seios.warofkings.pieces.types;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.PieceUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,22 +72,22 @@ public class Bishop extends ChessPiece {
         int southeast = 11;
 
         int northwestPos = northwest + pos;
-        while(ChessPiece.isWithinBounds(northwestPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(northwestPos) && isOpponent(board[getX()][getY()])){
             possibleMoves.add(northwestPos);
         }
 
         int southwestPos = southwest + pos;
-        while(ChessPiece.isWithinBounds(southwestPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(southwestPos) && isOpponent(board[getX()][getY()])){
             possibleMoves.add(southwestPos);
         }
 
         int northeastPos = northeast + pos;
-        while(ChessPiece.isWithinBounds(northeastPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[getX()][getY()])){
             possibleMoves.add(northeastPos);
         }
 
         int southeastPos = southeast + pos;
-        while(ChessPiece.isWithinBounds(southeastPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(southeastPos) && isOpponent(board[getX()][getY()])){
             possibleMoves.add(southeastPos);
         }
 

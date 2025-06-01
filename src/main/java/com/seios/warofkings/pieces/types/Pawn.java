@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.PieceUtils;
 
 /**
  * Esta classe é responsável pela implementação dos movimentos da peça Peão
@@ -60,19 +61,19 @@ public class Pawn extends ChessPiece {
         int diagRight = isWhite ? -9 : 11;
 
         int fwdPos = pos + forward;
-        if (ChessPiece.isWithinBounds(fwdPos) && board[getX(fwdPos)][getY(fwdPos)] == null) {
+        if (PieceUtils.isWithinBounds(fwdPos) && board[getX(fwdPos)][getY(fwdPos)] == null) {
             possibleMoves.add(fwdPos);
 
             // Duplo avanço inicial
             int dblFwdPos = pos + doubleForward;
-            if (n_moves == 0 && ChessPiece.isWithinBounds(dblFwdPos) && board[getX(dblFwdPos)][getY(dblFwdPos)] == null) {
+            if (n_moves == 0 && PieceUtils.isWithinBounds(dblFwdPos) && board[getX(dblFwdPos)][getY(dblFwdPos)] == null) {
                 possibleMoves.add(dblFwdPos);
             }
         }
 
         // Diagonal esquerda
         int diagLPos = pos + diagLeft;
-        if (ChessPiece.isWithinBounds(diagLPos)) {
+        if (PieceUtils.isWithinBounds(diagLPos)) {
             if (isOpponent(board[getX(diagLPos)][getY(diagLPos)])) {
                 possibleMoves.add(diagLPos);
             }
@@ -80,7 +81,7 @@ public class Pawn extends ChessPiece {
 
         // Diagonal direita
         int diagRPos = pos + diagRight;
-        if (ChessPiece.isWithinBounds(diagRPos)) {
+        if (PieceUtils.isWithinBounds(diagRPos)) {
             if (isOpponent(board[getX(diagRPos)][getY(diagRPos)])) {
                 possibleMoves.add(diagRPos);
             }
