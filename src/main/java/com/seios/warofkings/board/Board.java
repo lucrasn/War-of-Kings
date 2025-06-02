@@ -110,4 +110,7 @@ public class Board implements Boardable {
     public boolean isValidPosition(int x, int y) {
         return x >= 0 && x < 8 && y >= 0 && y < 8;
     }
+    public ChessPiece[][] getPieces() {
+        return this.pieces;
+    }
 }
