@@ -67,42 +67,76 @@ public class Queen extends ChessPiece {
         int southeast = 11;
 
         int forwardPos = forward + pos;
-        while(PieceUtils.isWithinBounds(forwardPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(forwardPos) && board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)] == null){
+            possibleMoves.add(forwardPos);
+            forwardPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(forwardPos) && isOpponent(board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)]) ){
             possibleMoves.add(forwardPos);
         }
 
+
+
         int backwardPos = backward + pos;
-        while(PieceUtils.isWithinBounds(backwardPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(backwardPos) && board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)] == null){
+            possibleMoves.add(backwardPos);
+            backwardPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(backwardPos) && isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]) ){
             possibleMoves.add(backwardPos);
         }
 
         int rightPos = right + pos;
-        while(PieceUtils.isWithinBounds(rightPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(rightPos) && board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)] == null){
+            possibleMoves.add(rightPos);
+            rightPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(rightPos) && isOpponent(board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)]) ){
             possibleMoves.add(rightPos);
         }
 
         int leftPos = left + pos;
-        while(PieceUtils.isWithinBounds(leftPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(leftPos) && board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)] == null){
+            possibleMoves.add(leftPos);
+            leftPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(leftPos) && isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]) ){
             possibleMoves.add(leftPos);
         }
 
         int northwestPos = northwest + pos;
-        while(PieceUtils.isWithinBounds(northwestPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(northwestPos) && board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)] == null){
+            possibleMoves.add(northwestPos);
+            northwestPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(northwestPos) && isOpponent(board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)]) ){
             possibleMoves.add(northwestPos);
         }
 
         int southwestPos = southwest + pos;
-        while(PieceUtils.isWithinBounds(southwestPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(southwestPos) && board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null){
+            possibleMoves.add(southwestPos);
+            southwestPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(southwestPos) && isOpponent(board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)]) ){
             possibleMoves.add(southwestPos);
         }
 
         int northeastPos = northeast + pos;
-        while(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(northeastPos) && board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)] == null){
+            possibleMoves.add(northeastPos);
+            northeastPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)]) ){
             possibleMoves.add(northeastPos);
         }
 
         int southeastPos = southeast + pos;
-        while(PieceUtils.isWithinBounds(southeastPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(southeastPos) && board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null){
+            possibleMoves.add(southeastPos);
+            southeastPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(southeastPos) && isOpponent(board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)]) ){
             possibleMoves.add(southeastPos);
         }
 

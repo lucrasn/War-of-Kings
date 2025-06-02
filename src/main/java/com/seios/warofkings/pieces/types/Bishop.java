@@ -11,7 +11,7 @@ import java.util.List;
  * Esta classe é responsável pela implementação dos movimentos da peça Bispo
  *
  * @author allan
- * @version 1.0
+ * @version 1.2
  * @since 2025-05-24
  */
 public class Bishop extends ChessPiece {
@@ -60,22 +60,38 @@ public class Bishop extends ChessPiece {
         int southeast = 11;
 
         int northwestPos = northwest + pos;
-        while(PieceUtils.isWithinBounds(northwestPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(northwestPos) && board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)] == null){
+            possibleMoves.add(northwestPos);
+            northwestPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(northwestPos) && isOpponent(board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)]) ){
             possibleMoves.add(northwestPos);
         }
 
         int southwestPos = southwest + pos;
-        while(PieceUtils.isWithinBounds(southwestPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(southwestPos) && board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null){
+            possibleMoves.add(southwestPos);
+            southwestPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(southwestPos) && isOpponent(board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)]) ){
             possibleMoves.add(southwestPos);
         }
 
         int northeastPos = northeast + pos;
-        while(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(northeastPos) && board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)] == null){
+            possibleMoves.add(northeastPos);
+            northeastPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)]) ){
             possibleMoves.add(northeastPos);
         }
 
         int southeastPos = southeast + pos;
-        while(PieceUtils.isWithinBounds(southeastPos) && isOpponent(board[getX()][getY()])){
+        while(PieceUtils.isWithinBounds(southeastPos) && board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null){
+            possibleMoves.add(southeastPos);
+            southeastPos += pos;
+        }
+        if(PieceUtils.isWithinBounds(southeastPos) && isOpponent(board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)]) ){
             possibleMoves.add(southeastPos);
         }
 
