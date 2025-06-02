@@ -19,7 +19,7 @@ public class Rook extends ChessPiece {
         this.type = type;
     }
 
-    public Rook(int position, Type type, int n_moves) throws IllegalArgumentException {
+    public Rook(int position, Type type, int n_moves) {
         if (!(type.getValor() == 1) && !(type.getValor() == 7)) {
             throw new IllegalArgumentException("Tipo inválido para torre. Esperado ROOK_WHITE (1) ou ROOK_BLACK (7).");
         }

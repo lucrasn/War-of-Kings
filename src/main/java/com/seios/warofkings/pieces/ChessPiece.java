@@ -1,8 +1,9 @@
 package com.seios.warofkings.pieces;
 
+import com.seios.warofkings.exceptions.SamePieceException;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.PieceUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,9 +26,7 @@ public abstract class ChessPiece implements Movable, Positionable {
         this.n_moves = n_moves;
     }
 
-    protected boolean kingCheck(ChessPiece king, ChessPiece piece, int toPosition, ChessPiece[][] piecesMap) {
-        if (king.getType().getValor() / 6 == piece.getType().getValor() / 6) return false; // TODO: podemos transformar isso em uma exeception, eu acho até melhor do que retornar false
-
+    protected boolean kingCheck(int toPosition, ChessPiece[][] piecesMap) {
         ChessPiece[][] simulatedMap = new ChessPiece[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -35,20 +34,19 @@ public abstract class ChessPiece implements Movable, Positionable {
             }
         }
 
-        int fromX = piece.getX();
-        int fromY = piece.getY();
+        int fromX = this.getX();
+        int fromY = this.getY();
         int toX = getX(toPosition);
         int toY = getY(toPosition);
 
         simulatedMap[fromX][fromY] = null;
-        simulatedMap[toX][toY] = piece;
+        simulatedMap[toX][toY] = this;
+
+        boolean isWhite = (this.type == Type.PAWN_WHITE);
+        ChessPiece king = BoardPiece.findPieces(isWhite ? Type.KING_WHITE : Type.KING_BLACK);
 
         int kingX = king.getX();
         int kingY = king.getY();
-        if (piece == king) {
-            kingX = toX;
-            kingY = toY;
-        }
 
         int kingPos = kingX * 10 + kingY;
 
@@ -77,17 +75,9 @@ public abstract class ChessPiece implements Movable, Positionable {
         return this.position / 10; // Dezena
     }
 
-    public static int getX(int position) {
-        return position / 10;
-    }
-
     @Override
     public int getY() {
         return this.position % 10; // Unidade
-    }
-
-    public static int getY(int position) {
-        return position % 10;
     }
 
     @Override

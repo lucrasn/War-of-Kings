@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Bishop extends ChessPiece {
 
-    public Bishop(int position, Type type, int n_moves)  throws IllegalArgumentException {
+    public Bishop(int position, Type type, int n_moves)  {
         if (!(type.getValor() == 3) && !(type.getValor() == 9)) {
             throw new IllegalArgumentException("Tipo inválido para bispo. Esperado BISHOP_WHITE (3) ou BISHOP_BLACK (9).");
         }
@@ -32,7 +32,7 @@ public class Bishop extends ChessPiece {
     }
 
     // Metodo de fábrica
-    public static Bishop createBishop(int position, Type type) throws IllegalArgumentException {
+    public static Bishop createBishop(int position, Type type) {
         if (!(type.getValor() == 3) && !(type.getValor() == 9)) {
             throw new IllegalArgumentException("Tipo inválido para bispo. Esperado BISHOP_WHITE (3) ou BISHOP_BLACK (9).");
         }

@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @since 2025-06-01
  */
 public class Knight extends ChessPiece  {
-    public Knight(int position, Type type, int n_moves)  throws IllegalArgumentException {
+    public Knight(int position, Type type, int n_moves)  {
         if (!(type.getValor() == 2) && !(type.getValor() == 8)) {
             throw new IllegalArgumentException("Tipo inválido para cavalo. Esperado KNIGHT_WHITE (2) ou KNIGHT_BLACK (8).");
         }
@@ -33,7 +33,7 @@ public class Knight extends ChessPiece  {
     }
 
     // Metodo de fábrica
-    public static Knight createKnight(int position, Type type) throws IllegalArgumentException {
+    public static Knight createKnight(int position, Type type) {
         if (!(type.getValor() == 2) && !(type.getValor() == 8)) {
             throw new IllegalArgumentException("Tipo inválido para cavalo. Esperado KNIGHT_WHITE (2) ou KNIGHT_BLACK (8).");
         }
@@ -68,9 +68,12 @@ public class Knight extends ChessPiece  {
         for (Integer offset : moves.values()) {
             int newPos = pos + offset;
             if (PieceUtils.isWithinBounds(newPos)) {
-                ChessPiece target = board[getX(newPos)][getY(newPos)];
-                if ((target == null || isOpponent(target))) {
-                    possibleMoves.add(newPos);
+                ChessPiece target = board[PieceUtils.getX(newPos)][PieceUtils.getY(newPos)];
+                if (target == null || isOpponent(target)) {
+
+                    if (!kingCheck(newPos, board)) {
+                        possibleMoves.add(newPos);
+                    }
                 }
             }
         }

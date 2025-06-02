@@ -1,11 +1,11 @@
 package com.seios.warofkings.exceptions;
 
-public class SameTypeException extends RuntimeException {
-    public SameTypeException() {
+public class SamePieceException extends RuntimeException {
+    public SamePieceException() {
         super("A ação não é permitida: ambas as peças pertencem ao mesmo tipo (mesmo lado).");
     }
 
-    public SameTypeException(String message) {
+    public SamePieceException(String message) {
         super(message);
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2025-05-24
  */
 public class Queen extends ChessPiece {
-    public Queen(int position, Type type, int n_moves)  throws IllegalArgumentException {
+    public Queen(int position, Type type, int n_moves)  {
         if (!(type.getValor() == 4) && !(type.getValor() == 10)) {
             throw new IllegalArgumentException("Tipo inválido para rainha. Esperado QUEEN_WHITE (4) ou QUEEN_BLACK (10).");
         }
@@ -31,7 +31,7 @@ public class Queen extends ChessPiece {
         this.type = type;
     }
 
-    public static Queen createQueen(int position, Type type) throws IllegalArgumentException {
+    public static Queen createQueen(int position, Type type) {
         if (!(type.getValor() == 4) && !(type.getValor() == 10)) {
             throw new IllegalArgumentException("Tipo inválido para rainha. Esperado QUEEN_WHITE (4) ou QUEEN_BLACK (10).");
         }

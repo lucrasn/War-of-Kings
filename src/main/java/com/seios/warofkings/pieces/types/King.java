@@ -13,7 +13,7 @@ import java.util.List;
  * @since YYYY-MM-DD
  */
 public class King extends ChessPiece {
-    public King(int position, Type type, int n_moves) throws IllegalArgumentException {
+    public King(int position, Type type, int n_moves) {
         if (!(type.getValor() == 5) && !(type.getValor() == 11)) {
             throw new IllegalArgumentException("Tipo inválido para rei. Esperado KING_WHITE (5) ou KING_BLACK (11).");
         }

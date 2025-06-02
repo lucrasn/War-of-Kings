@@ -15,7 +15,7 @@ import com.seios.warofkings.utils.PieceUtils;
  * @since 2025-05-14
  */
 public class Pawn extends ChessPiece {
-    public Pawn(int position, Type type, int n_moves)  throws IllegalArgumentException {
+    public Pawn(int position, Type type, int n_moves) {
         if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
             throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
         }
@@ -31,7 +31,7 @@ public class Pawn extends ChessPiece {
     }
 
     // Metodo de fábrica
-    public static Pawn createPawn(int position, Type type) throws IllegalArgumentException {
+    public static Pawn createPawn(int position, Type type) {
         if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
             throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
         }
@@ -54,19 +54,19 @@ public class Pawn extends ChessPiece {
         List<Integer> possibleMoves = new ArrayList<Integer>();
         int pos = this.position;
 
-        boolean isWhite = this.type == Type.PAWN_WHITE;
+        boolean isWhite = (this.type == Type.PAWN_WHITE);
         int forward = isWhite ? -10 : 10;
         int doubleForward = isWhite ? -20 : 20;
         int diagLeft = isWhite ? -11 : 9;
         int diagRight = isWhite ? -9 : 11;
 
         int fwdPos = pos + forward;
-        if (PieceUtils.isWithinBounds(fwdPos) && board[getX(fwdPos)][getY(fwdPos)] == null) {
+        if (PieceUtils.isWithinBounds(fwdPos) && board[PieceUtils.getX(fwdPos)][PieceUtils.getY(fwdPos)] == null) {
             possibleMoves.add(fwdPos);
 
             // Duplo avanço inicial
             int dblFwdPos = pos + doubleForward;
-            if (n_moves == 0 && PieceUtils.isWithinBounds(dblFwdPos) && board[getX(dblFwdPos)][getY(dblFwdPos)] == null) {
+            if (n_moves == 0 && PieceUtils.isWithinBounds(dblFwdPos) && board[PieceUtils.getX(dblFwdPos)][PieceUtils.getY(dblFwdPos)] == null) {
                 possibleMoves.add(dblFwdPos);
             }
         }
@@ -74,7 +74,7 @@ public class Pawn extends ChessPiece {
         // Diagonal esquerda
         int diagLPos = pos + diagLeft;
         if (PieceUtils.isWithinBounds(diagLPos)) {
-            if (isOpponent(board[getX(diagLPos)][getY(diagLPos)])) {
+            if (isOpponent(board[PieceUtils.getX(diagLPos)][PieceUtils.getY(diagLPos)])) {
                 possibleMoves.add(diagLPos);
             }
         }
@@ -82,7 +82,7 @@ public class Pawn extends ChessPiece {
         // Diagonal direita
         int diagRPos = pos + diagRight;
         if (PieceUtils.isWithinBounds(diagRPos)) {
-            if (isOpponent(board[getX(diagRPos)][getY(diagRPos)])) {
+            if (isOpponent(board[PieceUtils.getX(diagRPos)][PieceUtils.getY(diagRPos)])) {
                 possibleMoves.add(diagRPos);
             }
         }
@@ -100,7 +100,7 @@ public class Pawn extends ChessPiece {
      * @return Nova peça promovida
      * @throws IllegalArgumentException se o tipo de promoção for inválido ou incompatível com a cor do peão
      */
-    public ChessPiece promoteIfEligible(Type promotionType) throws IllegalArgumentException {
+    public ChessPiece promoteIfEligible(Type promotionType) {
         boolean isWhite = this.type == Type.PAWN_WHITE;
         int finalRow = isWhite ? 0 : 7;
 
