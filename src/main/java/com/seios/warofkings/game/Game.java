@@ -13,6 +13,7 @@ public class Game {
         board.printBoard();
 
         //Só testando para ver se está funcionando a lógica
+            // by allan: faz o teste dnv hehe
         ChessPiece p = board.getPieceAt(1,4);
         if (p != null) {
             System.out.println("Peça encontrada: " + p.getType().displayName());

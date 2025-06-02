@@ -2,8 +2,10 @@ package com.seios.warofkings.pieces;
 
 import com.seios.warofkings.exceptions.SamePieceException;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +45,7 @@ public abstract class ChessPiece implements Movable, Positionable {
         simulatedMap[toX][toY] = this;
 
         boolean isWhite = (this.type == Type.PAWN_WHITE);
-        ChessPiece king = BoardPiece.findPieces(isWhite ? Type.KING_WHITE : Type.KING_BLACK);
+        ChessPiece king = BoardUtils.findPieces(piecesMap ,isWhite ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
 
         int kingX = king.getX();
         int kingY = king.getY();

@@ -107,7 +107,7 @@ public class Pawn extends ChessPiece {
      * @throws IllegalArgumentException se o tipo de promoção for inválido ou incompatível com a cor do peão
      */
     public ChessPiece promoteIfEligible(Type promotionType) {
-        boolean isWhite = this.type == Type.PAWN_WHITE;
+        boolean isWhite = (this.type == Type.PAWN_WHITE);
         int finalRow = isWhite ? 0 : 7;
 
         if (this.getX() == finalRow) {

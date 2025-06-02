@@ -12,7 +12,7 @@ import java.util.List;
  * Esta classe é responsável pela implementação dos movimentos da peça Rainha
  *
  * @author allan
- * @version 1.0
+ * @version 1.2
  * @since 2025-05-24
  */
 public class Queen extends ChessPiece {
@@ -76,7 +76,6 @@ public class Queen extends ChessPiece {
         }
 
 
-
         int backwardPos = backward + pos;
         while(PieceUtils.isWithinBounds(backwardPos) && board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)] == null){
             possibleMoves.add(backwardPos);
@@ -85,6 +84,7 @@ public class Queen extends ChessPiece {
         if(PieceUtils.isWithinBounds(backwardPos) && isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]) ){
             possibleMoves.add(backwardPos);
         }
+
 
         int rightPos = right + pos;
         while(PieceUtils.isWithinBounds(rightPos) && board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)] == null){
@@ -95,6 +95,7 @@ public class Queen extends ChessPiece {
             possibleMoves.add(rightPos);
         }
 
+
         int leftPos = left + pos;
         while(PieceUtils.isWithinBounds(leftPos) && board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)] == null){
             possibleMoves.add(leftPos);
@@ -103,6 +104,7 @@ public class Queen extends ChessPiece {
         if(PieceUtils.isWithinBounds(leftPos) && isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]) ){
             possibleMoves.add(leftPos);
         }
+
 
         int northwestPos = northwest + pos;
         while(PieceUtils.isWithinBounds(northwestPos) && board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)] == null){
@@ -113,6 +115,7 @@ public class Queen extends ChessPiece {
             possibleMoves.add(northwestPos);
         }
 
+
         int southwestPos = southwest + pos;
         while(PieceUtils.isWithinBounds(southwestPos) && board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null){
             possibleMoves.add(southwestPos);
@@ -122,6 +125,7 @@ public class Queen extends ChessPiece {
             possibleMoves.add(southwestPos);
         }
 
+
         int northeastPos = northeast + pos;
         while(PieceUtils.isWithinBounds(northeastPos) && board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)] == null){
             possibleMoves.add(northeastPos);
@@ -130,6 +134,7 @@ public class Queen extends ChessPiece {
         if(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)]) ){
             possibleMoves.add(northeastPos);
         }
+
 
         int southeastPos = southeast + pos;
         while(PieceUtils.isWithinBounds(southeastPos) && board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null){

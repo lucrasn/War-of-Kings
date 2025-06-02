@@ -8,18 +8,16 @@ import java.util.List;
 
 public class BoardUtils {
 
-    public static List<int[]> findPieces(ChessPiece[][] pieces, Type type) {
-        List<int[]> positions = new ArrayList<>();
+    public static List<ChessPiece> findPieces(ChessPiece[][] pieces, Type type) {
+        List<ChessPiece> positions = new ArrayList<>();
 
-        for (int i = 0; i < pieces.length; i++) {
-            for (int j = 0; j < pieces[i].length; j++) {
-                ChessPiece piece = pieces[i][j];
+        for (ChessPiece[] chessPieces : pieces) {
+            for (ChessPiece piece : chessPieces) {
                 if (piece != null && piece.getType() == type) {
-                    positions.add(new int[]{i, j});
+                    positions.add(piece);
                 }
             }
         }
-
         return positions;
     }
 }
