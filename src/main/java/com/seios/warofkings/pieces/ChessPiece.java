@@ -36,8 +36,8 @@ public abstract class ChessPiece implements Movable, Positionable {
 
         int fromX = this.getX();
         int fromY = this.getY();
-        int toX = getX(toPosition);
-        int toY = getY(toPosition);
+        int toX = PieceUtils.getX(toPosition);
+        int toY = PieceUtils.getY(toPosition);
 
         simulatedMap[fromX][fromY] = null;
         simulatedMap[toX][toY] = this;
@@ -102,11 +102,11 @@ public abstract class ChessPiece implements Movable, Positionable {
         //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
 
         boolean exercito = this.type.getValor() <= 5; // if -> exercito branco; else -> exercito preto
-        if (board[getX(position)][getY(position)].getType().getValor() <= 5 && !exercito) {
+        if (board[PieceUtils.getX(position)][PieceUtils.getY(position)].getType().getValor() <= 5 && !exercito) {
             setPosition(position);
             this.n_moves++;
             return true;
-        } else if (board[getX(position)][getY(position)].getType().getValor() >= 6 && exercito) {
+        } else if (board[PieceUtils.getX(position)][PieceUtils.getY(position)].getType().getValor() >= 6 && exercito) {
             setPosition(position);
             this.n_moves++;
             return true;
