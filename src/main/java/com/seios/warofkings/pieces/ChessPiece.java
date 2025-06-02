@@ -90,15 +90,15 @@ public abstract class ChessPiece implements Movable, Positionable {
         return this.position;
     }
 
+    // o setPosition é pra uso interno de moveTo,
+    // mas n pode ser private nem protected, somente public ai é peso.
     @Override
     public void setPosition(int position) { // muda a posição
         this.position = position;
     }
 
-    // o setPosition é pra uso interno de moveTo,
-    // mas n pode ser private nem protected, somente public ai é peso.
     @Override
-    public boolean moveTo(int position, ChessPiece[][] board) { // faz verificações antes de mover
+    public boolean moveTo(int position, List<Integer> listMoves,ChessPiece[][] board) { // faz verificações antes de mover
         //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
 
         boolean exercito = this.type.getValor() <= 5; // if -> exercito branco; else -> exercito preto

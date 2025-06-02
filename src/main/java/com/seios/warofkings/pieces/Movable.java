@@ -10,7 +10,7 @@ import java.util.List;
  * @since 2025-05-14
  */
 public interface Movable {
-    boolean moveTo(int place, ChessPiece[][] board);
+    boolean moveTo(int place, List<Integer> listMoves, ChessPiece[][] board);
     List<Integer> getPossibleMoves(ChessPiece[][] board);
 
 }
