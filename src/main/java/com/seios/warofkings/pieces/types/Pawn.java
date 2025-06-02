@@ -11,7 +11,7 @@ import com.seios.warofkings.utils.PieceUtils;
  * Esta classe é responsável pela implementação dos movimentos da peça Peão
  *
  * @author lucas
- * @version 1.0
+ * @version 1.5
  * @since 2025-05-14
  */
 public class Pawn extends ChessPiece {
@@ -62,12 +62,16 @@ public class Pawn extends ChessPiece {
 
         int fwdPos = pos + forward;
         if (PieceUtils.isWithinBounds(fwdPos) && board[PieceUtils.getX(fwdPos)][PieceUtils.getY(fwdPos)] == null) {
-            possibleMoves.add(fwdPos);
+            if (!kingCheck(fwdPos, board)) {
+                possibleMoves.add(fwdPos);
+            }
 
             // Duplo avanço inicial
             int dblFwdPos = pos + doubleForward;
             if (n_moves == 0 && PieceUtils.isWithinBounds(dblFwdPos) && board[PieceUtils.getX(dblFwdPos)][PieceUtils.getY(dblFwdPos)] == null) {
-                possibleMoves.add(dblFwdPos);
+                if (!kingCheck(dblFwdPos, board)) {
+                    possibleMoves.add(dblFwdPos);
+                }
             }
         }
 
@@ -75,7 +79,9 @@ public class Pawn extends ChessPiece {
         int diagLPos = pos + diagLeft;
         if (PieceUtils.isWithinBounds(diagLPos)) {
             if (isOpponent(board[PieceUtils.getX(diagLPos)][PieceUtils.getY(diagLPos)])) {
-                possibleMoves.add(diagLPos);
+                if (!kingCheck(diagLPos, board)) {
+                    possibleMoves.add(diagLPos);
+                }
             }
         }
 
@@ -83,11 +89,11 @@ public class Pawn extends ChessPiece {
         int diagRPos = pos + diagRight;
         if (PieceUtils.isWithinBounds(diagRPos)) {
             if (isOpponent(board[PieceUtils.getX(diagRPos)][PieceUtils.getY(diagRPos)])) {
-                possibleMoves.add(diagRPos);
+                if (!kingCheck(diagRPos, board)) {
+                    possibleMoves.add(diagRPos);
+                }
             }
         }
-
-        // Usar o kingCheck antes de retornar a lista
 
         return possibleMoves;
     }
