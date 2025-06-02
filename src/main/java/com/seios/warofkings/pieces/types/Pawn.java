@@ -122,10 +122,4 @@ public class Pawn extends ChessPiece {
 
         return this;
     }
-
-    @Override
-    public boolean moveTo(int position, List<Integer> listMoves, ChessPiece[][] board) {
-        //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
-        return super.moveTo(position, listMoves, board);
-    }
 }

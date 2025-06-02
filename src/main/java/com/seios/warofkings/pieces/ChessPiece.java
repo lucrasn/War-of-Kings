@@ -100,15 +100,9 @@ public abstract class ChessPiece implements Movable, Positionable {
     }
 
     @Override
-    public boolean moveTo(int position, List<Integer> listMoves,ChessPiece[][] board) { // faz verificações antes de mover
-        //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
-
-        boolean exercito = this.type.getValor() <= 5; // if -> exercito branco; else -> exercito preto
-        if (board[PieceUtils.getX(position)][PieceUtils.getY(position)].getType().getValor() <= 5 && !exercito) {
-            setPosition(position);
-            this.n_moves++;
-            return true;
-        } else if (board[PieceUtils.getX(position)][PieceUtils.getY(position)].getType().getValor() >= 6 && exercito) {
+    public boolean moveTo(int position, List<Integer> listMoves, ChessPiece[][] board) {
+        if (PieceUtils.isWithinBounds(position) && listMoves.contains(position)) {
+            board[PieceUtils.getX(position)][PieceUtils.getY(position)] = this;
             setPosition(position);
             this.n_moves++;
             return true;
@@ -118,6 +112,10 @@ public abstract class ChessPiece implements Movable, Positionable {
 
     public Type getType() {
         return this.type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public int getN_moves() {
