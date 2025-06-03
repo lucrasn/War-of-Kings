@@ -3,9 +3,7 @@ package com.seios.warofkings.board;
 import com.seios.warofkings.game.enums.Turn;
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
-import com.seios.warofkings.pieces.types.Bishop;
-import com.seios.warofkings.pieces.types.Pawn;
-import com.seios.warofkings.pieces.types.Queen;
+import com.seios.warofkings.pieces.types.*;
 
 public class Board implements Boardable {
     protected int[][] board = new int[8][8];
@@ -36,51 +34,69 @@ public class Board implements Boardable {
                 pieces[i][j] = null;
             }
         }
+
         // Pretas
-        board[0][0] = 7;  //pieces[0][0] = new Rook(0, Type.ROOK_BLACK);// Torre preta
-        board[0][1] = 8;  //pieces[0][1] = new Knight(1, Type.KNIGHT_BLACK);//Cavalo preto
-        board[0][2] = 9;  //pieces[0][2] = new Bishop(2, Type.BISHOP_BLACK);//Bispo preto
-        pieces[0][2] = Bishop.createBishop(9, Type.BISHOP_BLACK);
+        board[0][0] = 7;  // Torre preta
+        pieces[0][0] = Rook.createRook(0, Type.ROOK_BLACK);
 
-        board[0][3] = 10; //pieces[0][3] = new Queen(3, Type.QUEEN_BLACK);//Rainha preta
-        pieces[0][3] = Queen.createQueen(10, Type.QUEEN_BLACK);
+        board[0][1] = 8;  //Cavalo preto
+        pieces[0][1] = Knight.createKnight(1, Type.KNIGHT_BLACK);
 
-        board[0][4] = 11; //pieces[0][4] = new King(4, Type.KING_BLACK);//Rei preto
+        board[0][2] = 9;  //Bispo preto
+        pieces[0][2] = Bishop.createBishop(2, Type.BISHOP_BLACK);
 
-        board[0][5] = 9;  //pieces[0][5] = new Bishop(5, Type.BISHOP_BLACK);//Bispo preto
-        pieces[0][5] = Bishop.createBishop(9, Type.BISHOP_BLACK);
+        board[0][3] = 10; //Rainha preta
+        pieces[0][3] = Queen.createQueen(3, Type.QUEEN_BLACK);
 
-        board[0][6] = 8;  //pieces[0][6] = new Knight(6, Type.KNIGHT_BLACK);//Cavalo preto
-        board[0][7] = 7;  //pieces[0][7] = new Rook(7, Type.ROOK_BLACK);// Torre preta
+        board[0][4] = 11; // Rei preto
+        //pieces[0][4] = King.createKing(4, Type.KING_BLACK);
+
+        board[0][5] = 9;  //Bispo preto
+        pieces[0][5] = Bishop.createBishop(5, Type.BISHOP_BLACK);
+
+        board[0][6] = 8;  //Cavalo preto
+        pieces[0][6] = Knight.createKnight(6, Type.KNIGHT_BLACK);
+
+        board[0][7] = 7;  // Torre preta
+        pieces[0][7] = Rook.createRook(7, Type.ROOK_BLACK);
+
 
         for (int j = 0; j < 8; j++) {
             board[1][j] = 6;
-            pieces[1][j] = Pawn.createPawn(board[1][j], Type.PAWN_BLACK);//Peão preto
+            pieces[1][j] = Pawn.createPawn(10 + j, Type.PAWN_BLACK);//Peão preto
         }
 
         // Brancas
+        board[7][0] = 1;  // Torre branca
+        pieces[7][0] = Rook.createRook(70,Type.ROOK_WHITE);
+
+        board[7][1] = 2;  // Cavalo branco
+        pieces[7][1] = Knight.createKnight(71,Type.KNIGHT_WHITE);
+
+        board[7][2] = 3;  // Bispo branco
+        pieces[7][2] = Bishop.createBishop(72, Type.BISHOP_WHITE);
+
+        board[7][3] = 4;  // Rainha branca
+        pieces[7][3] = Queen.createQueen(73, Type.QUEEN_WHITE);
+
+        board[7][4] = 5;  // Rei branco
+        //pieces[7][4] = King.createKing(74,Type.KING_WHITE);
+
+        board[7][5] = 3;  // Bispo branco
+        pieces[7][5] = Bishop.createBishop(75, Type.BISHOP_WHITE);
+
+        board[7][6] = 2;  // Cavalo branco
+        pieces[7][6] = Knight.createKnight(76,Type.KNIGHT_WHITE);
+
+        board[7][7] = 1;  // Torre branca
+        pieces[7][7] = Rook.createRook(77,Type.ROOK_WHITE);
+
         for (int j = 0; j < 8; j++) {
             board[6][j] = 0;
-            pieces[6][j] = Pawn.createPawn(board[6][j], Type.PAWN_WHITE);//Peão branco
+            pieces[6][j] = Pawn.createPawn(6*10 + j, Type.PAWN_WHITE);//Peão branco
         }
-
-        board[7][0] = 1;  //pieces[7][0] = new Rook(/*70,Type.ROOK_WHITE*/);// Torre branca
-        board[7][1] = 2;  //pieces[7][1] = new Knight(/*71,Type.KNIGHT_WHITE*/);// Cavalo branco
-
-        board[7][2] = 3;  //pieces[7][2] = new Bishop(/*72,Type.BISHOP_WHITE*/);// Bispo branco
-        pieces[7][2] = Bishop.createBishop(3, Type.BISHOP_WHITE);
-
-        board[7][3] = 4;  //pieces[7][3] = new Queen(/*73,Type.QUEEN_WHITE*/);// Rainha branca
-        pieces[7][3] = Queen.createQueen(4, Type.QUEEN_WHITE);
-
-        board[7][4] = 5;  //pieces[7][4] = new King(/*74,Type.KING_WHITE*/);// Rei branco
-
-        board[7][5] = 3;  //pieces[7][5] = new Bishop(/*75,Type.BISHOP_WHITE*/);// Bispo branco
-        pieces[7][5] = Bishop.createBishop(3, Type.BISHOP_WHITE);
-
-        board[7][6] = 2;  //pieces[7][6] = new Knight(/*76,Type.KNIGHT_WHITE*/);// Cavalo branco
-        board[7][7] = 1;  //pieces[7][7] = new Rook(/*77,Type.ROOK_WHITE*/);// Torre branca
     }
+
     /**
      * Método para verificar se a posição especificada do tabuleiro está ocupada por uma peça.
      * @author Raffael Wagner

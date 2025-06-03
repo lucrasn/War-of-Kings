@@ -1,11 +1,9 @@
 package com.seios.warofkings.pieces;
 
-import com.seios.warofkings.exceptions.SamePieceException;
 import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
