@@ -1,4 +1,4 @@
-package com.seios.warofkings.game.enums;
+package com.seios.warofkings.board.enums;
 
 public enum Turn {
     WHITE, BLACK;

@@ -1,5 +1,6 @@
 package com.seios.warofkings.pieces;
 
+import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
@@ -10,7 +11,7 @@ import java.util.List;
  * Esta classe é responsável pela abstração dos movimentos das peças de xadrez
  *
  * @author lucas
- * @version 1.0
+ * @version 1.3
  * @since 2025-05-14
  */
 public abstract class ChessPiece implements Movable, Positionable {
@@ -27,6 +28,7 @@ public abstract class ChessPiece implements Movable, Positionable {
     }
 
     protected boolean kingCheck(int toPosition, ChessPiece[][] piecesMap) {
+        // TODO: não precisa clonar os parametros pois ja trabalhamos com copias
         ChessPiece[][] simulatedMap = new ChessPiece[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -98,9 +100,15 @@ public abstract class ChessPiece implements Movable, Positionable {
     }
 
     @Override
-    public boolean moveTo(int position, List<Integer> listMoves, ChessPiece[][] board) {
+    public boolean moveTo(int position, List<Integer> listMoves, Board board) {
         if (PieceUtils.isWithinBounds(position) && listMoves.contains(position)) {
-            board[PieceUtils.getX(position)][PieceUtils.getY(position)] = this;
+            ChessPiece[][] pieces = board.getPieces();
+            pieces[getX()][getY()] = null; // onde estava a peça
+            pieces[PieceUtils.getX(position)][PieceUtils.getY(position)] = this; // onde a peça foi
+
+            board.setPieces(pieces); // altera de fato o movimento
+            board.setTurn(board.getTurn().next()); // muda a vez
+
             setPosition(position);
             this.n_moves++;
             return true;

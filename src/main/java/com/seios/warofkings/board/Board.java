@@ -1,19 +1,23 @@
 package com.seios.warofkings.board;
 
-import com.seios.warofkings.game.enums.Turn;
+import com.seios.warofkings.board.enums.Turn;
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.pieces.types.*;
 
+//para a documentação tem que ter um comentario no inicio da classe parecido como o em ChessPiece que dia o altor, data de ciração, ... (tais ligado ja)
 public class Board implements Boardable {
     protected int[][] board = new int[8][8];
     protected ChessPiece[][] pieces = new ChessPiece[8][8];
     protected Turn turn;
 
+    // vc pode fzr a implementação de setupBoard dentro do construtor, a existencia de setupBoard n é necessaria
+    // é preciso tbm que dentro do construtor alem de contruir o board contruir o pieces além de ser atribuido o valor de turn como sendo WHITE
     public Board() {
         this.setupBoard();
     }
 
+    // isso é basicamente o toString
     public void printBoard() {
         System.out.println("Tabuleiro:");
 
@@ -97,6 +101,8 @@ public class Board implements Boardable {
         }
     }
 
+    // static
+    // talvez seja mais protivo se passae somente um parametro nesse getPieceAt e que fosse (int position)
     /**
      * Método para verificar se a posição especificada do tabuleiro está ocupada por uma peça.
      * @author Raffael Wagner
@@ -107,6 +113,9 @@ public class Board implements Boardable {
         if (!isValidPosition(x, y)) return false;
         return this.pieces[x][y] != null;
     }
+
+    // static
+    // talvez seja mais proativo se passasse somente um parametro nesse getPieceAt e que fosse (int position)
     /**
      * Caso tenha, retorna a peça na posição informada do tabuleiro.
      * @author Raffael Wagner
@@ -117,6 +126,9 @@ public class Board implements Boardable {
         if (!isValidPosition(x, y)) return null;
         return pieces[x][y];
     }
+
+    // Talvez n seja necessario mais o uso desse metodo isValidPosition devido a existencia de isWithinBounds
+    // que inclusive faz mais sentido esta em BoardUtils do que PieceUtils, se puder trocar :)
     /**
      * Método para verificar se a posição está dentro dos limites do tabuleiro.
      * @author Raffael Wagner
@@ -126,6 +138,9 @@ public class Board implements Boardable {
     public boolean isValidPosition(int x, int y) {
         return x >= 0 && x < 8 && y >= 0 && y < 8;
     }
+
+    // está faltando os gets, sets e toString*:
+        // *: o toString meio que ja existe seria o printBoard
     public ChessPiece[][] getPieces() {
         return this.pieces;
     }
