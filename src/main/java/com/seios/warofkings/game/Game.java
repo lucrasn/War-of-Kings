@@ -24,7 +24,7 @@ public class Game {
             System.out.println(Type.BISHOP_BLACK.displayName() + " encontrada(o) na(s) posição(ões): (" + pos[0] + ", " + pos[1] + ")");
         }
 
-        List<int[]> posicaoRainhaBranco = BoardUtils.findPieces(board.getPieces(), Type.QUEEN_WHITE);
+       List<int[]> posicaoRainhaBranco = BoardUtils.findPieces(board.getPieces(), Type.QUEEN_WHITE);
         for (int[] pos : posicaoRainhaBranco) {
             System.out.println(Type.QUEEN_WHITE.displayName() + " encontrada(o) na(s) posição(ões): (" + pos[0] + ", " + pos[1] + ")");
         }
