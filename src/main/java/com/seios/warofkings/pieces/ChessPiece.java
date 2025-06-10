@@ -101,7 +101,7 @@ public abstract class ChessPiece implements Movable, Positionable {
 
     @Override
     public boolean moveTo(int position, List<Integer> listMoves, Board board) {
-        if (PieceUtils.isWithinBounds(position) && listMoves.contains(position)) {
+        if (BoardUtils.isWithinBounds(position) && listMoves.contains(position)) {
             ChessPiece[][] pieces = board.getPieces();
             pieces[getX()][getY()] = null; // onde estava a peça
             pieces[PieceUtils.getX(position)][PieceUtils.getY(position)] = this; // onde a peça foi

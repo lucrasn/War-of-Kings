@@ -2,6 +2,7 @@ package com.seios.warofkings.pieces.types;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
 import java.util.ArrayList;
@@ -60,38 +61,38 @@ public class Bishop extends ChessPiece {
         int southeast = 11;
 
         int northwestPos = northwest + pos;
-        while(PieceUtils.isWithinBounds(northwestPos) && board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)] == null){
+        while(BoardUtils.isWithinBounds(northwestPos) && board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)] == null){
             possibleMoves.add(northwestPos);
             northwestPos += northwest;
         }
-        if(PieceUtils.isWithinBounds(northwestPos) && isOpponent(board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)]) ){
+        if(BoardUtils.isWithinBounds(northwestPos) && isOpponent(board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)]) ){
             possibleMoves.add(northwestPos);
         }
 
         int southwestPos = southwest + pos;
-        while(PieceUtils.isWithinBounds(southwestPos) && board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null){
+        while(BoardUtils.isWithinBounds(southwestPos) && board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null){
             possibleMoves.add(southwestPos);
             southwestPos += southwest;
         }
-        if(PieceUtils.isWithinBounds(southwestPos) && isOpponent(board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)]) ){
+        if(BoardUtils.isWithinBounds(southwestPos) && isOpponent(board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)]) ){
             possibleMoves.add(southwestPos);
         }
 
         int northeastPos = northeast + pos;
-        while(PieceUtils.isWithinBounds(northeastPos) && board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)] == null){
+        while(BoardUtils.isWithinBounds(northeastPos) && board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)] == null){
             possibleMoves.add(northeastPos);
             northeastPos += northeast;
         }
-        if(PieceUtils.isWithinBounds(northeastPos) && isOpponent(board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)]) ){
+        if(BoardUtils.isWithinBounds(northeastPos) && isOpponent(board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)]) ){
             possibleMoves.add(northeastPos);
         }
 
         int southeastPos = southeast + pos;
-        while(PieceUtils.isWithinBounds(southeastPos) && board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null){
+        while(BoardUtils.isWithinBounds(southeastPos) && board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null){
             possibleMoves.add(southeastPos);
             southeastPos += southeast;
         }
-        if(PieceUtils.isWithinBounds(southeastPos) && isOpponent(board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)]) ){
+        if(BoardUtils.isWithinBounds(southeastPos) && isOpponent(board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)]) ){
             possibleMoves.add(southeastPos);
         }
 

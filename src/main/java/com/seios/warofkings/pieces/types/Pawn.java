@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
 /**
@@ -61,14 +62,14 @@ public class Pawn extends ChessPiece {
         int diagRight = isWhite ? -9 : 11;
 
         int fwdPos = pos + forward;
-        if (PieceUtils.isWithinBounds(fwdPos) && board[PieceUtils.getX(fwdPos)][PieceUtils.getY(fwdPos)] == null) {
+        if (BoardUtils.isWithinBounds(fwdPos) && board[PieceUtils.getX(fwdPos)][PieceUtils.getY(fwdPos)] == null) {
             if (!kingCheck(fwdPos, board)) {
                 possibleMoves.add(fwdPos);
             }
 
             // Duplo avanço inicial
             int dblFwdPos = pos + doubleForward;
-            if (n_moves == 0 && PieceUtils.isWithinBounds(dblFwdPos) && board[PieceUtils.getX(dblFwdPos)][PieceUtils.getY(dblFwdPos)] == null) {
+            if (n_moves == 0 && BoardUtils.isWithinBounds(dblFwdPos) && board[PieceUtils.getX(dblFwdPos)][PieceUtils.getY(dblFwdPos)] == null) {
                 if (!kingCheck(dblFwdPos, board)) {
                     possibleMoves.add(dblFwdPos);
                 }
@@ -77,7 +78,7 @@ public class Pawn extends ChessPiece {
 
         // Diagonal esquerda
         int diagLPos = pos + diagLeft;
-        if (PieceUtils.isWithinBounds(diagLPos)) {
+        if (BoardUtils.isWithinBounds(diagLPos)) {
             if (isOpponent(board[PieceUtils.getX(diagLPos)][PieceUtils.getY(diagLPos)])) {
                 if (!kingCheck(diagLPos, board)) {
                     possibleMoves.add(diagLPos);
@@ -87,7 +88,7 @@ public class Pawn extends ChessPiece {
 
         // Diagonal direita
         int diagRPos = pos + diagRight;
-        if (PieceUtils.isWithinBounds(diagRPos)) {
+        if (BoardUtils.isWithinBounds(diagRPos)) {
             if (isOpponent(board[PieceUtils.getX(diagRPos)][PieceUtils.getY(diagRPos)])) {
                 if (!kingCheck(diagRPos, board)) {
                     possibleMoves.add(diagRPos);

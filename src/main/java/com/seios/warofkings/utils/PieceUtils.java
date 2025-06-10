@@ -23,10 +23,6 @@ public class PieceUtils {
         return position % 10;
     }
 
-    public static boolean isWithinBounds(int position) {
-        return getX(position) >= 0 && getX(position) < 8 && getY(position) >= 0 && getY(position) < 8;
-    }
-
     public static boolean isSamePiece(ChessPiece a, ChessPiece b) {
         return a == b;
     }

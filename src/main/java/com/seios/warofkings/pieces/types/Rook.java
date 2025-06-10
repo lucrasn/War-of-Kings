@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
 /**
@@ -58,22 +59,22 @@ public class Rook extends ChessPiece {
 
 
             int forwardPos = forward + pos;
-            while(PieceUtils.isWithinBounds(forwardPos) && board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)] == null){
+            while(BoardUtils.isWithinBounds(forwardPos) && board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)] == null){
                 possibleMoves.add(forwardPos);
                 forwardPos += forward;
             }
-            if(PieceUtils.isWithinBounds(forwardPos) && isOpponent(board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)]) ){
+            if(BoardUtils.isWithinBounds(forwardPos) && isOpponent(board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)]) ){
                 if (!kingCheck(forwardPos, board)) {
                     possibleMoves.add(forwardPos);
                 }
             }
 
             int backwardPos = backward + pos;
-            while(PieceUtils.isWithinBounds(backwardPos) && board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)] == null){
+            while(BoardUtils.isWithinBounds(backwardPos) && board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)] == null){
                 possibleMoves.add(backwardPos);
                 backwardPos += backward;
             }
-            if(PieceUtils.isWithinBounds(backwardPos) && isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]) ){
+            if(BoardUtils.isWithinBounds(backwardPos) && isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]) ){
                 if (!kingCheck(backwardPos, board)) {
                     possibleMoves.add(backwardPos);
                 }
@@ -82,11 +83,11 @@ public class Rook extends ChessPiece {
 
 
             int rightPos = right + pos;
-            while(PieceUtils.isWithinBounds(rightPos) && board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)] == null){
+            while(BoardUtils.isWithinBounds(rightPos) && board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)] == null){
                 possibleMoves.add(rightPos);
                 rightPos += right ;
             }
-            if(PieceUtils.isWithinBounds(rightPos) && isOpponent(board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)]) ){
+            if(BoardUtils.isWithinBounds(rightPos) && isOpponent(board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)]) ){
                 if (!kingCheck(rightPos, board)) {
                     possibleMoves.add(rightPos);
                 }
@@ -94,11 +95,11 @@ public class Rook extends ChessPiece {
 
 
             int leftPos = left + pos;
-            while(PieceUtils.isWithinBounds(leftPos) && board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)] == null){
+            while(BoardUtils.isWithinBounds(leftPos) && board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)] == null){
                 possibleMoves.add(leftPos);
                 leftPos += left;
             }
-            if(PieceUtils.isWithinBounds(leftPos) && isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]) ){
+            if(BoardUtils.isWithinBounds(leftPos) && isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]) ){
                 if (!kingCheck(leftPos, board)) {
                     possibleMoves.add(leftPos);
                 }

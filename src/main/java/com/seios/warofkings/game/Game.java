@@ -14,19 +14,21 @@ public class Game {
 
         //Só testando para ver se está funcionando a lógica
             // by allan: faz o teste dnv hehe
-        ChessPiece p = board.getPieceAt(1,4);
+        ChessPiece p = BoardUtils.getPieceAt(board.getPieces() ,14);
         if (p != null) {
             System.out.println("Peça encontrada: " + p.getType().displayName());
         }
 
-        List<int[]> posicoesBispoPreto = BoardUtils.findPieces(board.getPieces(), Type.BISHOP_BLACK);
-        for (int[] pos : posicoesBispoPreto) {
-            System.out.println(Type.BISHOP_BLACK.displayName() + " encontrada(o) na(s) posição(ões): (" + pos[0] + ", " + pos[1] + ")");
+        List<ChessPiece> bisposPretos = BoardUtils.findPieces(board.getPieces(), Type.BISHOP_BLACK);
+        System.out.println("Bispos pretos encontrados:");
+        for (ChessPiece piece : bisposPretos) {
+            System.out.println(piece);
         }
 
-        List<int[]> posicaoRainhaBranco = BoardUtils.findPieces(board.getPieces(), Type.QUEEN_WHITE);
-        for (int[] pos : posicaoRainhaBranco) {
-            System.out.println(Type.QUEEN_WHITE.displayName() + " encontrada(o) na(s) posição(ões): (" + pos[0] + ", " + pos[1] + ")");
+        List<ChessPiece> posicaoRainhaBranco = BoardUtils.findPieces(board.getPieces(), Type.QUEEN_WHITE);
+        System.out.println("Rainha(s) branca(s) encontrada(s):");
+        for (ChessPiece piece : posicaoRainhaBranco) {
+            System.out.println(piece);
         }
 
 

@@ -2,6 +2,7 @@ package com.seios.warofkings.pieces.types;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public class Knight extends ChessPiece  {
 
         for (Integer offset : moves.values()) {
             int newPos = pos + offset;
-            if (PieceUtils.isWithinBounds(newPos)) {
+            if (BoardUtils.isWithinBounds(newPos)) {
                 ChessPiece target = board[PieceUtils.getX(newPos)][PieceUtils.getY(newPos)];
                 if (target == null || isOpponent(target)) {
                     if (!kingCheck(newPos, board)) {
