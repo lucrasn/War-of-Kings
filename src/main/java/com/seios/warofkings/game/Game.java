@@ -25,12 +25,5 @@ public class Game {
             System.out.println(piece);
         }
 
-        List<ChessPiece> posicaoRainhaBranco = BoardUtils.findPieces(board.getPieces(), Type.QUEEN_WHITE);
-        System.out.println("Rainha(s) branca(s) encontrada(s):");
-        for (ChessPiece piece : posicaoRainhaBranco) {
-            System.out.println(piece);
-        }
-
-
     }
 }
