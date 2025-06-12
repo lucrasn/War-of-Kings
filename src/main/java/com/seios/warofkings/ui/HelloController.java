@@ -1,6 +1,7 @@
 package com.seios.warofkings.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -91,5 +92,32 @@ public class HelloController {
             }
         }
     }
+
+    private ImageView clickedPiece;
+
+   // @FXML
+   // public void movingPieces(){
+   //     for(Node node : pecas.getChildren()){
+   //         if(node instanceof ImageView){
+   //             node.setOnMouseClicked(event -> {
+   //                 ImageView clickedImg = (ImageView) node;
+
+   //                 if(clickedPiece == null){
+   //                     clickedPiece = clickedImg;
+   //                     System.out.println("VOCE CLICOU");
+   //                 }
+   //                 else {
+   //                     System.out.println("LUGAR SELECIONADO");
+   //                     Integer column = GridPane.getColumnIndex(clickedImg);
+   //                     Integer row = GridPane.getRowIndex(clickedImg);
+
+   //                     pecas.getChildren().remove(clickedImg);
+   //                     pecas.add(clickedImg, column, row);
+
+   //                     clickedPiece = null;
+   //                 }
+   //             });
+   //         }
+   //     }      não ta funcionado direito/ vou rever a lógica
 
 }
