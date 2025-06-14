@@ -22,7 +22,7 @@ public class BoardUtils {
     }
 
     /**
-     * Método para verificar se a posição especificada do tabuleiro está ocupada por uma peça.
+     * Metodo para verificar se a posição especificada do tabuleiro está ocupada por uma peça.
      * @author Raffael Wagner
      * @param position int - A posição a ser analisada.
      * @return {@code true} se houver uma peça na posição especificada, {@code false} caso contrário.*/
