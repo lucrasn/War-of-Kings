@@ -119,4 +119,23 @@ public abstract class ChessPiece implements Movable, Positionable {
     public void setN_moves(int n_moves) {
         this.n_moves = n_moves;
     }
+
+    public String getImgName() {
+        return switch (type) {
+            case PAWN_BLACK -> "Pawn_Black.png";
+            case ROOK_BLACK -> "Rook_Black.png";
+            case KNIGHT_BLACK -> "Knight_Black.png";
+            case BISHOP_BLACK -> "Bishop_Black.png";
+            case QUEEN_BLACK -> "Queen_Black.png";
+            case KING_BLACK -> "King_Black.png";
+            case PAWN_WHITE -> "Pawn_White.png";
+            case ROOK_WHITE -> "Rook_White.png";
+            case KNIGHT_WHITE -> "Knight_White.png";
+            case BISHOP_WHITE -> "Bishop_White.png";
+            case QUEEN_WHITE -> "Queen_White.png";
+            case KING_WHITE -> "King_White.png";
+
+            default -> null;
+        };
+    }
 }
