@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import java.io.InputStream;
 import java.util.Map;
 
-public class HelloController {
+public class MainController {
     int[][] board = {
             { 7, 8, 9,10,11, 9, 8, 7},
             { 6, 6, 6, 6, 6, 6, 6, 6},

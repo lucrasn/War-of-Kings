@@ -28,21 +28,9 @@ public abstract class ChessPiece implements Movable, Positionable {
     }
 
     protected boolean kingCheck(int toPosition, ChessPiece[][] piecesMap) {
-        // TODO: não precisa clonar os parametros pois ja trabalhamos com copias
-        ChessPiece[][] simulatedMap = new ChessPiece[8][8];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                simulatedMap[i][j] = piecesMap[i][j];
-            }
-        }
 
-        int fromX = this.getX();
-        int fromY = this.getY();
-        int toX = PieceUtils.getX(toPosition);
-        int toY = PieceUtils.getY(toPosition);
-
-        simulatedMap[fromX][fromY] = null;
-        simulatedMap[toX][toY] = this;
+        piecesMap[this.getX()][this.getY()] = null;
+        piecesMap[PieceUtils.getX(toPosition)][PieceUtils.getY(toPosition)] = this;
 
         boolean isWhite = (this.type == Type.PAWN_WHITE);
         ChessPiece king = BoardUtils.findPieces(piecesMap ,isWhite ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
@@ -52,10 +40,10 @@ public abstract class ChessPiece implements Movable, Positionable {
 
         int kingPos = kingX * 10 + kingY;
 
-        for (ChessPiece[] row : simulatedMap) {
+        for (ChessPiece[] row : piecesMap) {
             for (ChessPiece other : row) {
                 if (other != null && other.getType().getValor() / 6 != king.getType().getValor() / 6) {
-                    List<Integer> moves = other.getPossibleMoves(simulatedMap);
+                    List<Integer> moves = other.getPossibleMoves(piecesMap);
                     if (moves.contains(kingPos)) {
                         return true;
                     }

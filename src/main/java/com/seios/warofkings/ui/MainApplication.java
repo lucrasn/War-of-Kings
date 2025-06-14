@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/seios/warofkings/layouts/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/seios/warofkings/layouts/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 340, 400);
         stage.setTitle("War of Kings");
         stage.setScene(scene);
