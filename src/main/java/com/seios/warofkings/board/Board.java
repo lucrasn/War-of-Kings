@@ -14,8 +14,8 @@ import com.seios.warofkings.pieces.types.*;
  * @since 2025-05-14
  */
 public class Board {
-    protected int[][] board = new int[8][8];
-    protected ChessPiece[][] pieces = new ChessPiece[8][8];
+    protected int[][] board;
+    protected ChessPiece[][] pieces;
     protected Turn turn;
 
     public int[][] getBoard() {
@@ -70,7 +70,7 @@ public class Board {
         pieces[0][3] = Queen.createQueen(3, Type.QUEEN_BLACK);
 
         board[0][4] = 11; // Rei preto
-        //pieces[0][4] = King.createKing(4, Type.KING_BLACK);
+        pieces[0][4] = King.createKing(4, Type.KING_BLACK);
 
         board[0][5] = 9;  //Bispo preto
         pieces[0][5] = Bishop.createBishop(5, Type.BISHOP_BLACK);

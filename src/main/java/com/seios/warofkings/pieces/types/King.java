@@ -16,6 +16,20 @@ import java.util.Map;
 public class King extends ChessPiece {
     boolean roque = false; // true: listmoves tem roque. false: n tem roque
 
+    private King(int position, Type type) {
+        super();
+        this.position = position;
+        this.type = type;
+    }
+
+    // Metodo de fábrica
+    public static King createKing(int position, Type type) {
+        if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
+            throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
+        }
+        return new King(position, type);
+    }
+
     public King(int position, Type type, int n_moves) {
         if (!(type.getValor() == 5) && !(type.getValor() == 11)) {
             throw new IllegalArgumentException("Tipo inválido para rei. Esperado KING_WHITE (5) ou KING_BLACK (11).");
