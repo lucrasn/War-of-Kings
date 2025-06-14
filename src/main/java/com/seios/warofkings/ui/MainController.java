@@ -58,9 +58,8 @@ public class MainController {
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
                 ChessPiece peca = board.getPieces()[linha][coluna];
-                int id = board.getBoard()[linha][coluna];
 
-                if (pecas != null) {
+                if (peca != null) {
                     String imageName = peca.getImgName();
                     InputStream inputStream = getClass().getResourceAsStream("/imagens/" + imageName);
 

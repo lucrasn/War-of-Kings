@@ -101,7 +101,7 @@ public class Board {
         pieces[7][3] = Queen.createQueen(73, Type.QUEEN_WHITE);
 
         board[7][4] = 5;  // Rei branco
-        //pieces[7][4] = King.createKing(74,Type.KING_WHITE);
+        pieces[7][4] = King.createKing(74,Type.KING_WHITE);
 
         board[7][5] = 3;  // Bispo branco
         pieces[7][5] = Bishop.createBishop(75, Type.BISHOP_WHITE);
