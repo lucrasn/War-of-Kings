@@ -24,18 +24,18 @@ public class HelloController {
     };
 
     Map<Integer, String> idPecas = Map.ofEntries(
-            Map.entry(0, "Pawn_White.png"),
-            Map.entry(1, "Knight_White.png"),
-            Map.entry(2, "Rook_White.png"),
-            Map.entry(3, "Bishop_White.png"),
-            Map.entry(4, "Queen_White.png"),
-            Map.entry(5, "King_White.png"),
-            Map.entry(6, "Pawn_Black.png"),
-            Map.entry(7, "Rook_Black.png"),
-            Map.entry(8, "Knight_Black.png"),
-            Map.entry(9, "Bishop_Black.png"),
-            Map.entry(10, "Queen_Black.png"),
-            Map.entry(11, "King_Black.png")
+            Map.entry(0, "Peao_Branco.png"),
+            Map.entry(1, "Cavalo_Branco.png"),
+            Map.entry(2, "Torre_Branco.png"),
+            Map.entry(3, "Bispo_Branco.png"),
+            Map.entry(4, "Rainha_Branco.png"),
+            Map.entry(5, "Rei_Branco.png"),
+            Map.entry(6, "Peao_Preto.png"),
+            Map.entry(7, "Torre_Preto.png"),
+            Map.entry(8, "Cavalo_Preto.png"),
+            Map.entry(9, "Bispo_Preto.png"),
+            Map.entry(10, "Rainha_Preto.png"),
+            Map.entry(11, "Rei_Preto.png")
     );
 
     @FXML
@@ -49,6 +49,7 @@ public class HelloController {
     public void initialize(){
         creatingBoard();
         creatingPieces();
+        movingPieces();
     }
 
     @FXML
@@ -81,8 +82,15 @@ public class HelloController {
 
                 if (id != -1) {
                     String imageName = idPecas.get(id);
-                    Image png = new Image(getClass().getResourceAsStream("/imagens/" + imageName));
+                    InputStream inputStream = getClass().getResourceAsStream("/imagens/" + imageName);
 
+
+                    if (inputStream == null) {
+                        System.err.println("Imagem não encontrada: " + imageName);
+                        continue;
+                    }
+
+                    Image png = new Image(inputStream);
                     ImageView img = new ImageView(png);
                     img.setFitWidth(55);
                     img.setFitHeight(55);
@@ -95,29 +103,35 @@ public class HelloController {
 
     private ImageView clickedPiece;
 
-   // @FXML
-   // public void movingPieces(){
-   //     for(Node node : pecas.getChildren()){
-   //         if(node instanceof ImageView){
-   //             node.setOnMouseClicked(event -> {
-   //                 ImageView clickedImg = (ImageView) node;
+    @FXML
+    public void movingPieces(){
+        for(Node node : pecas.getChildren()){
+            if(node instanceof ImageView){
+                node.setOnMouseClicked(event -> {
+                    ImageView clickedImg = (ImageView) node;
 
-   //                 if(clickedPiece == null){
-   //                     clickedPiece = clickedImg;
-   //                     System.out.println("VOCE CLICOU");
-   //                 }
-   //                 else {
-   //                     System.out.println("LUGAR SELECIONADO");
-   //                     Integer column = GridPane.getColumnIndex(clickedImg);
-   //                     Integer row = GridPane.getRowIndex(clickedImg);
+                    if(clickedPiece == null){
+                        clickedPiece = clickedImg;
+                        System.out.println("VOCE CLICOU");
+                    }
+                    else {
+                        System.out.println("LUGAR SELECIONADO");
+                        Integer column = GridPane.getColumnIndex(clickedImg);
+                        Integer row = GridPane.getRowIndex(clickedImg);
 
-   //                     pecas.getChildren().remove(clickedImg);
-   //                     pecas.add(clickedImg, column, row);
+                        pecas.getChildren().remove(clickedImg);
+                        pecas.add(clickedImg, column, row);
 
-   //                     clickedPiece = null;
-   //                 }
-   //             });
-   //         }
-   //     }      não ta funcionado direito/ vou rever a lógica
+                        clickedPiece = null;
+                    }
+                });
+            }
+        }
+
+        //   public void turnPawn(){
+
+        //    }
+    }
+
 
 }
