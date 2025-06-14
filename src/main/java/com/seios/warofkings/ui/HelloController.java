@@ -25,8 +25,8 @@ public class HelloController {
 
     Map<Integer, String> idPecas = Map.ofEntries(
             Map.entry(0, "Peao_Branco.png"),
-            Map.entry(1, "Cavalo_Branco.png"),
-            Map.entry(2, "Torre_Branco.png"),
+            Map.entry(1, "Torre_Branco.png"),
+            Map.entry(2, "Cavalo_Branco.png"),
             Map.entry(3, "Bispo_Branco.png"),
             Map.entry(4, "Rainha_Branco.png"),
             Map.entry(5, "Rei_Branco.png"),
@@ -95,6 +95,10 @@ public class HelloController {
                     img.setFitWidth(55);
                     img.setFitHeight(55);
                     img.setPreserveRatio(true);
+
+                    GridPane.setHalignment(img, javafx.geometry.HPos.CENTER);
+                    GridPane.setValignment(img, javafx.geometry.VPos.CENTER);
+
                     pecas.add(img, coluna, linha);
                 }
             }
