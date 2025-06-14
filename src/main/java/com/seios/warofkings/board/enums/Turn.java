@@ -11,11 +11,11 @@ public enum Turn {
         }
     }
 
-    public String displayName(){
-        if (this == WHITE){
-            return "Branco";
-        } else {
-            return "Preto";
-        }
-    }
+   // public String displayName(){
+   //     if (this == WHITE){
+   //         return "Branco";
+   //     } else {
+   //         return "Preto";
+   //     }
+   // }
 }

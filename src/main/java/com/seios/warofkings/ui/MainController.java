@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
+import com.seios.warofkings.board.enums.Turn;
 
 
 public class MainController {
     Board board = new Board();
+
+    private Turn turn = Turn.WHITE;
 
     @FXML
     private GridPane pecas;
@@ -97,30 +100,34 @@ public class MainController {
                     Integer rowX = GridPane.getRowIndex(imageView);
                     int positionTo = rowX * 10 + columnY;
 
-                    if (selectedPiece.get() == null) {
-                        ChessPiece piece = board.getPieces()[rowX][columnY];
-                        if (piece != null) {
-                            selectedPiece.set(piece);
-                            selectedImage.set(imageView);
-                            possibleMoves.set(piece.getPossibleMoves(board.getPieces()));
-                            System.out.println("Peca selecionada: " + piece);
-                            System.out.println("Movimentos possiveis: " + possibleMoves.get());
-                        }
-                    } else {
-                        boolean moved = selectedPiece.get().moveTo(positionTo, possibleMoves.get(), board);
-                        if (moved) {
-                            pecas.getChildren().remove(selectedImage.get());
-                            pecas.add(selectedImage.get(), columnY, rowX);
-                            // atualizar?
-                            System.out.println("Peça movida para " + positionTo);
-                        } else {
-                            System.out.println("Movimento inválido.");
-                        }
 
-                        selectedPiece.set(null);
-                        selectedImage.set(null);
-                        possibleMoves.set(null);
-                    }
+
+                        if (selectedPiece.get() == null) {
+                            ChessPiece piece = board.getPieces()[rowX][columnY];
+                            if (piece != null && piece.getColor() == turn) {
+                                selectedPiece.set(piece);
+                                selectedImage.set(imageView);
+                                possibleMoves.set(piece.getPossibleMoves(board.getPieces()));
+                                System.out.println("Peca selecionada: " + piece);
+                                System.out.println("Movimentos possiveis: " + possibleMoves.get());
+                            }
+
+                        } else {
+                            boolean moved = selectedPiece.get().moveTo(positionTo, possibleMoves.get(), board);
+                            if (moved) {
+                                pecas.getChildren().remove(selectedImage.get());
+                                pecas.add(selectedImage.get(), columnY, rowX);
+                                creatingPieces(); // se precisar redesenhar o estado das peças
+                                System.out.println("Peça movida para " + positionTo);
+                            } else {
+                                System.out.println("Movimento inválido.");
+                            }
+
+                            turn = turn.next();
+                            selectedPiece.set(null);
+                            selectedImage.set(null);
+                            possibleMoves.set(null);
+                        }
                 });
             }
         }

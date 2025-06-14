@@ -1,9 +1,13 @@
 package com.seios.warofkings.pieces;
 
 import com.seios.warofkings.board.Board;
+import com.seios.warofkings.board.enums.Turn;
 import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
+
+import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.board.enums.Turn;
 
 import java.util.List;
 
@@ -95,7 +99,6 @@ public abstract class ChessPiece implements Movable, Positionable {
             pieces[PieceUtils.getX(position)][PieceUtils.getY(position)] = this; // onde a peça foi
 
             board.setPieces(pieces); // altera de fato o movimento
-            board.setTurn(board.getTurn().next()); // muda a vez
 
             setPosition(position);
             this.n_moves++;
@@ -137,5 +140,15 @@ public abstract class ChessPiece implements Movable, Positionable {
 
             default -> null;
         };
+
+    }
+
+    public Turn getColor(){
+        if(type.name().endsWith("WHITE")){
+            return Turn.WHITE;
+        }
+        else {
+            return Turn.BLACK;
+        }
     }
 }
