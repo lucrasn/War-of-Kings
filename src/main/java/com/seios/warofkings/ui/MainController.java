@@ -6,37 +6,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-
+import com.seios.warofkings.board.Board;
+import com.seios.warofkings.pieces.ChessPiece;
 import java.io.InputStream;
-import java.util.Map;
+
 
 public class MainController {
-    int[][] board = {
-            { 7, 8, 9,10,11, 9, 8, 7},
-            { 6, 6, 6, 6, 6, 6, 6, 6},
-            {-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1},
-            { 0, 0, 0, 0, 0, 0, 0, 0},
-            { 1, 2, 3, 4, 5, 3, 2, 1}
 
-    };
+    Board board = new Board();
 
-    Map<Integer, String> idPecas = Map.ofEntries(
-            Map.entry(0, "Peao_Branco.png"),
-            Map.entry(1, "Torre_Branco.png"),
-            Map.entry(2, "Cavalo_Branco.png"),
-            Map.entry(3, "Bispo_Branco.png"),
-            Map.entry(4, "Rainha_Branco.png"),
-            Map.entry(5, "Rei_Branco.png"),
-            Map.entry(6, "Peao_Preto.png"),
-            Map.entry(7, "Torre_Preto.png"),
-            Map.entry(8, "Cavalo_Preto.png"),
-            Map.entry(9, "Bispo_Preto.png"),
-            Map.entry(10, "Rainha_Preto.png"),
-            Map.entry(11, "Rei_Preto.png")
-    );
+    int[][] xadrez = board.getBoard();
+    ChessPiece[][] xadrezPecas = board.getPieces();
+
 
     @FXML
     private GridPane pecas;
@@ -78,10 +59,10 @@ public class MainController {
     public void creatingPieces(){
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
-                int id = board[linha][coluna];
+                ChessPiece peca = xadrezPecas[linha][coluna];
 
-                if (id != -1) {
-                    String imageName = idPecas.get(id);
+                if (pecas != null) {
+                    String imageName = peca.getImgName();
                     InputStream inputStream = getClass().getResourceAsStream("/imagens/" + imageName);
 
 
@@ -125,6 +106,8 @@ public class MainController {
 
                         pecas.getChildren().remove(clickedImg);
                         pecas.add(clickedImg, column, row);
+
+                        creatingPieces();
 
                         clickedPiece = null;
                     }
