@@ -1,23 +1,18 @@
 package com.seios.warofkings.ui;
 
+import com.seios.warofkings.board.Board;
+import com.seios.warofkings.pieces.ChessPiece;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import com.seios.warofkings.board.Board;
-import com.seios.warofkings.pieces.ChessPiece;
 import java.io.InputStream;
 
 
 public class MainController {
-
     Board board = new Board();
-
-    int[][] xadrez = board.getBoard();
-    ChessPiece[][] xadrezPecas = board.getPieces();
-
 
     @FXML
     private GridPane pecas;
@@ -59,7 +54,8 @@ public class MainController {
     public void creatingPieces(){
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
-                ChessPiece peca = xadrezPecas[linha][coluna];
+                ChessPiece peca = board.getPieces()[linha][coluna];
+                int id = board.getBoard()[linha][coluna];
 
                 if (pecas != null) {
                     String imageName = peca.getImgName();
@@ -98,14 +94,17 @@ public class MainController {
                     if(clickedPiece == null){
                         clickedPiece = clickedImg;
                         System.out.println("VOCE CLICOU");
+                        //Integer columnY = GridPane.getColumnIndex(clickedImg);
+                        //Integer rowX = GridPane.getRowIndex(clickedImg);
+                        //ChessPiece pieceClicked = board.getPieces()[rowX][columnY];
                     }
                     else {
                         System.out.println("LUGAR SELECIONADO");
-                        Integer column = GridPane.getColumnIndex(clickedImg);
-                        Integer row = GridPane.getRowIndex(clickedImg);
-
+                        Integer columnY = GridPane.getColumnIndex(clickedImg);
+                        Integer rowX = GridPane.getRowIndex(clickedImg);
+                        //ChessPiece pieceClicked = board.getPieces()[rowX][columnY];
                         pecas.getChildren().remove(clickedImg);
-                        pecas.add(clickedImg, column, row);
+                        pecas.add(clickedImg, columnY, rowX);
 
                         creatingPieces();
 
