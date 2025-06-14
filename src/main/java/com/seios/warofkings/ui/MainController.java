@@ -1,14 +1,17 @@
 package com.seios.warofkings.ui;
 
-import com.seios.warofkings.board.Board;
-import com.seios.warofkings.pieces.ChessPiece;
 import javafx.fxml.FXML;
+
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+
 import java.io.InputStream;
+
+import com.seios.warofkings.board.Board;
+import com.seios.warofkings.pieces.ChessPiece;
 
 
 public class MainController {
