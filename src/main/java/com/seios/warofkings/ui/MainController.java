@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
 import java.io.InputStream;
+import java.util.List;
 
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
@@ -88,29 +89,27 @@ public class MainController {
 
     @FXML
     public void movingPieces(){
-        for(Node node : pecas.getChildren()){
-            if(node instanceof ImageView){
+        for(Node node : pecas.getChildren()) {
+            if(node instanceof ImageView) {
                 node.setOnMouseClicked(event -> {
                     ImageView clickedImg = (ImageView) node;
 
-                    if(clickedPiece == null){
-                        clickedPiece = clickedImg;
-                        System.out.println("VOCE CLICOU");
-                        //Integer columnY = GridPane.getColumnIndex(clickedImg);
-                        //Integer rowX = GridPane.getRowIndex(clickedImg);
-                        //ChessPiece pieceClicked = board.getPieces()[rowX][columnY];
-                    }
-                    else {
+                    System.out.println("VOCE CLICOU");
+                    Integer pieceColumnY = GridPane.getColumnIndex(clickedImg);
+                    Integer pieceRowX = GridPane.getRowIndex(clickedImg);
+                    ChessPiece pieceClicked = board.getPieces()[pieceRowX][pieceColumnY];
+                    List<Integer> movesPiece = pieceClicked.getPossibleMoves(board.getPieces());
+
+                    if (true) { //
                         System.out.println("LUGAR SELECIONADO");
+
                         Integer columnY = GridPane.getColumnIndex(clickedImg);
                         Integer rowX = GridPane.getRowIndex(clickedImg);
-                        //ChessPiece pieceClicked = board.getPieces()[rowX][columnY];
+
                         pecas.getChildren().remove(clickedImg);
                         pecas.add(clickedImg, columnY, rowX);
 
                         creatingPieces();
-
-                        clickedPiece = null;
                     }
                 });
             }
