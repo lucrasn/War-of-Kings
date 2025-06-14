@@ -96,7 +96,7 @@ public class MainController {
                     Integer colY = GridPane.getColumnIndex(imageView);
                     Integer rowX = GridPane.getRowIndex(imageView);
                     ChessPiece piece = board.getPieces()[rowX][colY];
-                    if (piece != null) {
+                    if (piece != null && piece.getColor() == turn) {
                         selectedPiece = piece;
                         selectedImage = imageView;
                         possibleMoves = piece.getPossibleMoves(board.getPieces());
