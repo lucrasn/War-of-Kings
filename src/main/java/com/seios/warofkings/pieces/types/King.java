@@ -52,11 +52,7 @@ public class King extends ChessPiece {
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
 
 
-<<<<<<< Updated upstream
-    // Faltou isso
-    //@Override
-    public boolean moveTo(int position, List<Integer> listMoves, ChessPiece[][] board) {
-=======
+
         int pos = this.position;
 
         int forward = -10;
@@ -118,7 +114,7 @@ public class King extends ChessPiece {
         // Faltou isso
         //@Override
         //public boolean moveTo(int position, List<Integer> listMoves, ChessPiece[][] board) {
->>>>>>> Stashed changes
+
         // List<ChessPiece> rooks = BoardUtils.finsPieces(isWhite ? Type.ROOK_WHITE : Type.ROOK_BLACK);
         // listMoves.in(position) -> true
         // roque == true
@@ -134,12 +130,11 @@ public class King extends ChessPiece {
         // }
 
         //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
-<<<<<<< Updated upstream
-        return true; //super.moveTo(position, listMoves, board);
+
+        //return true; //super.moveTo(position, listMoves, board);
     }
 }
-=======
+
         //  return super.moveTo(position, listMoves, board);
         //}
-    }}
->>>>>>> Stashed changes
+
