@@ -124,6 +124,7 @@ public class MainController {
                             }
 
                             turn = turn.next();
+                            System.out.println(turn);
                             selectedPiece.set(null);
                             selectedImage.set(null);
                             possibleMoves.set(null);
