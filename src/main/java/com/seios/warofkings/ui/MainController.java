@@ -66,7 +66,7 @@ public class MainController {
 
 
                     if (inputStream == null) {
-                        System.err.println("Imagem não encontrada: " + imageName);
+                        System.err.println("Imagem nao encontrada: " + imageName);
                         continue;
                     }
 
