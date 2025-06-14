@@ -7,12 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
 
@@ -114,7 +111,7 @@ public class MainController {
                         if (moved) {
                             pecas.getChildren().remove(selectedImage.get());
                             pecas.add(selectedImage.get(), columnY, rowX);
-                            creatingPieces(); // se precisar redesenhar o estado das peças
+                            // atualizar?
                             System.out.println("Peça movida para " + positionTo);
                         } else {
                             System.out.println("Movimento inválido.");
