@@ -32,23 +32,17 @@ public abstract class ChessPiece implements Movable, Positionable {
     }
 
     protected boolean kingCheck(int toPosition, ChessPiece[][] piecesMap) {
-
         piecesMap[this.getX()][this.getY()] = null;
         piecesMap[PieceUtils.getX(toPosition)][PieceUtils.getY(toPosition)] = this;
 
-        boolean isWhite = (this.type == Type.PAWN_WHITE);
+        boolean isWhite = (this.type.getValor() >= 5);
         ChessPiece king = BoardUtils.findPieces(piecesMap ,isWhite ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
-
-        int kingX = king.getX();
-        int kingY = king.getY();
-
-        int kingPos = kingX * 10 + kingY;
 
         for (ChessPiece[] row : piecesMap) {
             for (ChessPiece other : row) {
                 if (other != null && other.getType().getValor() / 6 != king.getType().getValor() / 6) {
                     List<Integer> moves = other.getPossibleMoves(piecesMap);
-                    if (moves.contains(kingPos)) {
+                    if (moves.contains(king.getPosition())) {
                         return true;
                     }
                 }
