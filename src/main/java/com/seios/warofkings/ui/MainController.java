@@ -66,7 +66,6 @@ public class MainController {
                     String imageName = peca.getImgName();
                     InputStream inputStream = getClass().getResourceAsStream("/imagens/" + imageName);
 
-
                     if (inputStream == null) {
                         System.err.println("Imagem nao encontrada: " + imageName);
                         continue;
@@ -82,6 +81,25 @@ public class MainController {
                     GridPane.setValignment(img, javafx.geometry.VPos.CENTER);
 
                     pecas.add(img, coluna, linha);
+                }
+                else{
+                    InputStream transparent = getClass().getResourceAsStream("/imagens/Transparent.png");
+
+                    if (transparent == null) {
+                        System.err.println("Imagem transparente nao encontrada: ");
+                        continue;
+                    }
+
+                    Image trans_png = new Image(transparent);
+                    ImageView trans = new ImageView(trans_png);
+                    trans.setFitHeight(55);
+                    trans.setFitWidth(55);
+
+                    GridPane.setHalignment(trans, javafx.geometry.HPos.CENTER);
+                    GridPane.setValignment(trans, javafx.geometry.VPos.CENTER);
+
+
+                    pecas.add(trans, coluna, linha);
                 }
             }
         }
