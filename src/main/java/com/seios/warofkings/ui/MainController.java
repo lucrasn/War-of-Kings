@@ -19,8 +19,8 @@ public class MainController {
     private ImageView selectedImage;
     private List<Integer> possibleMoves;
 
-    Board board = new Board();
-
+    private final Board board = new Board();
+    private final Region[][] boardSquares = new Region[8][8];
     private Turn turn = Turn.WHITE;
 
     @FXML
@@ -51,6 +51,8 @@ public class MainController {
                 String color = (i + j) % 2 == 0 ? "#eeeed2" : "#769656";
                 square.setStyle("-fx-background-color: " + color + ";");
 
+                boardSquares[i][j] = square;
+
                 GridPane.setRowIndex(square, i);
                 GridPane.setColumnIndex(square, j);
                 tabuleiro.getChildren().add(square);
@@ -61,6 +63,7 @@ public class MainController {
 
     @FXML
     public void creatingPieces(){
+        pecas.getChildren().clear();
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
                 ChessPiece peca = board.getPieces()[linha][coluna];
@@ -103,6 +106,8 @@ public class MainController {
 
                         System.out.println("Peça selecionada: " + piece);
                         System.out.println("Movimentos possíveis: " + possibleMoves);
+
+                        ToMark(possibleMoves);
                     } else if (selectedPiece != null) {
                         boolean moved = selectedPiece.moveTo(
                                 positionTo,
@@ -129,16 +134,6 @@ public class MainController {
                             ImageView newTrans = ImageFactoryUtils.createTransparentImage();
                             pecas.add(newTrans, origemColY, origemRowX);
 
-
-                            boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
-                            int rowFinal = GridPane.getRowIndex(selectedImage);
-
-                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
-                                //ChessPiece peao = selectedPiece.getType().name();
-                                //turnPawn(peao);
-                            }
-
-
                             System.out.println("Peça movida!");
                             turn = turn.next();
                             System.out.println("Turno atual: " + turn);
@@ -147,6 +142,8 @@ public class MainController {
                             selectedImage = null;
                             possibleMoves = null;
 
+                            ToMark(List.of());
+                            creatingPieces();
                             movingPieces(); // Reassocia
                         } else {
                             System.out.println("Coordenada Inválida!");
@@ -156,6 +153,26 @@ public class MainController {
                     }
                 });
             }
+        }
+    }
+
+    private void ToMark(List<Integer> moves) {
+        //Resetar tabuleiro que nem o original (branco e verde)
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                String color = (i + j) % 2 == 0 ? "#eeeed2" : "#769656";
+                boardSquares[i][j].setStyle("-fx-background-color: " + color + ";");
+            }
+        }
+
+        //Aplicar destaque nas casas (region) de acordo com a tonalidade
+        for (int pos : moves) {
+            int x = pos / 10;
+            int y = pos % 10;
+
+            boolean isWhiteSquare = (x + y) % 2 == 0;
+            String secondColor = isWhiteSquare ? "#FF8C00" : "#CCFF00";
+            boardSquares[x][y].setStyle("-fx-background-color: " + secondColor + ";");
         }
     }
 
