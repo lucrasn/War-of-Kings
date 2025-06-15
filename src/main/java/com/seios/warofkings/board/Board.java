@@ -26,7 +26,6 @@ import java.util.List;
  */
 public class Board {
     protected ChessPiece[][] pieces;
-    protected List<ChessPiece> pawnTurn = new ArrayList<>();
     protected Turn turn;
 
     /**
@@ -36,7 +35,6 @@ public class Board {
      */
     public Board() {
         this.pieces = new ChessPiece[8][8];
-        this.pawnTurn = new ArrayList<>(5);
         this.turn = Turn.WHITE;
 
         // Inicializa todas as casas como vazias

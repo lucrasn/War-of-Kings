@@ -31,7 +31,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/seios/warofkings/layouts/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 340, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 340, 650);
         stage.setTitle("War of Kings");
         stage.setScene(scene);
         stage.setMinWidth(400);

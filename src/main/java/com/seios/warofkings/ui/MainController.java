@@ -1,13 +1,20 @@
 package com.seios.warofkings.ui;
 
+import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.pieces.types.*;
 import com.seios.warofkings.utils.ImageFactoryUtils;
 import javafx.fxml.FXML;
 
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
@@ -162,11 +169,10 @@ public class MainController {
                             boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
                             int rowFinal = GridPane.getRowIndex(selectedImage);
 
-//                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
-//                                ChessPiece peao = selectedPiece.getType().name();
-//                                turnPawn(peao);
-//                            }
 
+                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
+                                turnPawn(selectedPiece);
+                            }
 
                             System.out.println("Peça movida!");
                             turn = turn.next();
@@ -208,6 +214,56 @@ public class MainController {
             String secondColor = isWhiteSquare ? "#FF8C00" : "#CCFF00";
             boardSquares[x][y].setStyle("-fx-background-color: " + secondColor + ";");
         }
+
+    @FXML FlowPane piecesTurn;
+
+    public ChessPiece turnPawn(ChessPiece selectedPiece) {//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
+
+        if (selectedPiece.getType().name().endsWith("WHITE") && GridPane.getRowIndex(selectedImage) == 0) {
+            List<ChessPiece> pawnTurn = new ArrayList<>();
+            pawnTurn.add(Queen.createQueen(73, Type.QUEEN_WHITE));
+            pawnTurn.add(Bishop.createBishop(75, Type.BISHOP_WHITE));
+            pawnTurn.add(Rook.createRook(70, Type.ROOK_WHITE));
+            pawnTurn.add(Knight.createKnight(71, Type.KNIGHT_WHITE));
+
+            for (ChessPiece pawn : pawnTurn) {
+                String turnPieceName = pawn.getImgName();
+                InputStream pieceName = getClass().getResourceAsStream("/imagens/" + turnPieceName);
+
+                if (pieceName != null) {
+                    Image pieceTurn = new Image(pieceName);
+                    ImageView turnPiece = new ImageView(pieceTurn);
+                    turnPiece.setFitHeight(50);
+                    turnPiece.setFitWidth(50);
+                    turnPiece.setCursor(Cursor.HAND);
+                    piecesTurn.getChildren().add(turnPiece);
+
+                }
+            }
+        } else {
+            List<ChessPiece> pawnTurn = new ArrayList<>();
+            pawnTurn.add(Queen.createQueen(73, Type.QUEEN_BLACK));
+            pawnTurn.add(Bishop.createBishop(75, Type.BISHOP_BLACK));
+            pawnTurn.add(Rook.createRook(70, Type.ROOK_BLACK));
+            pawnTurn.add(Knight.createKnight(71, Type.KNIGHT_BLACK));
+
+            for (ChessPiece pawn : pawnTurn) {
+                String turnPieceName = pawn.getImgName();
+                InputStream pieceName = getClass().getResourceAsStream("/imagens/" + turnPieceName);
+
+                if (pieceName != null) {
+                    Image pieceTurn = new Image(pieceName);
+                    ImageView turnPiece = new ImageView(pieceTurn);
+                    turnPiece.setFitHeight(50);
+                    turnPiece.setFitWidth(50);
+                    turnPiece.setCursor(Cursor.HAND);
+
+                    piecesTurn.getChildren().add(turnPiece);
+                }
+            }
+        }
+        return selectedPiece;
+
     }
 
     // Método de promoção comentado e pendente de implementação

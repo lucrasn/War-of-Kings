@@ -8,6 +8,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
+      <FlowPane fx:id="piecesTurn" prefHeight="49.0" prefWidth="280.0" />
         <StackPane alignment="CENTER" maxHeight="280.0" maxWidth="512" minHeight="512" minWidth="280.0" prefHeight="280.0" prefWidth="280.0">
             <children>
                 <GridPane fx:id="tabuleiro" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0">
