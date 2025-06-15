@@ -48,4 +48,14 @@ public class BoardUtils {
         return PieceUtils.getX(position) >= 0 && PieceUtils.getX(position) < 8 && PieceUtils.getY(position) >= 0 && PieceUtils.getY(position) < 8;
     }
 
+
+    public static ChessPiece[][] copyBoard(ChessPiece[][] original) {
+        ChessPiece[][] copy = new ChessPiece[8][8];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                copy[i][j] = original[i][j]; // apenas copia a referência
+            }
+        }
+        return copy;
+    }
 }

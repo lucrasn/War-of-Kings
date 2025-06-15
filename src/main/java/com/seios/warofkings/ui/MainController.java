@@ -9,13 +9,19 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import java.io.InputStream;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
+import com.seios.warofkings.board.enums.Turn;
 
 
 public class MainController {
+    private ChessPiece selectedPiece;
+    private ImageView selectedImage;
+    private List<Integer> possibleMoves;
+
     Board board = new Board();
+
+    private Turn turn = Turn.WHITE;
 
     @FXML
     private GridPane pecas;
@@ -33,25 +39,22 @@ public class MainController {
 
     @FXML
     public void creatingBoard() {
-        for (int linha = 0; linha < 8; linha++) {
-            for (int coluna = 0; coluna < 8; coluna++) {
-                Region casa = new Region();
-                casa.setPrefSize(64,64);
+        tabuleiro.getChildren().clear(); // limpa caso reinitialize
 
-                String color;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Region square = new Region();
+                square.setPrefSize(60, 60);
+                String color = (i + j) % 2 == 0 ? "#eeeed2" : "#769656";
+                square.setStyle("-fx-background-color: " + color + ";");
 
-                if((linha + coluna) %2 == 0){
-                    color = "#f0d9b5";
-                }
-                else {
-                    color =  "#b58863";
-                }
-
-                casa.setStyle("-fx-background-color: " + color + ";");
-                tabuleiro.add(casa,coluna,linha);
+                GridPane.setRowIndex(square, i);
+                GridPane.setColumnIndex(square, j);
+                tabuleiro.getChildren().add(square);
             }
         }
     }
+
 
     @FXML
     public void creatingPieces(){
@@ -86,47 +89,73 @@ public class MainController {
 
     @FXML
     public void movingPieces() {
-        AtomicReference<ChessPiece> selectedPiece = new AtomicReference<ChessPiece>();
-        AtomicReference<ImageView> selectedImage = new AtomicReference<ImageView>();
-        AtomicReference<List<Integer>> possibleMoves = new AtomicReference<List<Integer>>();
-
+        // 1. Eventos de clique nas peças (ImageView)
         for (Node node : pecas.getChildren()) {
             if (node instanceof ImageView imageView) {
-                node.setOnMouseClicked(event -> {
-                    Integer columnY = GridPane.getColumnIndex(imageView);
+                imageView.setOnMouseClicked(event -> {
+                    Integer colY = GridPane.getColumnIndex(imageView);
                     Integer rowX = GridPane.getRowIndex(imageView);
-                    int positionTo = rowX * 10 + columnY;
-
-                    if (selectedPiece.get() == null) {
-                        ChessPiece piece = board.getPieces()[rowX][columnY];
-                        if (piece != null) {
-                            selectedPiece.set(piece);
-                            selectedImage.set(imageView);
-                            possibleMoves.set(piece.getPossibleMoves(board.getPieces()));
-                            System.out.println("Peca selecionada: " + piece);
-                            System.out.println("Movimentos possiveis: " + possibleMoves.get());
-                        }
-                    } else {
-                        boolean moved = selectedPiece.get().moveTo(positionTo, possibleMoves.get(), board);
-                        if (moved) {
-                            pecas.getChildren().remove(selectedImage.get());
-                            pecas.add(selectedImage.get(), columnY, rowX);
-                            // atualizar?
-                            System.out.println("Peça movida para " + positionTo);
-                        } else {
-                            System.out.println("Movimento inválido.");
-                        }
-
-                        selectedPiece.set(null);
-                        selectedImage.set(null);
-                        possibleMoves.set(null);
+                    ChessPiece piece = board.getPieces()[rowX][colY];
+                    if (piece != null && piece.getColor() == turn) {
+                        selectedPiece = piece;
+                        selectedImage = imageView;
+                        possibleMoves = piece.getPossibleMoves(board.getPieces());
+                        System.out.println("Peça selecionada: " + piece);
+                        System.out.println("Movimentos possíveis: " + possibleMoves);
                     }
                 });
             }
         }
 
-        //   public void turnPawn(){
+        // 2. Eventos de clique nas casas (Region)
+        for (Node node : tabuleiro.getChildren()) {
+            if (node instanceof Region square) {
+                square.setOnMouseClicked(event -> {
+                    Integer colY = GridPane.getColumnIndex(square);
+                    Integer rowX = GridPane.getRowIndex(square);
 
-        //    }
+                    if (colY == null || rowX == null) {
+                        System.out.println("Erro: coluna ou linha null.");
+                        return;
+                    }
+
+                    int positionTo = rowX * 10 + colY;
+                    System.out.println("Clique na posição: " + positionTo);
+
+                    if (selectedPiece != null) {
+                        boolean moved = selectedPiece.moveTo(
+                                positionTo,
+                                possibleMoves,
+                                board
+                        );
+
+                        if (moved) {
+                            pecas.getChildren().remove(selectedImage);
+
+                            pecas.getChildren().removeIf(n ->
+                                    GridPane.getColumnIndex(n) == colY &&
+                                            GridPane.getRowIndex(n) == rowX
+                            );
+
+                            pecas.add(selectedImage, colY, rowX);
+
+                            System.out.println("Peca movida!");
+
+                            turn = turn.next();
+                            System.out.println(turn);
+                            selectedPiece = null;
+                            selectedImage = null;
+                            possibleMoves = null;
+
+                            movingPieces(); // Reassocia listeners
+                        } else {
+                            System.out.println("Coordenada Invalida!");
+                        }
+                    } else {
+                        System.out.println("Nenhuma peca selecionada!");
+                    }
+                });
+            }
+        }
     }
 }

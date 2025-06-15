@@ -41,4 +41,13 @@ public class PieceUtils {
         if (a == null || b == null) return false;
         return a.getPosition() == b.getPosition();
     }
+
+    public static boolean isSameColor(ChessPiece a, ChessPiece b) {
+        if (a == null || b == null) {
+            return false;
+        }
+        return a.isWhite() == b.isWhite();
+    }
+
+
 }

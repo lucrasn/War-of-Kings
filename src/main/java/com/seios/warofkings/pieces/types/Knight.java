@@ -71,9 +71,7 @@ public class Knight extends ChessPiece  {
             if (BoardUtils.isWithinBounds(newPos)) {
                 ChessPiece target = board[PieceUtils.getX(newPos)][PieceUtils.getY(newPos)];
                 if (target == null || isOpponent(target)) {
-                    if (!kingCheck(newPos, board)) {
-                        possibleMoves.add(newPos);
-                    }
+                    possibleMoves.add(newPos);
                 }
             }
         }

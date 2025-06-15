@@ -14,6 +14,8 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 340, 400);
         stage.setTitle("War of Kings");
         stage.setScene(scene);
+        stage.setMinWidth(400);
+        stage.setMinHeight(400);
         stage.show();
     }
 
