@@ -98,6 +98,12 @@ public class MainController {
                     trans.setFitHeight(55);
                     trans.setFitWidth(55);
 
+                    // ESSENCIAL:
+                    //  não podemos ignorar os trans
+                    trans.setPickOnBounds(true); // capta o clique em toda a área
+                    trans.setMouseTransparent(false); // garante que o clique não "atravesse"
+
+
                     GridPane.setHalignment(trans, javafx.geometry.HPos.CENTER);
                     GridPane.setValignment(trans, javafx.geometry.VPos.CENTER);
 
@@ -110,30 +116,11 @@ public class MainController {
 
     @FXML
     public void movingPieces() {
-        // 1. Eventos de clique nas peças (ImageView)
         for (Node node : pecas.getChildren()) {
             if (node instanceof ImageView imageView) {
                 imageView.setOnMouseClicked(event -> {
                     Integer colY = GridPane.getColumnIndex(imageView);
                     Integer rowX = GridPane.getRowIndex(imageView);
-                    ChessPiece piece = board.getPieces()[rowX][colY];
-                    if (piece != null && piece.getColor() == turn) {
-                        selectedPiece = piece;
-                        selectedImage = imageView;
-                        possibleMoves = piece.getPossibleMoves(board.getPieces());
-                        System.out.println("Peça selecionada: " + piece);
-                        System.out.println("Movimentos possíveis: " + possibleMoves);
-                    }
-                });
-            }
-        }
-
-        // 2. Eventos de clique nas casas (Region)
-        for (Node node : tabuleiro.getChildren()) {
-            if (node instanceof Region square) {
-                square.setOnMouseClicked(event -> {
-                    Integer colY = GridPane.getColumnIndex(square);
-                    Integer rowX = GridPane.getRowIndex(square);
 
                     if (colY == null || rowX == null) {
                         System.out.println("Erro: coluna ou linha null.");
@@ -143,7 +130,16 @@ public class MainController {
                     int positionTo = rowX * 10 + colY;
                     System.out.println("Clique na posição: " + positionTo);
 
-                    if (selectedPiece != null) {
+                    ChessPiece piece = board.getPieces()[rowX][colY];
+
+                    if (piece != null && piece.getColor() == turn) {
+                        selectedPiece = piece;
+                        selectedImage = imageView;
+                        possibleMoves = piece.getPossibleMoves(board.getPieces());
+
+                        System.out.println("Peça selecionada: " + piece);
+                        System.out.println("Movimentos possíveis: " + possibleMoves);
+                    } else if (selectedPiece != null) {
                         boolean moved = selectedPiece.moveTo(
                                 positionTo,
                                 possibleMoves,
@@ -151,29 +147,42 @@ public class MainController {
                         );
 
                         if (moved) {
-                            pecas.getChildren().remove(selectedImage);
+                            pecas.getChildren().remove(imageView); // remove o transparente ou peça capturada
+                            pecas.getChildren().remove(selectedImage); // remove a peça da origem
 
-                            pecas.getChildren().removeIf(n ->
-                                    GridPane.getColumnIndex(n) == colY &&
-                                            GridPane.getRowIndex(n) == rowX
-                            );
-
+                            // adiciona a peça na nova posição
                             pecas.add(selectedImage, colY, rowX);
 
-                            System.out.println("Peca movida!");
+                            // adiciona transparente na origem
+                            InputStream transparent = getClass().getResourceAsStream("/imagens/Transparent.png");
+                            if (transparent != null) {
+                                Image img = new Image(transparent);
+                                ImageView newTrans = new ImageView(img);
+                                newTrans.setFitWidth(55);
+                                newTrans.setFitHeight(55);
 
+                                newTrans.setPickOnBounds(true);
+                                newTrans.setMouseTransparent(false);
+
+                                GridPane.setColumnIndex(newTrans, GridPane.getColumnIndex(selectedImage));
+                                GridPane.setRowIndex(newTrans, GridPane.getRowIndex(selectedImage));
+                                pecas.getChildren().add(newTrans);
+                            }
+
+                            System.out.println("Peça movida!");
                             turn = turn.next();
                             System.out.println(turn);
+
                             selectedPiece = null;
                             selectedImage = null;
                             possibleMoves = null;
 
-                            movingPieces(); // Reassocia listeners
+                            movingPieces(); // Reassocia
                         } else {
-                            System.out.println("Coordenada Invalida!");
+                            System.out.println("Coordenada Inválida!");
                         }
                     } else {
-                        System.out.println("Nenhuma peca selecionada!");
+                        System.out.println("Nenhuma peça selecionada!");
                     }
                 });
             }
