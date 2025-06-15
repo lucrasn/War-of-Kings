@@ -31,15 +31,26 @@ public abstract class ChessPiece implements Movable, Positionable {
         this.n_moves = n_moves;
     }
 
-    protected boolean kingCheck(int toPosition, ChessPiece[][] piecesMap) {
+    protected boolean kingCheck(int to, ChessPiece[][] piecesMap) {
         ChessPiece[][] simulatedBoard = BoardUtils.copyBoard(piecesMap);
         simulatedBoard[this.getX()][this.getY()] = null;
-        simulatedBoard[PieceUtils.getX(toPosition)][PieceUtils.getY(toPosition)] = this;
+        simulatedBoard[PieceUtils.getX(to)][PieceUtils.getY(to)] = this;
+
 
         boolean isWhite = this.isWhite();
         List<ChessPiece> kings = BoardUtils.findPieces(simulatedBoard ,isWhite ? Type.KING_WHITE : Type.KING_BLACK);
         if (kings.isEmpty()) return false;
         ChessPiece king = kings.getFirst();
+
+        if (PieceUtils.isSamePiece(this, king)) {
+            int from = this.getPosition();
+            this.setPosition(to);
+
+            boolean isUnderAttack = PieceUtils.isPieceUnderAttack(this, simulatedBoard);
+            this.setPosition(from);
+
+            return isUnderAttack;
+        }
 
         return PieceUtils.isPieceUnderAttack(king, simulatedBoard);
     }

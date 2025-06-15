@@ -13,12 +13,10 @@ import java.util.List;
  * Esta classe é responsável pela implementação dos movimentos da peça Rei
  *
  * @author bia
- * @version 1.0
- * @since YYYY-MM-DD
+ * @version 2.5
+ * @since 2025-06-09
  */
 public class King extends ChessPiece {
-    private boolean roque = false; // true: listmoves tem roque. false: n tem roque
-
     public King(int position, Type type, int n_moves) {
         if (!(type.getValor() == 5) && !(type.getValor() == 11)) {
             throw new IllegalArgumentException("Tipo inválido para rei. Esperado KING_WHITE (5) ou KING_BLACK (11).");
@@ -51,10 +49,9 @@ public class King extends ChessPiece {
         return BoardUtils.isPathClearHorizontally(kingPos, rookPos, board) && PieceUtils.pathSafeForKing(rookPos, this, board);
     }
 
-
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
-        int pos = this.position;
+        List<Integer> possibleMoves = new ArrayList<Integer>();
 
         int forward = -10;
         int backward = 10;
@@ -65,139 +62,80 @@ public class King extends ChessPiece {
         int northeast = -9;
         int southeast = 11;
 
-        List<Integer> possibleMoves = new ArrayList<Integer>();
+        // movimentos normais do rei
+        int[] directions = {forward, backward, left, right, northwest, northeast, southwest, southeast};
 
-        int forwardPos = forward + pos;
-        if (BoardUtils.isWithinBounds(forwardPos) &&
-                (board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)]))) {
-            possibleMoves.add(forwardPos);
-        }
+        for (int dir : directions) {
+            int target = this.position + dir;
 
-        int backwardPos = backward + pos;
-        if (BoardUtils.isWithinBounds(backwardPos) &&
-                (board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]))) {
-            possibleMoves.add(backwardPos);
-        }
-
-        int rightPos = right + pos;
-        if (BoardUtils.isWithinBounds(rightPos) &&
-                (board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)]))) {
-            possibleMoves.add(rightPos);
-        }
-
-        int leftPos = left + pos;
-        if (BoardUtils.isWithinBounds(leftPos) &&
-                (board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]))) {
-            possibleMoves.add(leftPos);
-        }
-
-        int northwestPos = northwest + pos;
-        if (BoardUtils.isWithinBounds(northwestPos) &&
-                (board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(northwestPos)][PieceUtils.getY(northwestPos)]))) {
-            possibleMoves.add(northwestPos);
-        }
-
-        int southwestPos = southwest + pos;
-        if (BoardUtils.isWithinBounds(southwestPos) &&
-                (board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)]))) {
-            possibleMoves.add(southwestPos);
-        }
-
-        int northeastPos = northeast + pos;
-        if (BoardUtils.isWithinBounds(northeastPos) &&
-                (board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(northeastPos)][PieceUtils.getY(northeastPos)]))) {
-            possibleMoves.add(northeastPos);
-        }
-
-        int southeastPos = southeast + pos;
-        if (BoardUtils.isWithinBounds(southeastPos) &&
-                (board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null ||
-                        isOpponent(board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)]))) {
-            possibleMoves.add(southeastPos);
-        }
-
-        List<ChessPiece> rooks = BoardUtils.findPieces(board, isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
-        ChessPiece rook = rooks.getFirst();
-        if (rook.getN_moves() == 0 && this.getN_moves() == 0) { // torrei e rei sem movimentos
-            int kingPos = this.getPosition();
-            int rookPos = rook.getPosition();
-
-            int direction;
-            if (rookPos > kingPos) {
-                direction = 1; // roque da direita
-            } else {
-                direction = -1; // roque da esquerda
-            }
-            int roqueDireira = kingPos + direction;
-            int roqueEsquerda = kingPos + 2 * direction;
-
-            if (board[PieceUtils.getX(roqueDireira)][PieceUtils.getY(roqueDireira)] == null) {
-
-                    roque = true;
-                    possibleMoves.add(roqueDireira);
-
-            }
-
-            if (board[PieceUtils.getX(roqueEsquerda)][PieceUtils.getY(roqueEsquerda)] == null) {
-
-                    roque = true;
-                    possibleMoves.add(roqueEsquerda);
-
-            }
-        }
-        return possibleMoves;
-    }
-
-    @Override
-    public boolean moveTo(int position, List<Integer> listMoves, Board board) {
-        ChessPiece[][] pieces = board.getPieces();
-        if (!listMoves.contains(position)) {
-            return false;
-        }
-
-        if (roque) {
-            int kingPos = this.getPosition();
-            int direction = position - kingPos;
-            int novaPosTorre; // pos final da torre
-            if (direction > 0) {
-                novaPosTorre = position - 1; // roque pequeno
-            } else {
-                novaPosTorre = position + 1; // roque grande
-            }
-            int passo1 = kingPos + (direction > 0 ? 1 : -1); // tem que conferir isso aqui porque na regra do xadrez mesmo que na
-            // casa fnal n deixe o rei em xeque mas a casa que ele for passar deixar n pode fazer roque
-            int passo2 = position;
-            if (kingCheck(passo1, pieces) || kingCheck(passo2, pieces)) {
-                System.out.println("Movimento deixaria o rei em xeque!");
-                return false;
-            }
-
-
-            List<ChessPiece> rooks = BoardUtils.findPieces(board.getPieces(), isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
-
-            for (ChessPiece rook : rooks) {
-                if (rook.getN_moves() == 0) {
-                    int rookPos = rook.getPosition();
-
-                    if ((direction > 0 && rookPos > kingPos) || (direction < 0 && rookPos < kingPos)) {
-                        // Mover a torre também
-                        pieces[PieceUtils.getX(rookPos)][PieceUtils.getY(rookPos)] = null;
-                        pieces[PieceUtils.getX(novaPosTorre)][PieceUtils.getY(novaPosTorre)] = rook;
-                        rook.setPosition(novaPosTorre);
-                        rook.setN_moves(rook.getN_moves() + 1);
-
-                    }
+            if (BoardUtils.isWithinBounds(target)) {
+                ChessPiece targetPiece = board[PieceUtils.getX(target)][PieceUtils.getY(target)];
+                if (targetPiece == null || isOpponent(targetPiece)) {
+                    possibleMoves.add(target);
                 }
             }
         }
 
+        // roque do rei
+        if (this.getN_moves() == 0) {
+            List<ChessPiece> rooks = BoardUtils.findPieces(board, this.isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
+
+            for (ChessPiece rook : rooks) {
+                if (isValidCastling(rook, board)) {
+                    int kingPos = this.getPosition();
+                    int rookPos = rook.getPosition();
+                    int direction = (kingPos > rookPos) ? -1 : 1;
+
+                    int castlingTarget = kingPos + 2 * direction;
+                    possibleMoves.add(castlingTarget);
+                }
+            }
+        }
+
+        return possibleMoves; // possibleMoves = {..., positionRoqueLeft, positionRoqueRight}
+    }
+
+    @Override
+    public boolean moveTo(int position, List<Integer> listMoves, Board board) {
+        if (!listMoves.contains(position)) return false;
+
+        // Verifica se o movimento é um roque — os dois últimos da lista são reservados para isso
+        boolean isCastlingMove = listMoves.size() >= 2 &&
+                (position == listMoves.getLast() || position == listMoves.get(listMoves.size() - 2));
+
+        if (isCastlingMove) {
+            int kingPos = this.getPosition();
+            int direction = (kingPos > position) ? -1 : 1;
+            int rookTargetPos = kingPos + (direction > 0 ? 1 : -1); // posição final da torre
+
+            ChessPiece[][] pieces = board.getPieces();
+
+            // Checa se o roque deixa o rei em xeque
+            if (kingCheck(position, pieces)) {
+                System.out.println("Movimento de roque deixaria o rei em xeque!");
+                return false;
+            }
+
+            // Encontra a torre correta
+            List<ChessPiece> rooks = BoardUtils.findPieces(pieces, isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
+
+            for (ChessPiece rook : rooks) {
+                if (rook.getN_moves() > 0) continue;
+
+                int rookPos = rook.getPosition();
+                boolean correta = (direction > 0 && rookPos > kingPos) || (direction < 0 && rookPos < kingPos);
+                if (correta) {
+                    // Executa movimento da torre
+                    pieces[PieceUtils.getX(rookPos)][PieceUtils.getY(rookPos)] = null;
+                    pieces[PieceUtils.getX(rookTargetPos)][PieceUtils.getY(rookTargetPos)] = rook;
+                    rook.setPosition(rookTargetPos);
+                    rook.setN_moves(rook.getN_moves() + 1);
+                    break;
+                }
+            }
+        }
+
+        // Se não for roque, ou após o roque, executa movimento normal
         return super.moveTo(position, listMoves, board);
     }
 }

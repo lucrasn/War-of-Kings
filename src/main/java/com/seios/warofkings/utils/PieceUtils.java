@@ -77,11 +77,14 @@ public class PieceUtils {
         int step = (from > to) ? -1 : 1;
         for (int i = from + step; i != to + step; i += step) {
             boardCopy[getX(i)][getY(i)] = king;
+            king.setPosition(i);
             if (isPieceUnderAttack(king, boardCopy)) {
+                king.setPosition(from);
                 return false;
             }
             boardCopy[getX(i)][getY(i)] = null;
         }
+        king.setPosition(from);
         return true;
     }
 }
