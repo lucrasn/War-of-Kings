@@ -31,7 +31,9 @@ public enum Type {
     KNIGHT_BLACK(8),
     BISHOP_BLACK(9),
     QUEEN_BLACK(10),
-    KING_BLACK(11);
+    KING_BLACK(11),
+
+
 
     /** Valor numérico associado ao tipo da peça. */
     private final int valor;
@@ -60,12 +62,14 @@ public enum Type {
      * @return {@link Turn#WHITE} se for peça branca, {@link Turn#BLACK} se for preta.
      */
     public Turn getColor() {
+
         if(name().endsWith("WHITE")){
             return Turn.WHITE;
         }
         else {
             return Turn.BLACK;
         }
+
     }
 
     /**
@@ -90,5 +94,7 @@ public enum Type {
             case 11 -> "Rei preto";
             default -> "Tipo de peça desconhecido";
         };
+
+
     }
 }

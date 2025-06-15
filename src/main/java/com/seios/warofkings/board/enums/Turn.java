@@ -14,7 +14,7 @@ package com.seios.warofkings.board.enums;
  * @since 2025-06-15
  */
 public enum Turn {
-    WHITE, BLACK;
+    WHITE, BLACK, END;
 
     /**
      * Retorna o próximo turno. Se o turno atual for {@code WHITE}, retorna {@code BLACK}, e vice-versa.
@@ -28,4 +28,8 @@ public enum Turn {
             return WHITE;
         }
     }
+    public Turn endGame(){
+            return  END;
+    }
+
 }
