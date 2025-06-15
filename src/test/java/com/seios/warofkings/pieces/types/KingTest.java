@@ -74,10 +74,6 @@ class KingTest {
     }
 
     @Test
-    void isWhite() {
-    }
-
-    @Test
     void moveTo() {
     }
 }
