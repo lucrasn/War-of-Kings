@@ -157,12 +157,16 @@ public class MainController {
                             InputStream transparent = getClass().getResourceAsStream("/imagens/Transparent.png");
                             if (transparent != null) {
                                 Image img = new Image(transparent);
-                                ImageView newTransparent = new ImageView(img);
-                                newTransparent.setFitWidth(55);
-                                newTransparent.setFitHeight(55);
-                                GridPane.setColumnIndex(newTransparent, GridPane.getColumnIndex(selectedImage));
-                                GridPane.setRowIndex(newTransparent, GridPane.getRowIndex(selectedImage));
-                                pecas.getChildren().add(newTransparent);
+                                ImageView newTrans = new ImageView(img);
+                                newTrans.setFitWidth(55);
+                                newTrans.setFitHeight(55);
+
+                                newTrans.setPickOnBounds(true);
+                                newTrans.setMouseTransparent(false);
+
+                                GridPane.setColumnIndex(newTrans, GridPane.getColumnIndex(selectedImage));
+                                GridPane.setRowIndex(newTrans, GridPane.getRowIndex(selectedImage));
+                                pecas.getChildren().add(newTrans);
                             }
 
                             System.out.println("Peça movida!");
