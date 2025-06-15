@@ -14,6 +14,19 @@ import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.board.enums.Turn;
 
 
+/**
+ * Controlador principal da interface gráfica do jogo War of Kings.
+ * <p>
+ * Responsável por inicializar o tabuleiro, renderizar peças e gerenciar a lógica de cliques
+ * e movimentação das peças no tabuleiro. Também mantém o controle do turno atual.
+ * </p>
+ *
+ * <p>Associado ao arquivo FXML principal carregado por {@link MainApplication}.</p>
+ *
+ * @author Lívia
+ * @version 1.0
+ * @since 2025-06-09
+ */
 public class MainController {
     private ChessPiece selectedPiece;
     private ImageView selectedImage;
@@ -29,10 +42,10 @@ public class MainController {
     @FXML
     private GridPane tabuleiro;
 
-    @FXML
-    private GridPane pawnTurn; //n é GridPane
-
-
+    /**
+     * Método chamado automaticamente pelo JavaFX após o carregamento do FXML.
+     * Responsável por iniciar o tabuleiro, posicionar as peças e configurar os eventos.
+     */
     @FXML
     public void initialize(){
         creatingBoard();
@@ -40,6 +53,9 @@ public class MainController {
         movingPieces();
     }
 
+    /**
+     * Cria o tabuleiro visualmente no {@code GridPane tabuleiro}, alternando cores das casas.
+     */
     @FXML
     public void creatingBoard() {
         tabuleiro.getChildren().clear(); // limpa caso reinitialize
@@ -60,7 +76,10 @@ public class MainController {
         }
     }
 
-
+    /**
+     * Posiciona as imagens das peças no tabuleiro com base no estado atual do objeto {@link Board}.
+     * Peças são desenhadas no {@code GridPane pecas}.
+     */
     @FXML
     public void creatingPieces(){
         pecas.getChildren().clear();
@@ -81,6 +100,11 @@ public class MainController {
         }
     }
 
+    /**
+     * Associa eventos de clique a cada peça do tabuleiro.
+     * Permite seleção, visualização de movimentos válidos e execução de jogadas.
+     * Também alterna o turno após um movimento válido.
+     */
     @FXML
     public void movingPieces() {
         for (Node node : pecas.getChildren()) {
@@ -99,7 +123,7 @@ public class MainController {
 
                     ChessPiece piece = board.getPieces()[rowX][colY];
 
-                    if (piece != null && piece.getColor() == turn) {
+                    if (piece != null && piece.getType().getColor() == turn) {
                         selectedPiece = piece;
                         selectedImage = imageView;
                         possibleMoves = piece.getPossibleMoves(board.getPieces());
@@ -186,10 +210,6 @@ public class MainController {
         }
     }
 
-//    public ChessPiece turnPawn(Pawn peao){//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
-//
-//
-//        peao.promoteIfEligible();
-//        ;
-//    }
+    // Método de promoção comentado e pendente de implementação
+    // public ChessPiece turnPawn(Pawn peao) { ... }
 }

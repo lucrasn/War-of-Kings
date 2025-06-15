@@ -12,9 +12,15 @@ import com.seios.warofkings.board.enums.Turn;
 import java.util.List;
 
 /**
- * Esta classe é responsável pela abstração dos movimentos das peças de xadrez
+ * Classe abstrata base para todas as peças de xadrez.
+ * <p>
+ * Fornece a estrutura comum e a lógica compartilhada entre as peças, incluindo
+ * movimentação, posição, número de movimentos e verificação de regras como xeque.
+ * </p>
  *
- * @author lucas
+ * <p><b>Nota:</b> Todas as peças concretas (Peão, Torre, Rei etc.) devem estender esta classe.</p>
+ *
+ * @author Lucas
  * @version 1.3
  * @since 2025-05-14
  */
@@ -23,14 +29,30 @@ public abstract class ChessPiece implements Movable, Positionable {
     protected Type type;
     protected int n_moves;
 
+    /**
+     * Construtor padrão, inicia com zero movimentos.
+     */
     public ChessPiece() {
         this.n_moves = 0;
     }
 
+    /**
+     * Construtor alternativo que define o número de movimentos.
+     *
+     * @param n_moves quantidade de movimentos já realizados.
+     */
     public ChessPiece(int n_moves) {
         this.n_moves = n_moves;
     }
 
+    /**
+     * Verifica se um movimento deixaria o rei em xeque.
+     * Simula o movimento e avalia se o rei ainda estaria seguro.
+     *
+     * @param to         posição de destino simulada.
+     * @param piecesMap  matriz de peças do tabuleiro.
+     * @return true se o movimento coloca o rei em xeque.
+     */
     protected boolean kingCheck(int to, ChessPiece[][] piecesMap) {
         ChessPiece[][] simulatedBoard = BoardUtils.copyBoard(piecesMap);
         simulatedBoard[this.getX()][this.getY()] = null;
@@ -54,6 +76,12 @@ public abstract class ChessPiece implements Movable, Positionable {
         return PieceUtils.isPieceUnderAttack(king, simulatedBoard);
     }
 
+    /**
+     * Verifica se uma peça é adversária.
+     *
+     * @param other peça a ser comparada.
+     * @return true se for de cor oposta.
+     */
     protected boolean isOpponent(ChessPiece other) {
         if (other == null) return false;
         boolean isWhite = this.isWhite();
@@ -61,37 +89,73 @@ public abstract class ChessPiece implements Movable, Positionable {
         return (isWhite != isWhiteTo);
     }
 
+    /**
+     * Verifica se a peça é branca.
+     *
+     * @return true se o tipo for branco.
+     */
     public boolean isWhite() {
         return this.type.getValor() <= 5;
     }
 
+    /**
+     * Retorna a coordenada X (linha) da posição.
+     *
+     * @return valor da linha (0 a 7).
+     */
     @Override
     public int getX() {
         return this.position / 10; // Dezena
     }
 
+    /**
+     * Retorna a coordenada Y (coluna) da posição.
+     *
+     * @return valor da coluna (0 a 7).
+     */
     @Override
     public int getY() {
         return this.position % 10; // Unidade
     }
 
+    /**
+     * Representação em string da peça com nome e posição atual.
+     *
+     * @return descrição textual da peça.
+     */
     @Override
     public String toString() {
         return "Tipo da peça: " + type.displayName() + ". " +
                 "Na posição : (" + this.getX() +  ", " + this.getY() + ")";
     }
 
+    /**
+     * Retorna a posição inteira da peça.
+     *
+     * @return posição no formato XY (dezena = linha, unidade = coluna).
+     */
     public int getPosition() {
         return this.position;
     }
 
-    // o setPosition é pra uso interno de moveTo,
-    // mas n pode ser private nem protected, somente public ai é peso.
+    /**
+     * Define a posição atual da peça.
+     *
+     * @param position nova posição.
+     */
     @Override
     public void setPosition(int position) { // muda a posição
         this.position = position;
     }
 
+    /**
+     * Realiza o movimento da peça para uma nova posição, desde que válida e segura.
+     *
+     * @param position   nova posição de destino.
+     * @param listMoves  lista de movimentos válidos.
+     * @param board      estado atual do tabuleiro.
+     * @return true se o movimento foi realizado com sucesso.
+     */
     @Override
     public boolean moveTo(int position, List<Integer> listMoves, Board board) {
         if (position == getPosition()) return false;
@@ -117,22 +181,47 @@ public abstract class ChessPiece implements Movable, Positionable {
         return true;
     }
 
+    /**
+     * Retorna o tipo da peça.
+     *
+     * @return {@link Type} da peça.
+     */
     public Type getType() {
         return this.type;
     }
 
+    /**
+     * Define o tipo da peça.
+     *
+     * @param type novo tipo.
+     */
     public void setType(Type type) {
         this.type = type;
     }
 
+    /**
+     * Retorna o número de movimentos realizados pela peça.
+     *
+     * @return número de movimentos.
+     */
     public int getN_moves() {
         return this.n_moves;
     }
 
+    /**
+     * Define o número de movimentos realizados.
+     *
+     * @param n_moves novo número de movimentos.
+     */
     public void setN_moves(int n_moves) {
         this.n_moves = n_moves;
     }
 
+    /**
+     * Retorna o nome da imagem associada à peça, para renderização no front-end.
+     *
+     * @return nome do arquivo da imagem correspondente à peça.
+     */
     public String getImgName() {
         return switch (type) {
             case PAWN_BLACK -> "Pawn_Black.png";
@@ -147,18 +236,7 @@ public abstract class ChessPiece implements Movable, Positionable {
             case BISHOP_WHITE -> "Bishop_White.png";
             case QUEEN_WHITE -> "Queen_White.png";
             case KING_WHITE -> "King_White.png";
-
             default -> null;
         };
-
-    }
-
-    public Turn getColor(){
-        if(type.name().endsWith("WHITE")){
-            return Turn.WHITE;
-        }
-        else {
-            return Turn.BLACK;
-        }
     }
 }

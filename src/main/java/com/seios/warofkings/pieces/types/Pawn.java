@@ -9,13 +9,28 @@ import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.PieceUtils;
 
 /**
- * Esta classe é responsável pela implementação dos movimentos da peça Peão
+ * Representa a peça Peão no xadrez, incluindo suas regras de movimentação e promoção.
+ * <p>
+ * O peão move-se para frente, captura na diagonal e pode avançar duas casas no primeiro movimento.
+ * Também pode ser promovido ao alcançar a última linha do tabuleiro.
+ * </p>
  *
- * @author lucas
+ * <p><b>Nota:</b> Esta classe valida o {@link Type} para garantir que apenas peões válidos
+ * (branco ou preto) sejam instanciados corretamente.</p>
+ *
+ * @author Lucas
  * @version 1.5
  * @since 2025-05-14
  */
 public class Pawn extends ChessPiece {
+    /**
+     * Construtor completo da peça Peão.
+     *
+     * @param position posição no tabuleiro.
+     * @param type     tipo da peça, deve ser {@code PAWN_WHITE (0)} ou {@code PAWN_BLACK (6)}.
+     * @param n_moves  número de movimentos realizados pela peça.
+     * @throws IllegalArgumentException se o tipo informado não for um peão válido.
+     */
     public Pawn(int position, Type type, int n_moves) {
         if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
             throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
@@ -25,13 +40,26 @@ public class Pawn extends ChessPiece {
         this.n_moves = n_moves;
     }
 
+    /**
+     * Construtor privado usado pelo método fábrica.
+     *
+     * @param position posição inicial.
+     * @param type     tipo da peça.
+     */
     private Pawn(int position, Type type) {
         super();
         this.position = position;
         this.type = type;
     }
 
-    // Metodo de fábrica
+    /**
+     * Método fábrica para criação de instâncias de {@code Pawn}.
+     *
+     * @param position posição no tabuleiro.
+     * @param type     tipo da peça.
+     * @return nova instância de {@code Pawn}.
+     * @throws IllegalArgumentException se o tipo informado não for um peão válido.
+     */
     public static Pawn createPawn(int position, Type type) {
         if (!(type.getValor() == 0) && !(type.getValor() == 6)) {
             throw new IllegalArgumentException("Tipo inválido para peão. Esperado PAWN_WHITE (0) ou PAWN_BLACK (6).");
@@ -40,15 +68,16 @@ public class Pawn extends ChessPiece {
     }
 
     /**
-     * Retorna as posições válidas para onde o peão pode se mover, considerando:
+     * Retorna as posições possíveis para onde o peão pode se mover.
+     * Considera:
      * <ul>
-     *   <li>Movimento para frente se a casa estiver livre</li>
-     *   <li>Duplo avanço no primeiro movimento</li>
-     *   <li>Capturas nas diagonais</li>
+     *   <li>Avanço de uma casa para frente</li>
+     *   <li>Avanço de duas casas se ainda não moveu</li>
+     *   <li>Captura em diagonais</li>
      * </ul>
      *
-     * @param board matriz representando o estado atual do tabuleiro
-     * @return lista de posições inteiras possíveis para o movimento
+     * @param board matriz representando o estado atual do tabuleiro.
+     * @return lista de posições válidas.
      */
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
@@ -92,12 +121,12 @@ public class Pawn extends ChessPiece {
     }
 
     /**
-     * Substitui um peão por uma nova peça (rainha, torre, bispo ou cavalo) ao atingir a linha final.
-     * A peça resultante é baseada no tipo de promoção passado como parâmetro.
+     * Realiza a promoção do peão ao atingir a última fileira.
+     * Substitui o peão por uma nova peça do tipo especificado.
      *
-     * @param promotionType Tipo da peça para promoção (deve ser compatível com a cor do peão)
-     * @return Nova peça promovida
-     * @throws IllegalArgumentException se o tipo de promoção for inválido ou incompatível com a cor do peão
+     * @param promotionType tipo da peça resultante (rainha, torre, bispo ou cavalo).
+     * @return nova peça promovida ou o próprio peão se não for elegível.
+     * @throws IllegalArgumentException se o tipo for inválido ou incompatível com a cor do peão.
      */
     public ChessPiece promoteIfEligible(Type promotionType) {
         boolean isWhite = (this.type == Type.PAWN_WHITE);

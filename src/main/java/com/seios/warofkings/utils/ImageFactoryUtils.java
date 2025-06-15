@@ -5,7 +5,29 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import java.io.InputStream;
 
+/**
+ * Classe utilitária responsável pela criação e configuração de imagens {@link ImageView}
+ * utilizadas na interface gráfica do jogo War of Kings.
+ * <p>
+ * Fornece métodos para carregar imagens de peças a partir dos recursos internos do projeto,
+ * com ajustes de tamanho e comportamento de clique apropriados.
+ * </p>
+ *
+ * @author Lucas
+ * @version 1.0
+ * @since 2025-06-15
+ */
 public class ImageFactoryUtils {
+    /**
+     * Cria um {@link ImageView} para a peça de xadrez correspondente ao caminho da imagem fornecido.
+     * <p>
+     * A imagem é ajustada com tamanho fixo, centralizada no {@link GridPane} e configurada para
+     * responder corretamente a eventos de clique.
+     * </p>
+     *
+     * @param imagePath caminho da imagem (relativo à raiz de recursos).
+     * @return {@code ImageView} configurado com a imagem da peça ou {@code null} se a imagem não for encontrada.
+     */
     public static ImageView createPieceImage(String imagePath) {
         InputStream stream = ImageFactoryUtils.class.getResourceAsStream(imagePath);
 
@@ -30,6 +52,11 @@ public class ImageFactoryUtils {
         return img;
     }
 
+    /**
+     * Cria uma imagem transparente que pode ser usada para ocupar posições vazias no tabuleiro.
+     *
+     * @return {@code ImageView} de uma imagem transparente.
+     */
     public static ImageView createTransparentImage() {
         return createPieceImage("/imagens/Transparent.png");
     }

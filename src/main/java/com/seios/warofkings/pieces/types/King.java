@@ -10,13 +10,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta classe é responsável pela implementação dos movimentos da peça Rei
+ * Representa a peça Rei no xadrez, com implementação completa dos movimentos válidos
+ * incluindo o movimento especial de roque.
+ * <p>
+ * O rei pode se mover uma casa em qualquer direção (vertical, horizontal ou diagonal)
+ * e realizar o roque com uma torre se certas condições forem satisfeitas.
+ * </p>
  *
- * @author bia
+ * @author Bia
  * @version 2.5
  * @since 2025-06-09
  */
 public class King extends ChessPiece {
+    /**
+     * Construtor completo da peça Rei.
+     *
+     * @param position posição inicial da peça.
+     * @param type     tipo da peça, deve ser {@code KING_WHITE (5)} ou {@code KING_BLACK (11)}.
+     * @param n_moves  número de movimentos já realizados pela peça.
+     * @throws IllegalArgumentException se o tipo informado não corresponder a um rei válido.
+     */
     public King(int position, Type type, int n_moves) {
         if (!(type.getValor() == 5) && !(type.getValor() == 11)) {
             throw new IllegalArgumentException("Tipo inválido para rei. Esperado KING_WHITE (5) ou KING_BLACK (11).");
@@ -26,13 +39,26 @@ public class King extends ChessPiece {
         this.n_moves = n_moves;
     }
 
+    /**
+     * Construtor privado usado pelo método fábrica.
+     *
+     * @param position posição inicial da peça.
+     * @param type     tipo da peça.
+     */
     private King(int position, Type type) {
         super();
         this.position = position;
         this.type = type;
     }
 
-    // Metodo de fábrica
+    /**
+     * Método fábrica para criar uma instância de {@code King}.
+     *
+     * @param position posição da peça no tabuleiro.
+     * @param type     tipo da peça (branca ou preta).
+     * @return nova instância de {@code King}.
+     * @throws IllegalArgumentException se o tipo não for um rei válido.
+     */
     public static King createKing(int position, Type type) {
         if (!(type.getValor() == 5) && !(type.getValor() == 11)) {
             throw new IllegalArgumentException("Tipo inválido para rei. Esperado KING_WHITE (5) ou KING_BLACK (11).");
@@ -40,6 +66,20 @@ public class King extends ChessPiece {
         return new King(position, type);
     }
 
+    /**
+     * Verifica se é possível realizar o roque com a torre especificada.
+     * <p>
+     * As condições para o roque são:
+     * <ul>
+     *     <li>O rei e a torre não devem ter se movido</li>
+     *     <li>Não pode haver peças entre o rei e a torre</li>
+     *     <li>O caminho entre eles não pode estar em xeque</li>
+     * </ul>
+     *
+     * @param rook  torre envolvida no roque.
+     * @param board estado atual do tabuleiro.
+     * @return true se o roque é válido, false caso contrário.
+     */
     private boolean isValidCastling(ChessPiece rook, ChessPiece[][] board) {
         if (this.getN_moves() > 0 || rook.getN_moves() > 0) return false;
 
@@ -49,6 +89,13 @@ public class King extends ChessPiece {
         return BoardUtils.isPathClearHorizontally(kingPos, rookPos, board) && PieceUtils.pathSafeForKing(rookPos, this, board);
     }
 
+    /**
+     * Retorna uma lista com todas as posições para onde o rei pode se mover,
+     * incluindo roques válidos.
+     *
+     * @param board estado atual do tabuleiro.
+     * @return lista de inteiros representando movimentos válidos.
+     */
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
         List<Integer> possibleMoves = new ArrayList<Integer>();
@@ -76,7 +123,7 @@ public class King extends ChessPiece {
             }
         }
 
-        // roque do rei
+        // verificação de roque
         if (this.getN_moves() == 0) {
             List<ChessPiece> rooks = BoardUtils.findPieces(board, this.isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
 
@@ -95,6 +142,14 @@ public class King extends ChessPiece {
         return possibleMoves; // possibleMoves = {..., positionRoqueLeft, positionRoqueRight}
     }
 
+    /**
+     * Executa o movimento do rei, incluindo o movimento especial de roque quando válido.
+     *
+     * @param position   posição de destino.
+     * @param listMoves  lista de movimentos válidos previamente calculados.
+     * @param board      estado atual do tabuleiro.
+     * @return true se o movimento foi realizado com sucesso, false caso contrário.
+     */
     @Override
     public boolean moveTo(int position, List<Integer> listMoves, Board board) {
         if (!listMoves.contains(position)) return false;
