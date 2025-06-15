@@ -89,6 +89,9 @@ public class MainController {
                         System.err.println("Imagem transparente nao encontrada: ");
                         continue;
                     }
+                    else{
+                        System.out.println("imagem adicionada");
+                    }
 
                     Image trans_png = new Image(transparent);
                     ImageView trans = new ImageView(trans_png);
