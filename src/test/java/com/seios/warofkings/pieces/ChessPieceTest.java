@@ -47,14 +47,16 @@ class ChessPieceTest {
     @Test
     void testKingCheckTrue() {
         Board board = new Board();
-        ChessPiece king = King.createKing(44, Type.KING_WHITE);
-        ChessPiece rook = Rook.createRook(32, Type.ROOK_BLACK);
+        ChessPiece king = King.createKing(42, Type.KING_WHITE);
+        ChessPiece rook = Rook.createRook(44, Type.ROOK_BLACK);
+        ChessPiece pawn = Pawn.createPawn(43, Type.PAWN_WHITE);
 
         ChessPiece[][] pieces = board.getPieces();
-        pieces[4][4] = king;
-        pieces[5][0] = rook;
+        pieces[4][2] = king;   // posição 44
+        pieces[4][4] = rook;   // posição 40
+        pieces[4][3] = pawn;
 
-        assertTrue(rook.kingCheck(40, pieces));
+        assertTrue(pawn.kingCheck(33, pieces));
     }
 
     @Test

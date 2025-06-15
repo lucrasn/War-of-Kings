@@ -37,14 +37,14 @@ public abstract class ChessPiece implements Movable, Positionable {
         simulatedBoard[PieceUtils.getX(toPosition)][PieceUtils.getY(toPosition)] = this;
 
         boolean isWhite = this.isWhite();
-        List<ChessPiece> kings = BoardUtils.findPieces(piecesMap ,isWhite ? Type.KING_WHITE : Type.KING_BLACK);
+        List<ChessPiece> kings = BoardUtils.findPieces(simulatedBoard ,isWhite ? Type.KING_WHITE : Type.KING_BLACK);
         if (kings.isEmpty()) return false;
         ChessPiece king = kings.getFirst();
 
-        for (ChessPiece[] row : piecesMap) {
+        for (ChessPiece[] row : simulatedBoard) {
             for (ChessPiece other : row) {
                 if (other != null && !PieceUtils.isSameColor(other, king)) {
-                    List<Integer> moves = other.getPossibleMoves(piecesMap);
+                    List<Integer> moves = other.getPossibleMoves(simulatedBoard);
                     if (moves.contains(king.getPosition())) {
                         return true;
                     }
