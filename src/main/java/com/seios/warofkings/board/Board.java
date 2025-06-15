@@ -5,6 +5,9 @@ import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.pieces.types.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Esta classe é responsável pela formatação do tabuleiro de xadrez
@@ -16,6 +19,7 @@ import com.seios.warofkings.pieces.types.*;
 public class Board {
 
     protected ChessPiece[][] pieces;
+    protected List<ChessPiece> pawnTurn = new ArrayList<>();
     protected Turn turn;
 
 
@@ -39,6 +43,7 @@ public class Board {
     // é preciso tbm que dentro do construtor alem de contruir o board contruir o pieces além de ser atribuido o valor de turn como sendo WHITE
     public Board() {
         this.pieces = new ChessPiece[8][8];
+        this.pawnTurn = new ArrayList<>(5);
         this.turn = Turn.WHITE;
 
         for (int i = 0; i < 8; i++) {
