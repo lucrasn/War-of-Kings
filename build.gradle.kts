@@ -21,10 +21,6 @@ java {
     }
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
-
 application {
     mainModule.set("com.seios.warofkings.warofkings")
     mainClass.set("com.seios.warofkings.warofkings.HelloApplication")
@@ -48,6 +44,10 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
 
 jlink {

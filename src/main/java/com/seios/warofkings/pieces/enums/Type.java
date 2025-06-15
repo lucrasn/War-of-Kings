@@ -8,7 +8,6 @@ package com.seios.warofkings.pieces.enums;
  * @since 2025-05-14
  */
 public enum Type {
-
     PAWN_WHITE(0),
     ROOK_WHITE(1),
     KNIGHT_WHITE(2),

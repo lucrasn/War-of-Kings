@@ -1,7 +1,10 @@
 package com.seios.warofkings.utils;
 
+import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
+
+import java.util.List;
 
 /**
  * Esta classe é responsável pela abstração dos movimentos das peças de xadrez
@@ -49,5 +52,36 @@ public class PieceUtils {
         return a.isWhite() == b.isWhite();
     }
 
+    public static boolean isPieceUnderAttack(ChessPiece piece, ChessPiece[][] board) {
+        if (piece == null) return false;
 
+        for (ChessPiece[] row : board) {
+            for (ChessPiece other : row) {
+                 if (other != null && !PieceUtils.isSameColor(other, piece)) {
+                    List<Integer> moves = other.getPossibleMoves(board);
+                    if (moves.contains(piece.getPosition())) {
+                        return true; // peça está sendo ameaçada
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean pathSafeForKing(int to, ChessPiece king, ChessPiece[][] board) {
+        int from = king.getPosition(); // posição do rei
+
+        ChessPiece[][] boardCopy = BoardUtils.copyBoard(board);
+        boardCopy[getX(from)][getY(from)] = null;
+
+        int step = (from > to) ? -1 : 1;
+        for (int i = from + step; i != to + step; i += step) {
+            boardCopy[getX(i)][getY(i)] = king;
+            if (isPieceUnderAttack(king, boardCopy)) {
+                return false;
+            }
+            boardCopy[getX(i)][getY(i)] = null;
+        }
+        return true;
+    }
 }

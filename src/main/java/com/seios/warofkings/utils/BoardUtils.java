@@ -58,4 +58,14 @@ public class BoardUtils {
         }
         return copy;
     }
+
+    public static boolean isPathClearHorizontally(int from, int to, ChessPiece[][] board) { // from = 74 (rei) e to = 77 (torre)
+        int step = (from > to) ? -1 : 1; // step = 1 pois 74 > 77 = false
+        for (int i = from + step; i != to; i += step) { // i = 74 + 1 = 75; i != 77; i += 1
+            if (board[PieceUtils.getX(i)][PieceUtils.getY(i)] != null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

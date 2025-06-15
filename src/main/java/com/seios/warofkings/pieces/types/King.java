@@ -17,14 +17,7 @@ import java.util.List;
  * @since YYYY-MM-DD
  */
 public class King extends ChessPiece {
-    boolean roque = false; // true: listmoves tem roque. false: n tem roque
-
-    public boolean isWhite() {
-
-        return this.type.getValor() <= 6;   // brancas até 6 pretas depois de 7
-
-
-    }
+    private boolean roque = false; // true: listmoves tem roque. false: n tem roque
 
     public King(int position, Type type, int n_moves) {
         if (!(type.getValor() == 5) && !(type.getValor() == 11)) {
@@ -49,24 +42,28 @@ public class King extends ChessPiece {
         return new King(position, type);
     }
 
+    private boolean isValidCastling(ChessPiece rook, ChessPiece[][] board) {
+        if (this.getN_moves() > 0 || rook.getN_moves() > 0) return false;
+
+        int kingPos = this.getPosition();
+        int rookPos = rook.getPosition();
+
+        return BoardUtils.isPathClearHorizontally(kingPos, rookPos, board) && PieceUtils.pathSafeForKing(rookPos, this, board);
+    }
+
+
     @Override
     public List<Integer> getPossibleMoves(ChessPiece[][] board) {
-
-
         int pos = this.position;
 
         int forward = -10;
         int backward = 10;
-
         int right = 1;
         int left = -1;
-
         int northwest = -11;
         int southwest = 9;
-
         int northeast = -9;
         int southeast = 11;
-
 
         List<Integer> possibleMoves = new ArrayList<Integer>();
 
@@ -77,14 +74,12 @@ public class King extends ChessPiece {
             possibleMoves.add(forwardPos);
         }
 
-
         int backwardPos = backward + pos;
         if (BoardUtils.isWithinBounds(backwardPos) &&
                 (board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)] == null ||
                         isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]))) {
             possibleMoves.add(backwardPos);
         }
-
 
         int rightPos = right + pos;
         if (BoardUtils.isWithinBounds(rightPos) &&
@@ -93,14 +88,12 @@ public class King extends ChessPiece {
             possibleMoves.add(rightPos);
         }
 
-
         int leftPos = left + pos;
         if (BoardUtils.isWithinBounds(leftPos) &&
                 (board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)] == null ||
                         isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]))) {
             possibleMoves.add(leftPos);
         }
-
 
         int northwestPos = northwest + pos;
         if (BoardUtils.isWithinBounds(northwestPos) &&
@@ -109,14 +102,12 @@ public class King extends ChessPiece {
             possibleMoves.add(northwestPos);
         }
 
-
         int southwestPos = southwest + pos;
         if (BoardUtils.isWithinBounds(southwestPos) &&
                 (board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)] == null ||
                         isOpponent(board[PieceUtils.getX(southwestPos)][PieceUtils.getY(southwestPos)]))) {
             possibleMoves.add(southwestPos);
         }
-
 
         int northeastPos = northeast + pos;
         if (BoardUtils.isWithinBounds(northeastPos) &&
@@ -125,7 +116,6 @@ public class King extends ChessPiece {
             possibleMoves.add(northeastPos);
         }
 
-
         int southeastPos = southeast + pos;
         if (BoardUtils.isWithinBounds(southeastPos) &&
                 (board[PieceUtils.getX(southeastPos)][PieceUtils.getY(southeastPos)] == null ||
@@ -133,10 +123,8 @@ public class King extends ChessPiece {
             possibleMoves.add(southeastPos);
         }
 
-
         List<ChessPiece> rooks = BoardUtils.findPieces(board, isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
-
-        ChessPiece rook = rooks.get(0); // o getFirt n é um metodo d lista
+        ChessPiece rook = rooks.getFirst();
         if (rook.getN_moves() == 0 && this.getN_moves() == 0) { // torrei e rei sem movimentos
             int kingPos = this.getPosition();
             int rookPos = rook.getPosition();
@@ -150,14 +138,6 @@ public class King extends ChessPiece {
             int roqueDireira = kingPos + direction;
             int roqueEsquerda = kingPos + 2 * direction;
 
-
-            //if(board[PieceUtils.getX(roqueDireira)][PieceUtils.getY(roqueDireira)] == null ||
-            //          board[PieceUtils.getX(roqueEsquerda)][PieceUtils.getY(roqueEsquerda)] == null) {
-            //if (!kingCheck(roqueEsquerda, board) || !kingCheck(roqueDireira, board) ) {
-            //  roque = true;
-
-            //}
-            //}
             if (board[PieceUtils.getX(roqueDireira)][PieceUtils.getY(roqueDireira)] == null) {
 
                     roque = true;
@@ -171,79 +151,53 @@ public class King extends ChessPiece {
                     possibleMoves.add(roqueEsquerda);
 
             }
-
         }
         return possibleMoves;
     }
 
+    @Override
+    public boolean moveTo(int position, List<Integer> listMoves, Board board) {
+        ChessPiece[][] pieces = board.getPieces();
+        if (!listMoves.contains(position)) {
+            return false;
+        }
 
-        // Faltou isso
-        @Override
-        public boolean moveTo(int position, List<Integer> listMoves, Board board) {
-            ChessPiece[][] pieces = board.getPieces();
-            if (!listMoves.contains(position)) {
+        if (roque) {
+            int kingPos = this.getPosition();
+            int direction = position - kingPos;
+            int novaPosTorre; // pos final da torre
+            if (direction > 0) {
+                novaPosTorre = position - 1; // roque pequeno
+            } else {
+                novaPosTorre = position + 1; // roque grande
+            }
+            int passo1 = kingPos + (direction > 0 ? 1 : -1); // tem que conferir isso aqui porque na regra do xadrez mesmo que na
+            // casa fnal n deixe o rei em xeque mas a casa que ele for passar deixar n pode fazer roque
+            int passo2 = position;
+            if (kingCheck(passo1, pieces) || kingCheck(passo2, pieces)) {
+                System.out.println("Movimento deixaria o rei em xeque!");
                 return false;
             }
 
-            if (roque) {
-                int kingPos = this.getPosition();
-                int direction = position - kingPos;
-                int novaPosTorre; // pos final da torre
-                if (direction > 0) {
-                    novaPosTorre = position - 1; // roque pequeno
-                } else {
-                    novaPosTorre = position + 1; // roque grande
-                }
-                int passo1 = kingPos + (direction > 0 ? 1 : -1); // tem que conferir isso aqui porque na regra do xadrez mesmo que na
-                // casa fnal n deixe o rei em xeque mas a casa que ele for passar deixar n pode fazer roque
-                int passo2 = position;
-                if (kingCheck(passo1, pieces) || kingCheck(passo2, pieces)) {
-                    System.out.println("Movimento deixaria o rei em xeque!");
-                    return false;
-                }
 
+            List<ChessPiece> rooks = BoardUtils.findPieces(board.getPieces(), isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
 
-                List<ChessPiece> rooks = BoardUtils.findPieces(board.getPieces(), isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
+            for (ChessPiece rook : rooks) {
+                if (rook.getN_moves() == 0) {
+                    int rookPos = rook.getPosition();
 
-                for (ChessPiece rook : rooks) {
-                    if (rook.getN_moves() == 0) {
-                        int rookPos = rook.getPosition();
+                    if ((direction > 0 && rookPos > kingPos) || (direction < 0 && rookPos < kingPos)) {
+                        // Mover a torre também
+                        pieces[PieceUtils.getX(rookPos)][PieceUtils.getY(rookPos)] = null;
+                        pieces[PieceUtils.getX(novaPosTorre)][PieceUtils.getY(novaPosTorre)] = rook;
+                        rook.setPosition(novaPosTorre);
+                        rook.setN_moves(rook.getN_moves() + 1);
 
-                        if ((direction > 0 && rookPos > kingPos) || (direction < 0 && rookPos < kingPos)) {
-                            // Mover a torre também
-                            pieces[PieceUtils.getX(rookPos)][PieceUtils.getY(rookPos)] = null;
-                            pieces[PieceUtils.getX(novaPosTorre)][PieceUtils.getY(novaPosTorre)] = rook;
-                            rook.setPosition(novaPosTorre);
-                            rook.setN_moves(rook.getN_moves() + 1);
-
-                        }
                     }
                 }
             }
-
-            return super.moveTo(position, listMoves, board);
         }
 
-        // List<ChessPiece> rooks = BoardUtils.finsPieces(isWhite ? Type.ROOK_WHITE : Type.ROOK_BLACK);
-        // listMoves.in(position) -> true
-        // roque == true
-        // List<Integer> ED = new ArrayList<>() {{add(rooks.getIndexLast()) /n add(rooks.getIndexAntepenultimo())}};
-        // listMoves.index(position) -> x
-        // ED.in(x):
-        // if (x == ED.getFist()) {
-        // this.setPosition(position)
-        // rooks.getLast().setPostion(position + 1)
-        // } else {
-        // this.setPosition(position)
-        // rooks.getLast().setPostion(position - 1)
-        // }
-
-        //TODO: verificações como: Se é possível o movimento de acordo com o andar da peça (essa verificação fica para as classes concretas); Se não tem uma peça do mesmo exercíto nessa posição; etc
-
-        //return true; //super.moveTo(position, listMoves, board);
+        return super.moveTo(position, listMoves, board);
     }
-
-
-        //  return super.moveTo(position, listMoves, board);
-        //}
-
+}

@@ -1,14 +1,14 @@
 package com.seios.warofkings.pieces;
 
-import com.seios.warofkings.board.Board;
-import com.seios.warofkings.pieces.enums.Type;
-import com.seios.warofkings.pieces.types.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.seios.warofkings.board.Board;
+import com.seios.warofkings.pieces.enums.Type;
+import com.seios.warofkings.pieces.types.*;
 
 class ChessPieceTest {
 
@@ -19,7 +19,9 @@ class ChessPieceTest {
         assertTrue(white.isOpponent(black));
         assertTrue(black.isOpponent(white));
         assertFalse(white.isOpponent(white));
+        assertFalse(black.isOpponent(black));
         assertFalse(white.isOpponent(null));
+        assertFalse(black.isOpponent(null));
     }
 
     @Test
@@ -63,13 +65,15 @@ class ChessPieceTest {
     @Test
     void testKingCheckFalse() {
         Board board = new Board();
-        ChessPiece king = King.createKing(44, Type.KING_WHITE);
-        ChessPiece rook = Rook.createRook(30, Type.ROOK_BLACK);
+        ChessPiece king = King.createKing(42, Type.KING_WHITE);
+        ChessPiece pawn = Pawn.createPawn(53, Type.PAWN_WHITE);
+        ChessPiece rook = Rook.createRook(44, Type.ROOK_BLACK);
 
         ChessPiece[][] pieces = board.getPieces();
-        pieces[4][4] = king;
-        pieces[3][0] = rook;
+        pieces[4][2] = king;
+        pieces[5][3] = pawn;
+        pieces[4][4] = rook;
 
-        assertFalse(rook.kingCheck(30, pieces));
+        assertFalse(pawn.kingCheck(43, pieces));
     }
 }

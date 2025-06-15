@@ -41,28 +41,18 @@ public abstract class ChessPiece implements Movable, Positionable {
         if (kings.isEmpty()) return false;
         ChessPiece king = kings.getFirst();
 
-        for (ChessPiece[] row : simulatedBoard) {
-            for (ChessPiece other : row) {
-                if (other != null && !PieceUtils.isSameColor(other, king)) {
-                    List<Integer> moves = other.getPossibleMoves(simulatedBoard);
-                    if (moves.contains(king.getPosition())) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false; // movimento é seguro
+        return PieceUtils.isPieceUnderAttack(king, simulatedBoard);
     }
 
     protected boolean isOpponent(ChessPiece other) {
         if (other == null) return false;
-        return (this.type.getValor() <= 5 && other.getType().getValor() >= 6) ||
-                (this.type.getValor() >= 6 && other.getType().getValor() <= 5);
+        boolean isWhite = this.isWhite();
+        boolean isWhiteTo = other.isWhite();
+        return (isWhite != isWhiteTo);
     }
 
     public boolean isWhite() {
-        return this.type.getValor() <= 6;
+        return this.type.getValor() <= 5;
     }
 
     @Override
