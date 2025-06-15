@@ -1,13 +1,13 @@
 package com.seios.warofkings.ui;
 
+import com.seios.warofkings.utils.ImageFactoryUtils;
 import javafx.fxml.FXML;
 
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import java.io.InputStream;
+
 import java.util.List;
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
@@ -63,51 +63,12 @@ public class MainController {
                 ChessPiece peca = board.getPieces()[linha][coluna];
 
                 if (peca != null) {
-                    String imageName = peca.getImgName();
-                    InputStream inputStream = getClass().getResourceAsStream("/imagens/" + imageName);
-
-                    if (inputStream == null) {
-                        System.err.println("Imagem nao encontrada: " + imageName);
-                        continue;
-                    }
-
-                    Image png = new Image(inputStream);
-                    ImageView img = new ImageView(png);
-                    img.setFitWidth(55);
-                    img.setFitHeight(55);
-                    img.setPreserveRatio(true);
-
-                    GridPane.setHalignment(img, javafx.geometry.HPos.CENTER);
-                    GridPane.setValignment(img, javafx.geometry.VPos.CENTER);
-
+                    String imageName = "/imagens/" + peca.getImgName();
+                    ImageView img = ImageFactoryUtils.createPieceImage(imageName);
                     pecas.add(img, coluna, linha);
                 }
                 else{
-                    InputStream transparent = getClass().getResourceAsStream("/imagens/Transparent.png");
-
-                    if (transparent == null) {
-                        System.err.println("Imagem transparente nao encontrada: ");
-                        continue;
-                    }
-                    else{
-                        System.out.println("imagem adicionada");
-                    }
-
-                    Image trans_png = new Image(transparent);
-                    ImageView trans = new ImageView(trans_png);
-                    trans.setFitHeight(55);
-                    trans.setFitWidth(55);
-
-                    // ESSENCIAL:
-                    //  não podemos ignorar os trans
-                    trans.setPickOnBounds(true); // capta o clique em toda a área
-                    trans.setMouseTransparent(false); // garante que o clique não "atravesse"
-
-
-                    GridPane.setHalignment(trans, javafx.geometry.HPos.CENTER);
-                    GridPane.setValignment(trans, javafx.geometry.VPos.CENTER);
-
-
+                    ImageView trans = ImageFactoryUtils.createTransparentImage();
                     pecas.add(trans, coluna, linha);
                 }
             }
@@ -147,31 +108,27 @@ public class MainController {
                         );
 
                         if (moved) {
-                            pecas.getChildren().remove(imageView); // remove o transparente ou peça capturada
-                            pecas.getChildren().remove(selectedImage); // remove a peça da origem
+                            // Remove imagem da posição destino e da origem
+                            pecas.getChildren().remove(imageView);
+                            pecas.getChildren().remove(selectedImage);
 
-                            // adiciona a peça na nova posição
-                            pecas.add(selectedImage, colY, rowX);
+                            // Adiciona a peça no destino
+                            String imgName = selectedPiece.getImgName();
+                            ImageView newPieceImage = ImageFactoryUtils.createPieceImage("/imagens/" + imgName);
+                            pecas.add(newPieceImage, colY, rowX);
+
+                            Integer origemColY = GridPane.getColumnIndex(selectedImage);
+                            Integer origemRowX = GridPane.getRowIndex(selectedImage);
+
+                            selectedImage = newPieceImage;
 
                             // adiciona transparente na origem
-                            InputStream transparent = getClass().getResourceAsStream("/imagens/Transparent.png");
-                            if (transparent != null) {
-                                Image img = new Image(transparent);
-                                ImageView newTrans = new ImageView(img);
-                                newTrans.setFitWidth(55);
-                                newTrans.setFitHeight(55);
-
-                                newTrans.setPickOnBounds(true);
-                                newTrans.setMouseTransparent(false);
-
-                                GridPane.setColumnIndex(newTrans, GridPane.getColumnIndex(selectedImage));
-                                GridPane.setRowIndex(newTrans, GridPane.getRowIndex(selectedImage));
-                                pecas.getChildren().add(newTrans);
-                            }
+                            ImageView newTrans = ImageFactoryUtils.createTransparentImage();
+                            pecas.add(newTrans, origemColY, origemRowX);
 
                             System.out.println("Peça movida!");
                             turn = turn.next();
-                            System.out.println(turn);
+                            System.out.println("Turno atual: " + turn);
 
                             selectedPiece = null;
                             selectedImage = null;
