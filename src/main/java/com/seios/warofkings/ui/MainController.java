@@ -29,6 +29,9 @@ public class MainController {
     @FXML
     private GridPane tabuleiro;
 
+    @FXML
+    private GridPane pawnTurn; //n é GridPane
+
 
     @FXML
     public void initialize(){
@@ -142,6 +145,14 @@ public class MainController {
                         System.out.println("Nenhuma peça selecionada!");
                     }
                 });
+            }
+        }
+    }
+
+    public void turnPawn(){
+        for(int i = 0; i < 1; i++){
+            for(int j = 0; j < 5; j++){
+
             }
         }
     }
