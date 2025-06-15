@@ -63,16 +63,12 @@ public class Pawn extends ChessPiece {
 
         int fwdPos = pos + forward;
         if (BoardUtils.isWithinBounds(fwdPos) && board[PieceUtils.getX(fwdPos)][PieceUtils.getY(fwdPos)] == null) {
-            if (!kingCheck(fwdPos, board)) {
-                possibleMoves.add(fwdPos);
-            }
+            possibleMoves.add(fwdPos);
 
             // Duplo avanço inicial
             int dblFwdPos = pos + doubleForward;
             if (n_moves == 0 && BoardUtils.isWithinBounds(dblFwdPos) && board[PieceUtils.getX(dblFwdPos)][PieceUtils.getY(dblFwdPos)] == null) {
-                if (!kingCheck(dblFwdPos, board)) {
-                    possibleMoves.add(dblFwdPos);
-                }
+                possibleMoves.add(dblFwdPos);
             }
         }
 
@@ -80,9 +76,7 @@ public class Pawn extends ChessPiece {
         int diagLPos = pos + diagLeft;
         if (BoardUtils.isWithinBounds(diagLPos)) {
             if (isOpponent(board[PieceUtils.getX(diagLPos)][PieceUtils.getY(diagLPos)])) {
-                if (!kingCheck(diagLPos, board)) {
-                    possibleMoves.add(diagLPos);
-                }
+                possibleMoves.add(diagLPos);
             }
         }
 
@@ -90,9 +84,7 @@ public class Pawn extends ChessPiece {
         int diagRPos = pos + diagRight;
         if (BoardUtils.isWithinBounds(diagRPos)) {
             if (isOpponent(board[PieceUtils.getX(diagRPos)][PieceUtils.getY(diagRPos)])) {
-                if (!kingCheck(diagRPos, board)) {
-                    possibleMoves.add(diagRPos);
-                }
+                possibleMoves.add(diagRPos);
             }
         }
 

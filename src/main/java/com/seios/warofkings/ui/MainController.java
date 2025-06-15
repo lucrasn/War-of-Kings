@@ -143,7 +143,7 @@ public class MainController {
                     if (selectedPiece != null) {
                         boolean moved = selectedPiece.moveTo(
                                 positionTo,
-                                selectedPiece.getPossibleMoves(board.getPieces()),
+                                possibleMoves,
                                 board
                         );
 

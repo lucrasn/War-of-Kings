@@ -32,15 +32,18 @@ public abstract class ChessPiece implements Movable, Positionable {
     }
 
     protected boolean kingCheck(int toPosition, ChessPiece[][] piecesMap) {
-        piecesMap[this.getX()][this.getY()] = null;
-        piecesMap[PieceUtils.getX(toPosition)][PieceUtils.getY(toPosition)] = this;
+        ChessPiece[][] simulatedBoard = BoardUtils.copyBoard(piecesMap);
+        simulatedBoard[this.getX()][this.getY()] = null;
+        simulatedBoard[PieceUtils.getX(toPosition)][PieceUtils.getY(toPosition)] = this;
 
-        boolean isWhite = (this.type.getValor() >= 5);
-        ChessPiece king = BoardUtils.findPieces(piecesMap ,isWhite ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
+        boolean isWhite = this.isWhite();
+        List<ChessPiece> kings = BoardUtils.findPieces(piecesMap ,isWhite ? Type.KING_WHITE : Type.KING_BLACK);
+        if (kings.isEmpty()) return false;
+        ChessPiece king = kings.getFirst();
 
         for (ChessPiece[] row : piecesMap) {
             for (ChessPiece other : row) {
-                if (other != null && other.getType().getValor() / 6 != king.getType().getValor() / 6) {
+                if (other != null && !PieceUtils.isSameColor(other, king)) {
                     List<Integer> moves = other.getPossibleMoves(piecesMap);
                     if (moves.contains(king.getPosition())) {
                         return true;
@@ -56,6 +59,10 @@ public abstract class ChessPiece implements Movable, Positionable {
         if (other == null) return false;
         return (this.type.getValor() <= 5 && other.getType().getValor() >= 6) ||
                 (this.type.getValor() >= 6 && other.getType().getValor() <= 5);
+    }
+
+    public boolean isWhite() {
+        return this.type.getValor() <= 6;
     }
 
     @Override
@@ -87,18 +94,27 @@ public abstract class ChessPiece implements Movable, Positionable {
 
     @Override
     public boolean moveTo(int position, List<Integer> listMoves, Board board) {
-        if (BoardUtils.isWithinBounds(position) && listMoves.contains(position)) {
-            ChessPiece[][] pieces = board.getPieces();
-            pieces[getX()][getY()] = null; // onde estava a peça
-            pieces[PieceUtils.getX(position)][PieceUtils.getY(position)] = this; // onde a peça foi
+        if (position == getPosition()) return false;
 
-            board.setPieces(pieces); // altera de fato o movimento
-
-            setPosition(position);
-            this.n_moves++;
-            return true;
+        if (!listMoves.contains(position)) {
+            return false;
         }
-        return false;
+
+        ChessPiece[][] pieces = board.getPieces();
+
+        if (kingCheck(position, pieces)) {
+            System.out.println("Movimento deixaria o rei em xeque!");
+            return false;
+        }
+
+        pieces[getX()][getY()] = null; // onde estava a peça
+        pieces[PieceUtils.getX(position)][PieceUtils.getY(position)] = this; // onde a peça foi
+        board.setPieces(pieces); // altera de fato o movimento
+
+        setPosition(position);
+        this.n_moves++;
+
+        return true;
     }
 
     public Type getType() {

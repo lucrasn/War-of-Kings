@@ -64,9 +64,7 @@ public class Rook extends ChessPiece {
                 forwardPos += forward;
             }
             if(BoardUtils.isWithinBounds(forwardPos) && isOpponent(board[PieceUtils.getX(forwardPos)][PieceUtils.getY(forwardPos)]) ){
-                if (!kingCheck(forwardPos, board)) {
-                    possibleMoves.add(forwardPos);
-                }
+                possibleMoves.add(forwardPos);
             }
 
             int backwardPos = backward + pos;
@@ -75,10 +73,7 @@ public class Rook extends ChessPiece {
                 backwardPos += backward;
             }
             if(BoardUtils.isWithinBounds(backwardPos) && isOpponent(board[PieceUtils.getX(backwardPos)][PieceUtils.getY(backwardPos)]) ){
-                if (!kingCheck(backwardPos, board)) {
-                    possibleMoves.add(backwardPos);
-                }
-
+                possibleMoves.add(backwardPos);
             }
 
 
@@ -88,9 +83,7 @@ public class Rook extends ChessPiece {
                 rightPos += right ;
             }
             if(BoardUtils.isWithinBounds(rightPos) && isOpponent(board[PieceUtils.getX(rightPos)][PieceUtils.getY(rightPos)]) ){
-                if (!kingCheck(rightPos, board)) {
-                    possibleMoves.add(rightPos);
-                }
+                possibleMoves.add(rightPos);
             }
 
 
@@ -100,14 +93,8 @@ public class Rook extends ChessPiece {
                 leftPos += left;
             }
             if(BoardUtils.isWithinBounds(leftPos) && isOpponent(board[PieceUtils.getX(leftPos)][PieceUtils.getY(leftPos)]) ){
-                if (!kingCheck(leftPos, board)) {
-                    possibleMoves.add(leftPos);
-                }
+                possibleMoves.add(leftPos);
             }
-
-
-
-
 
         //int x = getX();
       //  int y = getY();
