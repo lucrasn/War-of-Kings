@@ -98,6 +98,12 @@ public class MainController {
                     trans.setFitHeight(55);
                     trans.setFitWidth(55);
 
+                    // ESSENCIAL:
+                    //  não podemos ignorar os trans
+                    trans.setPickOnBounds(true); // capta o clique em toda a área
+                    trans.setMouseTransparent(false); // garante que o clique não "atravesse"
+
+
                     GridPane.setHalignment(trans, javafx.geometry.HPos.CENTER);
                     GridPane.setValignment(trans, javafx.geometry.VPos.CENTER);
 
