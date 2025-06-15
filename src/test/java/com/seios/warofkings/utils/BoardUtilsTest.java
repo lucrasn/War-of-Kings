@@ -77,4 +77,40 @@ class BoardUtilsTest {
         assertFalse(BoardUtils.isWithinBounds(-10));
         assertFalse(BoardUtils.isWithinBounds(88));
     }
+
+    @Test
+    void testCopyBoardCreatesReferenceCopy() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece rook = Rook.createRook(0, Type.ROOK_WHITE);
+        board[0][0] = rook;
+
+        ChessPiece[][] copiedBoard = BoardUtils.copyBoard(board);
+
+        assertSame(board[0][0], copiedBoard[0][0]);
+        assertNull(copiedBoard[1][1]);
+    }
+
+    @Test
+    void testIsPathClearHorizontally() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+        int from = 40;
+        int to = 47;
+
+        boolean result = BoardUtils.isPathClearHorizontally(from, to, board);
+        assertTrue(result);
+    }
+
+    @Test
+    void testIsPathNotClearHorizontally() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+        board[3][3] = Pawn.createPawn(33, Type.PAWN_WHITE);
+
+        int from = 30;
+        int to = 37;
+
+        boolean result = BoardUtils.isPathClearHorizontally(from, to, board);
+        assertFalse(result);
+    }
+
+
 }

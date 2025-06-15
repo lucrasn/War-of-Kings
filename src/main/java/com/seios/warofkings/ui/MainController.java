@@ -134,6 +134,16 @@ public class MainController {
                             ImageView newTrans = ImageFactoryUtils.createTransparentImage();
                             pecas.add(newTrans, origemColY, origemRowX);
 
+
+                            boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
+                            int rowFinal = GridPane.getRowIndex(selectedImage);
+
+//                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
+//                                ChessPiece peao = selectedPiece.getType().name();
+//                                turnPawn(peao);
+//                            }
+
+
                             System.out.println("Peça movida!");
                             turn = turn.next();
                             System.out.println("Turno atual: " + turn);

@@ -2,8 +2,7 @@ package com.seios.warofkings.utils;
 
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.pieces.enums.Type;
-import com.seios.warofkings.pieces.types.Knight;
-import com.seios.warofkings.pieces.types.Pawn;
+import com.seios.warofkings.pieces.types.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -76,4 +75,52 @@ class PieceUtilsTest {
         assertFalse(PieceUtils.isSameBoardPosition(null, p));
         assertFalse(PieceUtils.isSameBoardPosition(p, null));
     }
+
+    @Test
+    void testIsPieceUnderAttack(){
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece pawn = Pawn.createPawn(33, Type.PAWN_WHITE);
+        board[3][4] = Queen.createQueen(34, Type.QUEEN_BLACK);
+        board[3][3] = pawn;
+
+        boolean result = PieceUtils.isPieceUnderAttack(pawn, board);
+        assertTrue(result);
+    }
+
+    @Test
+    void testIsPieceNotUnderAttack(){
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece pawn = Pawn.createPawn(42, Type.PAWN_WHITE);
+        board[3][4] = Queen.createQueen(34, Type.QUEEN_BLACK);
+        board[4][2] = pawn;
+
+        boolean result = PieceUtils.isPieceUnderAttack(pawn, board);
+        assertFalse(result);
+    }
+
+    @Test
+    void testIsPathSafeFromKing(){
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece king = King.createKing(43, Type.KING_WHITE);
+        ChessPiece queen = Queen.createQueen(13, Type.QUEEN_BLACK);
+        board[1][3] = queen;
+        board[4][3] = king;
+
+        boolean result = PieceUtils.pathSafeForKing(44, king, board);
+        assertTrue(result);
+    }
+
+    @Test
+    void testIsPathUnsafeFromKing(){
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece king = King.createKing(43, Type.KING_WHITE);
+        ChessPiece queen = Queen.createQueen(13, Type.QUEEN_BLACK);
+        board[1][3] = queen;
+        board[4][3] = king;
+
+        boolean result = PieceUtils.pathSafeForKing(46, king, board);
+        assertFalse(result);
+    }
+
+
 }

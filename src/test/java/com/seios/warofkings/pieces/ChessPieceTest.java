@@ -76,4 +76,30 @@ class ChessPieceTest {
 
         assertFalse(pawn.kingCheck(43, pieces));
     }
+
+    @Test
+    void testSelfKingCheckTrue() {
+        Board board = new Board();
+        ChessPiece king = King.createKing(42, Type.KING_WHITE);
+        ChessPiece rook = Rook.createRook(34, Type.ROOK_BLACK);
+
+        ChessPiece[][] pieces = board.getPieces();
+        pieces[4][2] = king;
+        pieces[3][4] = rook;
+
+        assertTrue(king.kingCheck(32, pieces));
+    }
+
+    @Test
+    void testSelfKingCheckFalse() {
+        Board board = new Board();
+        ChessPiece king = King.createKing(42, Type.KING_WHITE);
+        ChessPiece rook = Rook.createRook(44, Type.ROOK_BLACK);
+
+        ChessPiece[][] pieces = board.getPieces();
+        pieces[4][2] = king;
+        pieces[4][4] = rook;
+
+        assertFalse(king.kingCheck(32, pieces));
+    }
 }
