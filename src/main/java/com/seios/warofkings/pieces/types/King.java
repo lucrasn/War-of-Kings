@@ -111,13 +111,13 @@ public class King extends ChessPiece {
             ChessPiece[][] pieces = board.getPieces();
 
             // Checa se o roque deixa o rei em xeque
-            if (kingCheck(position, pieces)) {
+            if (this.kingCheck(position, pieces)) {
                 System.out.println("Movimento de roque deixaria o rei em xeque!");
                 return false;
             }
 
             // Encontra a torre correta
-            List<ChessPiece> rooks = BoardUtils.findPieces(pieces, isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
+            List<ChessPiece> rooks = BoardUtils.findPieces(pieces, this.isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
 
             for (ChessPiece rook : rooks) {
                 if (rook.getN_moves() > 0) continue;
@@ -128,6 +128,7 @@ public class King extends ChessPiece {
                     // Executa movimento da torre
                     pieces[PieceUtils.getX(rookPos)][PieceUtils.getY(rookPos)] = null;
                     pieces[PieceUtils.getX(rookTargetPos)][PieceUtils.getY(rookTargetPos)] = rook;
+                    board.setPieces(pieces);
                     rook.setPosition(rookTargetPos);
                     rook.setN_moves(rook.getN_moves() + 1);
                     break;

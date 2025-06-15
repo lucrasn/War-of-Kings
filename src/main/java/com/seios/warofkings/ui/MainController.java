@@ -1,6 +1,5 @@
 package com.seios.warofkings.ui;
 
-import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.utils.ImageFactoryUtils;
 import javafx.fxml.FXML;
 
@@ -13,7 +12,6 @@ import java.util.List;
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.board.enums.Turn;
-import com.seios.warofkings.pieces.types.Pawn;
 
 
 public class MainController {
@@ -136,8 +134,8 @@ public class MainController {
                             int rowFinal = GridPane.getRowIndex(selectedImage);
 
                             if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
-                                ChessPiece peao = selectedPiece.getType().name();
-                                turnPawn(peao);
+                                //ChessPiece peao = selectedPiece.getType().name();
+                                //turnPawn(peao);
                             }
 
 
@@ -161,10 +159,10 @@ public class MainController {
         }
     }
 
-    public ChessPiece turnPawn(Pawn peao){//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
-
-
-        peao.promoteIfEligible();
-        ;
-    }
+//    public ChessPiece turnPawn(Pawn peao){//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
+//
+//
+//        peao.promoteIfEligible();
+//        ;
+//    }
 }

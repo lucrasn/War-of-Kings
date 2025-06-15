@@ -36,7 +36,6 @@ public abstract class ChessPiece implements Movable, Positionable {
         simulatedBoard[this.getX()][this.getY()] = null;
         simulatedBoard[PieceUtils.getX(to)][PieceUtils.getY(to)] = this;
 
-
         boolean isWhite = this.isWhite();
         List<ChessPiece> kings = BoardUtils.findPieces(simulatedBoard ,isWhite ? Type.KING_WHITE : Type.KING_BLACK);
         if (kings.isEmpty()) return false;
