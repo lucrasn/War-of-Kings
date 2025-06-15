@@ -1,5 +1,6 @@
 package com.seios.warofkings.ui;
 
+import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.utils.ImageFactoryUtils;
 import javafx.fxml.FXML;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import com.seios.warofkings.board.Board;
 import com.seios.warofkings.pieces.ChessPiece;
 import com.seios.warofkings.board.enums.Turn;
+import com.seios.warofkings.pieces.types.Pawn;
 
 
 public class MainController {
@@ -129,6 +131,16 @@ public class MainController {
                             ImageView newTrans = ImageFactoryUtils.createTransparentImage();
                             pecas.add(newTrans, origemColY, origemRowX);
 
+
+                            boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
+                            int rowFinal = GridPane.getRowIndex(selectedImage);
+
+                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
+                                ChessPiece peao = selectedPiece.getType().name();
+                                turnPawn(peao);
+                            }
+
+
                             System.out.println("Peça movida!");
                             turn = turn.next();
                             System.out.println("Turno atual: " + turn);
@@ -149,11 +161,10 @@ public class MainController {
         }
     }
 
-    public void turnPawn(){
-        for(int i = 0; i < 1; i++){
-            for(int j = 0; j < 5; j++){
+    public ChessPiece turnPawn(Pawn peao){//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
 
-            }
-        }
+
+        peao.promoteIfEligible();
+        ;
     }
 }
