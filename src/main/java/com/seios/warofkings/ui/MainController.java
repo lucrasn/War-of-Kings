@@ -161,8 +161,10 @@ public class MainController {
         }
     }
 
-    public ChessPiece turnPawn() {
-        Pawn peao = new Pawn();
+    public ChessPiece turnPawn(Pawn peao){//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
+
+
         peao.promoteIfEligible();
+        ;
     }
 }
