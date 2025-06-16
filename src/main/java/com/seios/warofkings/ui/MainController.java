@@ -211,7 +211,7 @@ public class MainController {
             int y = pos % 10;
 
             boolean isWhiteSquare = (x + y) % 2 == 0;
-            String secondColor = isWhiteSquare ? "#FF8C00" : "#CCFF00";
+            String secondColor = isWhiteSquare ? "#c2c2ae" : "#989885";
             boardSquares[x][y].setStyle("-fx-background-color: " + secondColor + ";");
         }
 
