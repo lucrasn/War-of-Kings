@@ -22,9 +22,6 @@ import java.util.List;
  * @since 2025-06-09
  */
 public class King extends ChessPiece {
-    private boolean isRoqueLeft = false;
-    private boolean isRoqueRight = false;
-
     /**
      * Construtor completo da peça Rei.
      *
@@ -158,12 +155,6 @@ public class King extends ChessPiece {
                     int kingPos = this.getPosition();
                     int rookPos = rook.getPosition();
                     int direction = (kingPos > rookPos) ? -1 : 1;
-
-                    if (direction > 0) {
-                        isRoqueLeft = true;
-                    } else {
-                        isRoqueRight = true;
-                    }
 
                     int castlingTarget = kingPos + 2 * direction;
                     possibleMoves.add(castlingTarget);

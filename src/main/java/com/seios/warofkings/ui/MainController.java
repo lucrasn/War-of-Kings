@@ -2,18 +2,18 @@ package com.seios.warofkings.ui;
 
 import com.seios.warofkings.pieces.enums.Type;
 import com.seios.warofkings.pieces.types.*;
+import com.seios.warofkings.utils.BoardUtils;
 import com.seios.warofkings.utils.ImageFactoryUtils;
+import com.seios.warofkings.utils.PieceUtils;
 import javafx.fxml.FXML;
 
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import com.seios.warofkings.board.Board;
@@ -38,6 +38,8 @@ public class MainController {
     private ChessPiece selectedPiece;
     private ImageView selectedImage;
     private List<Integer> possibleMoves;
+    private int xequeX = -1;
+    private int xequeY = -1;
 
     private final Board board = new Board();
     private final Region[][] boardSquares = new Region[8][8];
@@ -122,6 +124,10 @@ public class MainController {
                         System.out.println("Escolha a promoção antes de continuar.");
                         return;
                     }
+                    if (turn == Turn.END) {
+                        System.out.println("Jogo encerrado. Nenhum movimento permitido.");
+                        return;
+                    }
 
                     Integer colY = GridPane.getColumnIndex(imageView);
                     Integer rowX = GridPane.getRowIndex(imageView);
@@ -131,7 +137,6 @@ public class MainController {
                     }
 
                     int positionTo = rowX * 10 + colY;
-                    System.out.println("Clique na posição: " + positionTo);
 
                     ChessPiece piece = board.getPieces()[rowX][colY];
 
@@ -140,10 +145,21 @@ public class MainController {
                         selectedImage = imageView;
                         possibleMoves = piece.getPossibleMoves(board.getPieces());
 
-                        System.out.println("Peça selecionada: " + piece);
-                        System.out.println("Movimentos possíveis: " + possibleMoves);
+                        System.out.println("Peca selecionada: " + piece);
+                        System.out.println("Movimentos possiveis: " + possibleMoves);
 
                         ToMark(possibleMoves);
+
+                        ChessPiece myKing = BoardUtils.findPieces(board.getPieces(),
+                                turn == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
+
+                        if (myKing != null && PieceUtils.isPieceUnderAttack(myKing, board.getPieces())) {
+                            int x = myKing.getX();
+                            int y = myKing.getY();
+                            xequeX = x;
+                            xequeY = y;
+                            boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
+                        }
                     } else if (selectedPiece != null) {
                         boolean moved = selectedPiece.moveTo(positionTo, possibleMoves, board);
                         if (moved) {
@@ -164,11 +180,47 @@ public class MainController {
                             boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
                             int rowFinal = GridPane.getRowIndex(selectedImage);
 
+                            // verifica promoção de peão
                             if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
                                 blockPromotion = true; //essa porra aqui vai travar
                                 turnPawn(selectedPiece);
                             } else {
                                 turn = turn.next();
+                            }
+
+                            ToMark(List.of());
+
+                            // Verifica se o rei inimigo está em xeque ou xeque-mate
+                            ChessPiece enemyPiece = BoardUtils.findPieces(board.getPieces(), turn.next() == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
+                            King enemyKing = (King) enemyPiece;
+                            if (enemyKing != null) {
+                                boolean isCheckmate = enemyKing.xequeMate(board);
+                                int x = enemyKing.getX();
+                                int y = enemyKing.getY();
+
+                                if (isCheckmate) {
+                                    turn = turn.endGame();
+                                    System.out.println("Xeque-mate! Jogo encerrado.");
+                                    boardSquares[x][y].setStyle("-fx-background-color: #61131d;");
+
+                                    // Limpa seleção atual para impedir novo movimento
+                                    selectedPiece = null;
+                                    selectedImage = null;
+                                    possibleMoves = null;
+                                    creatingPieces(); // garantir estado visual correto
+                                    movingPieces(); // reatribuir eventos já com turn = END
+                                    return;
+                                } else if (PieceUtils.isPieceUnderAttack(enemyKing, board.getPieces())) {
+                                    xequeX = x;
+                                    xequeY = y;
+                                    boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
+                                }
+                            }
+
+                            ChessPiece myKing = BoardUtils.findPieces(board.getPieces(), turn == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
+                            if (myKing != null && !PieceUtils.isPieceUnderAttack(myKing, board.getPieces())) {
+                                xequeX = -1;
+                                xequeY = -1;
                             }
 
                             System.out.println("Peça movida!");
@@ -177,10 +229,8 @@ public class MainController {
                             selectedPiece = null;
                             selectedImage = null;
                             possibleMoves = null;
-
-                            ToMark(List.of());
                             creatingPieces();
-                            movingPieces(); // Reassocia
+                            movingPieces();
                         } else {
                             System.out.println("Coordenada Inválida!");
                         }
@@ -237,29 +287,41 @@ public class MainController {
         }
     }
 
-    // Método de promoção comentado e pendente de implementação
     @FXML FlowPane piecesTurn;
+
+    /**
+     * Realiza a lógica de promoção de um peão ao atingir a última linha do tabuleiro.
+     * <p>
+     * Este método verifica se o peão selecionado chegou à linha de promoção (linha 0 para peças brancas)
+     * e, nesse caso, exibe visualmente as opções de promoção disponíveis (Rainha, Bispo, Torre e Cavalo)
+     * para o jogador escolher. A exibição é feita adicionando `ImageView`s com imagens das peças
+     * correspondentes ao painel `piecesTurn`, permitindo que o usuário clique e escolha a peça desejada.
+     * <p>
+     * As peças exibidas são criadas temporariamente apenas para fins de visualização da escolha,
+     * utilizando posições fictícias no tabuleiro para a criação dos objetos.
+     *
+     * @param selectedPiece o peão que alcançou a última linha e está apto à promoção.
+     * @return o mesmo objeto `ChessPiece` passado como parâmetro, pois a troca efetiva da peça
+     *         deverá ser implementada com base na escolha do usuário, em outro momento do código.
+     */
     public void turnPawn(ChessPiece selectedPiece) {
         boolean isWhite = selectedPiece.getType().name().endsWith("WHITE");
         int row = GridPane.getRowIndex(selectedImage);
         int col = GridPane.getColumnIndex(selectedImage);
 
-        int finalRow = row;
-        int finalCol = col;
-
         piecesTurn.getChildren().clear();
 
         List<ChessPiece> pawnTurn = new ArrayList<>();
         if (isWhite) {
-            pawnTurn.add(Queen.createQueen(finalRow * 10 + finalCol, Type.QUEEN_WHITE));
-            pawnTurn.add(Bishop.createBishop(finalRow * 10 + finalCol, Type.BISHOP_WHITE));
-            pawnTurn.add(Rook.createRook(finalRow * 10 + finalCol, Type.ROOK_WHITE));
-            pawnTurn.add(Knight.createKnight(finalRow * 10 + finalCol, Type.KNIGHT_WHITE));
+            pawnTurn.add(Queen.createQueen(row * 10 + col, Type.QUEEN_WHITE));
+            pawnTurn.add(Bishop.createBishop(row * 10 + col, Type.BISHOP_WHITE));
+            pawnTurn.add(Rook.createRook(row * 10 + col, Type.ROOK_WHITE));
+            pawnTurn.add(Knight.createKnight(row * 10 + col, Type.KNIGHT_WHITE));
         } else {
-            pawnTurn.add(Queen.createQueen(finalRow * 10 + finalCol, Type.QUEEN_BLACK));
-            pawnTurn.add(Bishop.createBishop(finalRow * 10 + finalCol, Type.BISHOP_BLACK));
-            pawnTurn.add(Rook.createRook(finalRow * 10 + finalCol, Type.ROOK_BLACK));
-            pawnTurn.add(Knight.createKnight(finalRow * 10 + finalCol, Type.KNIGHT_BLACK));
+            pawnTurn.add(Queen.createQueen(row * 10 + col, Type.QUEEN_BLACK));
+            pawnTurn.add(Bishop.createBishop(row * 10 + col, Type.BISHOP_BLACK));
+            pawnTurn.add(Rook.createRook(row * 10 + col, Type.ROOK_BLACK));
+            pawnTurn.add(Knight.createKnight(row * 10 + col, Type.KNIGHT_BLACK));
         }
 
         for (ChessPiece newPiece : pawnTurn) {
@@ -271,7 +333,7 @@ public class MainController {
                 imgView.setCursor(Cursor.HAND);
 
                 imgView.setOnMouseClicked(event -> {
-                    board.getPieces()[finalRow][finalCol] = newPiece;
+                    board.getPieces()[row][col] = newPiece;
 
                     creatingPieces();
                     movingPieces();
@@ -288,8 +350,6 @@ public class MainController {
 
                     blockPromotion = false; //esssa outra aqui é pra destravar
                 });
-
-
                 piecesTurn.getChildren().add(imgView);
             }
         }
