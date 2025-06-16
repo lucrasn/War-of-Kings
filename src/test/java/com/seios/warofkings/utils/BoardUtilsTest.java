@@ -111,6 +111,27 @@ class BoardUtilsTest {
         boolean result = BoardUtils.isPathClearHorizontally(from, to, board);
         assertFalse(result);
     }
+    @Test
+    void testGetAliadas() {
+        ChessPiece[][] board = new ChessPiece[8][8];
+        ChessPiece king = Knight.createKnight(44, Type.KNIGHT_WHITE);
+        board[4][4] = king;
+
+        ChessPiece pawn = Pawn.createPawn(45, Type.PAWN_WHITE);
+        ChessPiece bishop = Bishop.createBishop(50, Type.BISHOP_WHITE);
+        board[4][5] = pawn;
+        board[5][0] = bishop;
+
+        ChessPiece blackPawn = Pawn.createPawn(46, Type.PAWN_BLACK);//botando preta
+        board[4][6] = blackPawn;
+
+        List<ChessPiece> aliadas = BoardUtils.getAliadas(king, board);
+
+        assertEquals(2, aliadas.size());
+        assertTrue(aliadas.contains(pawn));
+        assertTrue(aliadas.contains(bishop));
+        assertFalse(aliadas.contains(blackPawn));
+    }
 
 
 }

@@ -150,6 +150,10 @@ public class King extends ChessPiece {
             List<ChessPiece> rooks = BoardUtils.findPieces(board, this.isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
 
             for (ChessPiece rook : rooks) {
+                // ignora qualquer torre que não esteja na mesma linha do rei:
+                if (PieceUtils.getX(rook.getPosition()) != PieceUtils.getX(this.position))
+                    continue;
+
                 if (isValidCastling(rook, board)) {
                     int kingPos = this.getPosition();
                     int rookPos = rook.getPosition();
@@ -313,8 +317,23 @@ public class King extends ChessPiece {
         // nenhum escape foi possível
         return true;
     }
-}
 
+    public boolean isRoqueRight() {
+        return isRoqueRight;
+    }
+
+    public void setRoqueRight(boolean roqueRight) {
+        isRoqueRight = roqueRight;
+    }
+
+    public boolean isRoqueLeft() {
+        return isRoqueLeft;
+    }
+
+    public void setRoqueLeft(boolean roqueLeft) {
+        isRoqueLeft = roqueLeft;
+    }
+}
 
 
 

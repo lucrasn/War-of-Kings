@@ -60,6 +60,7 @@ public class BoardUtils {
      * @see PieceUtils#isSameColor(ChessPiece, ChessPiece)
      * @see PieceUtils#isSamePiece(ChessPiece, ChessPiece)
      */
+
     public static List<ChessPiece> getAliadas(ChessPiece referencia, ChessPiece[][] board) {
         List<ChessPiece> aliadas = new ArrayList<ChessPiece>();
         for (ChessPiece[] row : board) {
