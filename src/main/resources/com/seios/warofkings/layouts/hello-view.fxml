@@ -16,47 +16,47 @@
             <children>
                 <GridPane fx:id="tabuleiro" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0">
                     <columnConstraints>
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
                     </rowConstraints>
                 </GridPane>
 
                 <GridPane fx:id="pecas" maxHeight="280.0" maxWidth="280.0" minHeight="280.0" minWidth="280.0" prefHeight="280.0" prefWidth="280.0">
                     <columnConstraints>
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
-                        <ColumnConstraints prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
+                        <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
-                        <RowConstraints prefHeight="35.0" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="NEVER" />
                     </rowConstraints>
                 </GridPane>
             </children>
