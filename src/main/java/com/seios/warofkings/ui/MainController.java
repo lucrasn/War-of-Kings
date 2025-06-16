@@ -39,8 +39,8 @@ public class MainController {
     private ImageView selectedImage;
     private List<Integer> possibleMoves;
 
-    private final Board board = new Board();
-    private final Region[][] boardSquares = new Region[8][8];
+    private final Board BOARD = new Board();
+    private final Region[][] BOARD_SQUARES = new Region[8][8];
     private Turn turn = Turn.WHITE;
     private boolean blockPromotion = false;//essa vai ser a flag usada
 
@@ -75,7 +75,7 @@ public class MainController {
                 String color = (i + j) % 2 == 0 ? "#eeeed2" : "#769656";
                 square.setStyle("-fx-background-color: " + color + ";");
 
-                boardSquares[i][j] = square;
+                BOARD_SQUARES[i][j] = square;
 
                 GridPane.setRowIndex(square, i);
                 GridPane.setColumnIndex(square, j);
@@ -93,7 +93,7 @@ public class MainController {
         pecas.getChildren().clear();
         for (int linha = 0; linha < 8; linha++) {
             for (int coluna = 0; coluna < 8; coluna++) {
-                ChessPiece peca = board.getPieces()[linha][coluna];
+                ChessPiece peca = BOARD.getPieces()[linha][coluna];
 
                 if (peca != null) {
                     String imageName = "/imagens/" + peca.getImgName();
@@ -136,28 +136,28 @@ public class MainController {
 
                     int positionTo = rowX * 10 + colY;
 
-                    ChessPiece piece = board.getPieces()[rowX][colY];
+                    ChessPiece piece = BOARD.getPieces()[rowX][colY];
 
                     if (piece != null && piece.getType().getColor() == turn) {
                         selectedPiece = piece;
                         selectedImage = imageView;
-                        possibleMoves = piece.getPossibleMoves(board.getPieces());
+                        possibleMoves = piece.getPossibleMoves(BOARD.getPieces());
 
                         System.out.println("Peca selecionada: " + piece);
                         System.out.println("Movimentos possiveis: " + possibleMoves);
 
-                        ToMark(possibleMoves);
+                        toMark(possibleMoves);
 
-                        ChessPiece myKing = BoardUtils.findPieces(board.getPieces(),
+                        ChessPiece myKing = BoardUtils.findPieces(BOARD.getPieces(),
                                 turn == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
 
-                        if (myKing != null && PieceUtils.isPieceUnderAttack(myKing, board.getPieces())) {
+                        if (myKing != null && PieceUtils.isPieceUnderAttack(myKing, BOARD.getPieces())) {
                             int x = myKing.getX();
                             int y = myKing.getY();
-                            boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
+                            BOARD_SQUARES[x][y].setStyle("-fx-background-color: #f9e79f;");
                         }
                     } else if (selectedPiece != null) {
-                        boolean moved = selectedPiece.moveTo(positionTo, possibleMoves, board);
+                        boolean moved = selectedPiece.moveTo(positionTo, possibleMoves, BOARD);
                         if (moved) {
                             pecas.getChildren().remove(imageView);
                             pecas.getChildren().remove(selectedImage);
@@ -176,20 +176,20 @@ public class MainController {
                             boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
                             int rowFinal = GridPane.getRowIndex(selectedImage);
 
-                            ToMark(List.of());
+                            toMark(List.of());
 
                             // Verifica se o rei inimigo está em xeque ou xeque-mate
-                            ChessPiece enemyPiece = BoardUtils.findPieces(board.getPieces(), turn.next() == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
+                            ChessPiece enemyPiece = BoardUtils.findPieces(BOARD.getPieces(), turn.next() == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
                             King enemyKing = (King) enemyPiece;
                             if (enemyKing != null) {
-                                boolean isCheckmate = enemyKing.xequeMate(board);
+                                boolean isCheckmate = enemyKing.xequeMate(BOARD);
                                 int x = enemyKing.getX();
                                 int y = enemyKing.getY();
 
                                 if (isCheckmate) {
                                     turn = turn.endGame();
                                     System.out.println("Xeque-mate! Jogo encerrado.");
-                                    boardSquares[x][y].setStyle("-fx-background-color: #61131d;");
+                                    BOARD_SQUARES[x][y].setStyle("-fx-background-color: #61131d;");
 
                                     // Limpa seleção atual para impedir novo movimento
                                     selectedPiece = null;
@@ -198,8 +198,8 @@ public class MainController {
                                     creatingPieces(); // garantir estado visual correto
                                     movingPieces(); // reatribuir eventos já com turn = END
                                     return;
-                                } else if (PieceUtils.isPieceUnderAttack(enemyKing, board.getPieces())) {
-                                    boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
+                                } else if (PieceUtils.isPieceUnderAttack(enemyKing, BOARD.getPieces())) {
+                                    BOARD_SQUARES[x][y].setStyle("-fx-background-color: #f9e79f;");
                                 }
                             }
 
@@ -254,12 +254,12 @@ public class MainController {
      *   <li>Destaque em casa escura: {@code #989885}</li>
      * </ul>
      */
-    private void ToMark(List<Integer> moves) {
+    private void toMark(List<Integer> moves) {
         //Resetar tabuleiro que nem o original (branco e verde)
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 String color = (i + j) % 2 == 0 ? "#eeeed2" : "#769656";
-                boardSquares[i][j].setStyle("-fx-background-color: " + color + ";");
+                BOARD_SQUARES[i][j].setStyle("-fx-background-color: " + color + ";");
             }
         }
 
@@ -270,7 +270,7 @@ public class MainController {
 
             boolean isWhiteSquare = (x + y) % 2 == 0;
             String secondColor = isWhiteSquare ? "#c2c2ae" : "#989885";
-            boardSquares[x][y].setStyle("-fx-background-color: " + secondColor + ";");
+            BOARD_SQUARES[x][y].setStyle("-fx-background-color: " + secondColor + ";");
         }
     }
 
@@ -318,7 +318,7 @@ public class MainController {
                 imgView.setCursor(Cursor.HAND);
 
                 imgView.setOnMouseClicked(event -> {
-                    board.getPieces()[row][col] = newPiece;
+                    BOARD.getPieces()[row][col] = newPiece;
 
                     creatingPieces();
                     movingPieces();
