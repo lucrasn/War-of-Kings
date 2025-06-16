@@ -176,14 +176,6 @@ public class MainController {
                             boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
                             int rowFinal = GridPane.getRowIndex(selectedImage);
 
-                            // verifica promoção de peão
-                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
-                                blockPromotion = true; //essa porra aqui vai travar
-                                turnPawn(selectedPiece);
-                            } else {
-                                turn = turn.next();
-                            }
-
                             ToMark(List.of());
 
                             // Verifica se o rei inimigo está em xeque ou xeque-mate
@@ -209,6 +201,14 @@ public class MainController {
                                 } else if (PieceUtils.isPieceUnderAttack(enemyKing, board.getPieces())) {
                                     boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
                                 }
+                            }
+
+                            // verifica promoção de peão
+                            if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
+                                blockPromotion = true; //essa porra aqui vai travar
+                                turnPawn(selectedPiece);
+                            } else {
+                                turn = turn.next();
                             }
 
                             System.out.println("Peça movida!");

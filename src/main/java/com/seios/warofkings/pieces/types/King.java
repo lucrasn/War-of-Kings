@@ -196,8 +196,6 @@ public class King extends ChessPiece {
         if (!listMoves.contains(position)) return false;
 
         int kingPos = this.getPosition();
-        boolean isCastlingMove = false;
-        int castlingDirection = 0;
 
         if (this.getN_moves() == 0) {
             List<ChessPiece> rooks = BoardUtils.findPieces(board.getPieces(), this.isWhite() ? Type.ROOK_WHITE : Type.ROOK_BLACK);
@@ -209,8 +207,6 @@ public class King extends ChessPiece {
                     int castlingTarget = kingPos + 2 * direction;
 
                     if (position == castlingTarget) {
-                        isCastlingMove = true;
-                        castlingDirection = direction;
 
                         // Valida se roque colocaria rei em xeque
                         if (this.kingCheck(position, board.getPieces())) {
@@ -308,23 +304,4 @@ public class King extends ChessPiece {
         // nenhum escape foi possível
         return true;
     }
-
-    public boolean isRoqueRight() {
-        return isRoqueRight;
-    }
-
-    public void setRoqueRight(boolean roqueRight) {
-        isRoqueRight = roqueRight;
-    }
-
-    public boolean isRoqueLeft() {
-        return isRoqueLeft;
-    }
-
-    public void setRoqueLeft(boolean roqueLeft) {
-        isRoqueLeft = roqueLeft;
-    }
 }
-
-
-
