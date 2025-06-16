@@ -45,7 +45,7 @@ public enum Type {
     KING_BLACK(11);
 
     /** Valor numérico associado ao tipo da peça. */
-    private final int valor;
+    private final int VALOR;
 
     /**
      * Construtor da enumeração {@code Type}.
@@ -53,7 +53,7 @@ public enum Type {
      * @param valor valor numérico único representando o tipo da peça.
      */
     Type(int valor) {
-        this.valor = valor;
+        this.VALOR = valor;
     }
 
     /**
@@ -62,7 +62,7 @@ public enum Type {
      * @return valor inteiro que representa o tipo.
      */
     public int getValor() {
-        return this.valor;
+        return this.VALOR;
     }
 
     /**
