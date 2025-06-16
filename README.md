@@ -16,7 +16,6 @@ O objetivo principal do projeto é proporcionar partidas de xadrez locais entre 
     - Promoção de peões
     - Roque
     - Xeque e xeque-mate
-    - Detecção de empate (em breve)
 - 🎨 Destaque visual para casas selecionadas e possíveis jogadas
 - 🎯 Indicação de xeque e xeque-mate com cores distintas
 - 🖱️ Controle de peças por clique
