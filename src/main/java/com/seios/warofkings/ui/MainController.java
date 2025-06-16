@@ -196,6 +196,30 @@ public class MainController {
         }
     }
 
+    /**
+     * Atualiza as cores do tabuleiro de xadrez para destacar as casas possíveis de movimento.
+     * <p>
+     * O método realiza duas operações principais:
+     * <ol>
+     *   <li>Reseta todas as casas do tabuleiro para suas cores originais padrão (branco e verde);</li>
+     *   <li>Aplica uma cor de destaque nas casas cujas posições estão listadas como possíveis movimentos.</li>
+     * </ol>
+     *
+     * @param moves Lista de posições inteiras representando as casas onde uma peça pode se mover.
+     *              Cada posição está no formato XY, onde X representa a linha (0 a 7) e Y a coluna (0 a 7).
+     *              Por exemplo, a posição 43 indica linha 4, coluna 3.
+     *
+     * @implNote As cores originais utilizadas são:
+     * <ul>
+     *   <li>Casa clara: {@code #eeeed2}</li>
+     *   <li>Casa escura: {@code #769656}</li>
+     * </ul>
+     * E os destaques são aplicados com:
+     * <ul>
+     *   <li>Destaque em casa clara: {@code #c2c2ae}</li>
+     *   <li>Destaque em casa escura: {@code #989885}</li>
+     * </ul>
+     */
     private void ToMark(List<Integer> moves) {
         //Resetar tabuleiro que nem o original (branco e verde)
         for (int i = 0; i < 8; i++) {

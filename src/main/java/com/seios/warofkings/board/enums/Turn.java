@@ -17,9 +17,12 @@ public enum Turn {
     WHITE, BLACK, END;
 
     /**
-     * Retorna o próximo turno. Se o turno atual for {@code WHITE}, retorna {@code BLACK}, e vice-versa.
+     * Alterna o turno atual para o próximo jogador.
+     * <p>
+     * Se o turno atual for {@code WHITE}, retorna {@code BLACK}, e vice-versa.
+     * Esse método é usado para controlar a sequência de jogadas entre os dois jogadores.
      *
-     * @return o turno oposto ao atual
+     * @return O próximo {@code Turn} a jogar.
      */
     public Turn next(){
         if (this == WHITE){
@@ -28,8 +31,16 @@ public enum Turn {
             return WHITE;
         }
     }
+
+    /**
+     * Finaliza o jogo ao sinalizar que ocorreu xeque-mate.
+     * <p>
+     * Este método deve ser chamado quando detectado que um jogador está em xeque-mate,
+     * indicando que a partida deve ser encerrada.
+     *
+     * @return {@code Turn.END} - uma constante que representa o estado de fim de jogo.
+     */
     public Turn endGame(){
             return  END;
     }
-
 }

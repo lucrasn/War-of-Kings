@@ -6,6 +6,9 @@ import com.seios.warofkings.pieces.enums.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.seios.warofkings.utils.PieceUtils.isSameColor;
+import static com.seios.warofkings.utils.PieceUtils.isSamePiece;
+
 /**
  * Classe utilitária para operações relacionadas ao tabuleiro de xadrez.
  * <p>
@@ -38,6 +41,35 @@ public class BoardUtils {
             }
         }
         return positions;
+    }
+
+    /**
+     * Retorna uma lista de peças aliadas à peça de referência no tabuleiro.
+     * <p>
+     * Este método percorre todas as casas do tabuleiro e seleciona as peças que:
+     * <ul>
+     *   <li>Não são nulas;</li>
+     *   <li>Possuem a mesma cor da peça de referência;</li>
+     *   <li>São diferentes da própria peça de referência.</li>
+     * </ul>
+     *
+     * @param referencia A peça de referência para comparar a cor.
+     * @param board Matriz representando o tabuleiro de xadrez, contendo as peças em suas posições atuais.
+     * @return Uma lista contendo todas as peças aliadas à peça de referência.
+     *
+     * @see PieceUtils#isSameColor(ChessPiece, ChessPiece)
+     * @see PieceUtils#isSamePiece(ChessPiece, ChessPiece)
+     */
+    public static List<ChessPiece> getAliadas(ChessPiece referencia, ChessPiece[][] board) {
+        List<ChessPiece> aliadas = new ArrayList<ChessPiece>();
+        for (ChessPiece[] row : board) {
+            for (ChessPiece p : row) {
+                if (isSameColor(p, referencia) && !isSamePiece(p, referencia)) {
+                    aliadas.add(p);
+                }
+            }
+        }
+        return aliadas;
     }
 
     /**
