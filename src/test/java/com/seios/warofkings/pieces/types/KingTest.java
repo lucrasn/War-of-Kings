@@ -54,7 +54,7 @@ class KingTest {
         King king = King.createKing(33, Type.KING_WHITE);
         board[3][3] = king;
         board[2][2] = Pawn.createPawn(22, Type.PAWN_WHITE); // mesma cor
-        board[3][2] = Pawn.createPawn(32,Type.PAWN_WHITE);
+        board[3][2] = Pawn.createPawn(32, Type.PAWN_WHITE);
 
         List<Integer> moves = king.getPossibleMoves(board);
         assertFalse(moves.contains(32));
@@ -93,7 +93,7 @@ class KingTest {
     void testPossibleMovesNoCastlingKingMoved() {
         ChessPiece[][] board = new ChessPiece[8][8];
 
-        King king = new King(74,Type.KING_WHITE, 1);
+        King king = new King(74, Type.KING_WHITE, 1);
         Rook rook = Rook.createRook(77, Type.ROOK_WHITE);
         board[7][4] = king;
         board[7][7] = rook;
@@ -135,7 +135,6 @@ class KingTest {
         pieces[3][0] = rook;
         board.setPieces(pieces);
 
-        king.setRoqueLeft(true);
 
         List<Integer> moves = king.getPossibleMoves(pieces);
 
@@ -163,16 +162,33 @@ class KingTest {
         pieces[3][5] = pawn;
         board.setPieces(pieces);
 
-        king.setRoqueRight(false);
-
         List<Integer> moves = king.getPossibleMoves(pieces);
 
         boolean result = king.moveTo(36, moves, board);
 
         assertFalse(result);
-        assertEquals(34,king.getPosition());
+        assertEquals(34, king.getPosition());
     }
 
+    @Test
+    void testXequeMate() {
+        Board board = new Board();
+        ChessPiece[][] empty = new ChessPiece[8][8];
+        board.setPieces(empty);
 
+        King king = King.createKing(74, Type.KING_WHITE);
+        ChessPiece[][] pieces = board.getPieces();
+        pieces[7][4] = king;
 
+        Rook rook1 = Rook.createRook(70, Type.ROOK_BLACK);
+        Rook rook2 = Rook.createRook(67, Type.ROOK_BLACK);
+        pieces[7][0] = rook1;
+        pieces[6][7] = rook2;
+
+        board.setPieces(pieces);
+
+        boolean result = king.xequeMate(board);
+
+        assertTrue(result);
+    }
 }
