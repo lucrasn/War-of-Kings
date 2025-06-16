@@ -214,6 +214,7 @@ public class MainController {
             String secondColor = isWhiteSquare ? "#c2c2ae" : "#989885";
             boardSquares[x][y].setStyle("-fx-background-color: " + secondColor + ";");
         }
+    }
 
     @FXML FlowPane piecesTurn;
 
@@ -240,7 +241,7 @@ public class MainController {
 
                 }
             }
-        } else {
+        }else {
             List<ChessPiece> pawnTurn = new ArrayList<>();
             pawnTurn.add(Queen.createQueen(73, Type.QUEEN_BLACK));
             pawnTurn.add(Bishop.createBishop(75, Type.BISHOP_BLACK));
