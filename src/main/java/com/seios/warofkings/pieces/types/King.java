@@ -213,6 +213,11 @@ public class King extends ChessPiece {
             return false;
         }
 
+        List<Integer> possibleMoves = this.getPossibleMoves(board);
+        if (!possibleMoves.isEmpty()){
+            return false;
+        }
+
 
     }
 }
