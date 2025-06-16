@@ -206,4 +206,13 @@ public class King extends ChessPiece {
         // Se não for roque, ou após o roque, executa movimento normal
         return super.moveTo(position, listMoves, board);
     }
+
+
+    public boolean xequeMate(ChessPiece[][] board){
+        if (!PieceUtils.isPieceUnderAttack(this, board)) {
+            return false;
+        }
+
+
+    }
 }

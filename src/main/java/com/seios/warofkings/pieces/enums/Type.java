@@ -31,7 +31,7 @@ public enum Type {
     KNIGHT_BLACK(8),
     BISHOP_BLACK(9),
     QUEEN_BLACK(10),
-    KING_BLACK(11),
+    KING_BLACK(11);
 
 
 
