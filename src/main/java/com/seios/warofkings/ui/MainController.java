@@ -38,8 +38,6 @@ public class MainController {
     private ChessPiece selectedPiece;
     private ImageView selectedImage;
     private List<Integer> possibleMoves;
-    private int xequeX = -1;
-    private int xequeY = -1;
 
     private final Board board = new Board();
     private final Region[][] boardSquares = new Region[8][8];
@@ -156,8 +154,6 @@ public class MainController {
                         if (myKing != null && PieceUtils.isPieceUnderAttack(myKing, board.getPieces())) {
                             int x = myKing.getX();
                             int y = myKing.getY();
-                            xequeX = x;
-                            xequeY = y;
                             boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
                         }
                     } else if (selectedPiece != null) {
@@ -211,16 +207,8 @@ public class MainController {
                                     movingPieces(); // reatribuir eventos já com turn = END
                                     return;
                                 } else if (PieceUtils.isPieceUnderAttack(enemyKing, board.getPieces())) {
-                                    xequeX = x;
-                                    xequeY = y;
                                     boardSquares[x][y].setStyle("-fx-background-color: #f9e79f;");
                                 }
-                            }
-
-                            ChessPiece myKing = BoardUtils.findPieces(board.getPieces(), turn == Turn.WHITE ? Type.KING_WHITE : Type.KING_BLACK).getFirst();
-                            if (myKing != null && !PieceUtils.isPieceUnderAttack(myKing, board.getPieces())) {
-                                xequeX = -1;
-                                xequeY = -1;
                             }
 
                             System.out.println("Peça movida!");
