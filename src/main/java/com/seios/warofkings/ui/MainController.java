@@ -42,6 +42,7 @@ public class MainController {
     private final Board board = new Board();
     private final Region[][] boardSquares = new Region[8][8];
     private Turn turn = Turn.WHITE;
+    private boolean blockPromotion = false;//essa vai ser a flag usada
 
     @FXML
     private GridPane pecas;
@@ -117,9 +118,13 @@ public class MainController {
         for (Node node : pecas.getChildren()) {
             if (node instanceof ImageView imageView) {
                 imageView.setOnMouseClicked(event -> {
+                    if (blockPromotion) {
+                        System.out.println("Escolha a promoção antes de continuar.");
+                        return;
+                    }
+
                     Integer colY = GridPane.getColumnIndex(imageView);
                     Integer rowX = GridPane.getRowIndex(imageView);
-
                     if (colY == null || rowX == null) {
                         System.out.println("Erro: coluna ou linha null.");
                         return;
@@ -140,42 +145,33 @@ public class MainController {
 
                         ToMark(possibleMoves);
                     } else if (selectedPiece != null) {
-                        boolean moved = selectedPiece.moveTo(
-                                positionTo,
-                                possibleMoves,
-                                board
-                        );
-
+                        boolean moved = selectedPiece.moveTo(positionTo, possibleMoves, board);
                         if (moved) {
-                            // Remove imagem da posição destino e da origem
                             pecas.getChildren().remove(imageView);
                             pecas.getChildren().remove(selectedImage);
 
-                            // Adiciona a peça no destino
                             String imgName = selectedPiece.getImgName();
                             ImageView newPieceImage = ImageFactoryUtils.createPieceImage("/imagens/" + imgName);
                             pecas.add(newPieceImage, colY, rowX);
 
                             Integer origemColY = GridPane.getColumnIndex(selectedImage);
                             Integer origemRowX = GridPane.getRowIndex(selectedImage);
-
                             selectedImage = newPieceImage;
 
-                            // adiciona transparente na origem
                             ImageView newTrans = ImageFactoryUtils.createTransparentImage();
                             pecas.add(newTrans, origemColY, origemRowX);
-
 
                             boolean isPawn = selectedPiece.getType().name().startsWith("PAWN");
                             int rowFinal = GridPane.getRowIndex(selectedImage);
 
-
                             if (isPawn && (rowFinal == 0 || rowFinal == 7)) {
+                                blockPromotion = true; //essa porra aqui vai travar
                                 turnPawn(selectedPiece);
+                            } else {
+                                turn = turn.next();
                             }
 
                             System.out.println("Peça movida!");
-                            turn = turn.next();
                             System.out.println("Turno atual: " + turn);
 
                             selectedPiece = null;
@@ -220,6 +216,7 @@ public class MainController {
      *   <li>Destaque em casa escura: {@code #989885}</li>
      * </ul>
      */
+
     private void ToMark(List<Integer> moves) {
         //Resetar tabuleiro que nem o original (branco e verde)
         for (int i = 0; i < 8; i++) {
@@ -240,57 +237,61 @@ public class MainController {
         }
     }
 
+    // Método de promoção comentado e pendente de implementação
     @FXML FlowPane piecesTurn;
+    public void turnPawn(ChessPiece selectedPiece) {
+        boolean isWhite = selectedPiece.getType().name().endsWith("WHITE");
+        int row = GridPane.getRowIndex(selectedImage);
+        int col = GridPane.getColumnIndex(selectedImage);
 
-    public ChessPiece turnPawn(ChessPiece selectedPiece) {//  criar o trem la pra mostrar as imagens da peça e conseguir eescolher {
+        int finalRow = row;
+        int finalCol = col;
 
-        if (selectedPiece.getType().name().endsWith("WHITE") && GridPane.getRowIndex(selectedImage) == 0) {
-            List<ChessPiece> pawnTurn = new ArrayList<>();
-            pawnTurn.add(Queen.createQueen(73, Type.QUEEN_WHITE));
-            pawnTurn.add(Bishop.createBishop(75, Type.BISHOP_WHITE));
-            pawnTurn.add(Rook.createRook(70, Type.ROOK_WHITE));
-            pawnTurn.add(Knight.createKnight(71, Type.KNIGHT_WHITE));
+        piecesTurn.getChildren().clear();
 
-            for (ChessPiece pawn : pawnTurn) {
-                String turnPieceName = pawn.getImgName();
-                InputStream pieceName = getClass().getResourceAsStream("/imagens/" + turnPieceName);
+        List<ChessPiece> pawnTurn = new ArrayList<>();
+        if (isWhite) {
+            pawnTurn.add(Queen.createQueen(finalRow * 10 + finalCol, Type.QUEEN_WHITE));
+            pawnTurn.add(Bishop.createBishop(finalRow * 10 + finalCol, Type.BISHOP_WHITE));
+            pawnTurn.add(Rook.createRook(finalRow * 10 + finalCol, Type.ROOK_WHITE));
+            pawnTurn.add(Knight.createKnight(finalRow * 10 + finalCol, Type.KNIGHT_WHITE));
+        } else {
+            pawnTurn.add(Queen.createQueen(finalRow * 10 + finalCol, Type.QUEEN_BLACK));
+            pawnTurn.add(Bishop.createBishop(finalRow * 10 + finalCol, Type.BISHOP_BLACK));
+            pawnTurn.add(Rook.createRook(finalRow * 10 + finalCol, Type.ROOK_BLACK));
+            pawnTurn.add(Knight.createKnight(finalRow * 10 + finalCol, Type.KNIGHT_BLACK));
+        }
 
-                if (pieceName != null) {
-                    Image pieceTurn = new Image(pieceName);
-                    ImageView turnPiece = new ImageView(pieceTurn);
-                    turnPiece.setFitHeight(50);
-                    turnPiece.setFitWidth(50);
-                    turnPiece.setCursor(Cursor.HAND);
-                    piecesTurn.getChildren().add(turnPiece);
+        for (ChessPiece newPiece : pawnTurn) {
+            String imgName = newPiece.getImgName();
+            ImageView imgView = ImageFactoryUtils.createPieceImage("/imagens/" + imgName);
+            if (imgView != null) {
+                imgView.setFitHeight(50);
+                imgView.setFitWidth(50);
+                imgView.setCursor(Cursor.HAND);
 
-                }
-            }
-        }else {
-            List<ChessPiece> pawnTurn = new ArrayList<>();
-            pawnTurn.add(Queen.createQueen(73, Type.QUEEN_BLACK));
-            pawnTurn.add(Bishop.createBishop(75, Type.BISHOP_BLACK));
-            pawnTurn.add(Rook.createRook(70, Type.ROOK_BLACK));
-            pawnTurn.add(Knight.createKnight(71, Type.KNIGHT_BLACK));
+                imgView.setOnMouseClicked(event -> {
+                    board.getPieces()[finalRow][finalCol] = newPiece;
 
-            for (ChessPiece pawn : pawnTurn) {
-                String turnPieceName = pawn.getImgName();
-                InputStream pieceName = getClass().getResourceAsStream("/imagens/" + turnPieceName);
+                    creatingPieces();
+                    movingPieces();
+                    piecesTurn.getChildren().clear();
 
-                if (pieceName != null) {
-                    Image pieceTurn = new Image(pieceName);
-                    ImageView turnPiece = new ImageView(pieceTurn);
-                    turnPiece.setFitHeight(50);
-                    turnPiece.setFitWidth(50);
-                    turnPiece.setCursor(Cursor.HAND);
+                    this.selectedPiece = null;
+                    this.selectedImage = null;
+                    this.possibleMoves = null;
 
-                    piecesTurn.getChildren().add(turnPiece);
-                }
+                    System.out.println("Peão promovido para: " + newPiece.getType());
+
+                    turn = turn.next();
+                    System.out.println("Turno atual: " + turn);
+
+                    blockPromotion = false; //esssa outra aqui é pra destravar
+                });
+
+
+                piecesTurn.getChildren().add(imgView);
             }
         }
-        return selectedPiece;
-
     }
-
-    // Método de promoção comentado e pendente de implementação
-    // public ChessPiece turnPawn(Pawn peao) { ... }
 }

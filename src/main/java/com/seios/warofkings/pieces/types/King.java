@@ -263,6 +263,7 @@ public class King extends ChessPiece {
     public boolean xequeMate(Board board) {
         ChessPiece[][] pieces = board.getPieces();
 
+
         // verifica se o rei está em xeque
         if (!PieceUtils.isPieceUnderAttack(this, pieces)) {
             return false;
@@ -313,3 +314,7 @@ public class King extends ChessPiece {
         return true;
     }
 }
+
+
+
+
