@@ -14,7 +14,12 @@ package com.seios.warofkings.board.enums;
  * @since 2025-06-15
  */
 public enum Turn {
-    WHITE, BLACK, END;
+    /** Turno das peças brancas. */
+    WHITE,
+    /** Turno das peças pretas. */
+    BLACK,
+    /** Estado final do jogo. */
+    END;
 
     /**
      * Alterna o turno atual para o próximo jogador.

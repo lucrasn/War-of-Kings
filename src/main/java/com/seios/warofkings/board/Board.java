@@ -25,7 +25,10 @@ import java.util.List;
  * @since 2025-05-14
  */
 public class Board {
+    /** Matriz que representa o estado atual do tabuleiro. */
     protected ChessPiece[][] pieces;
+
+    /** Indica o turno atual do jogo. */
     protected Turn turn;
 
     /**

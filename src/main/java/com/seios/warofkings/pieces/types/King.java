@@ -102,7 +102,7 @@ public class King extends ChessPiece {
      * @param board Matriz de peças que representa o estado atual do tabuleiro.
      * @return Uma lista de posições inteiras (no formato XY, ex: 43 para linha 4, coluna 3) indicando os movimentos válidos para o rei.
      *
-     * @implNote A verificação de roque considera:
+     * Nota de implementação: A verificação de roque considera:
      * <ul>
      *   <li>Se o rei e a torre ainda não se moveram;</li>
      *   <li>Se não há peças entre eles;</li>
@@ -182,7 +182,7 @@ public class King extends ChessPiece {
      * @param board      O tabuleiro atual de jogo contendo as peças e seu estado.
      * @return {@code true} se o movimento foi realizado com sucesso, {@code false} caso contrário.
      *
-     * @implNote Este método manipula diretamente a matriz de peças do tabuleiro para simular o roque.
+     * Nota de implementação: Este método manipula diretamente a matriz de peças do tabuleiro para simular o roque.
      * Caso o movimento não seja de roque, a lógica padrão definida na superclasse é utilizada.
      *
      * @see PieceUtils#getX(int)
@@ -248,7 +248,7 @@ public class King extends ChessPiece {
      * @param board Instância do tabuleiro atual do jogo, contendo todas as peças em suas posições.
      * @return {@code true} se o rei estiver em xeque-mate, ou {@code false} caso contrário.
      *
-     * @implNote Este método realiza simulações de movimentos para testar se o rei ou peças aliadas
+     * Nota de implementação: Este método realiza simulações de movimentos para testar se o rei ou peças aliadas
      * conseguiriam impedir o xeque. A integridade das posições é restaurada após cada simulação.
      */
     public boolean xequeMate(Board board) {

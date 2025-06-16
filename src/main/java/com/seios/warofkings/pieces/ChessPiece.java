@@ -25,8 +25,13 @@ import java.util.List;
  * @since 2025-05-14
  */
 public abstract class ChessPiece implements Movable, Positionable {
+    /** Posição atual da peça no tabuleiro, no formato XY. */
     protected int position;
+
+    /** Tipo da peça (rei, torre, etc.), incluindo a cor. */
     protected Type type;
+
+    /** Número de movimentos que a peça já realizou. */
     protected int n_moves;
 
     /**

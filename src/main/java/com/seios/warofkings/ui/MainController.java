@@ -254,7 +254,6 @@ public class MainController {
      *   <li>Destaque em casa escura: {@code #989885}</li>
      * </ul>
      */
-
     private void ToMark(List<Integer> moves) {
         //Resetar tabuleiro que nem o original (branco e verde)
         for (int i = 0; i < 8; i++) {
@@ -289,8 +288,6 @@ public class MainController {
      * utilizando posições fictícias no tabuleiro para a criação dos objetos.
      *
      * @param selectedPiece o peão que alcançou a última linha e está apto à promoção.
-     * @return o mesmo objeto `ChessPiece` passado como parâmetro, pois a troca efetiva da peça
-     *         deverá ser implementada com base na escolha do usuário, em outro momento do código.
      */
     public void turnPawn(ChessPiece selectedPiece) {
         boolean isWhite = selectedPiece.getType().name().endsWith("WHITE");

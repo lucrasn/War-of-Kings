@@ -9,20 +9,47 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe de testes unitários para a peça {@link King}, validando seu comportamento específico no tabuleiro,
+ * incluindo movimentação padrão, roque e detecção de xeque-mate.
+ *
+ * <p>Os testes abordam os seguintes aspectos:</p>
+ * <ul>
+ *   <li>Criação e identificação da cor do rei;</li>
+ *   <li>Movimentos possíveis em diferentes cenários;</li>
+ *   <li>Execução de roque (castling) em condições válidas e inválidas;</li>
+ *   <li>Verificação do estado de xeque-mate.</li>
+ * </ul>
+ *
+ * @author Allan
+ * @version 1.0
+ * @since 2025-06-16
+ */
 class KingTest {
 
+    /**
+     * Testa se o método {@link ChessPiece#isWhite()} retorna {@code true}
+     * para uma peça do tipo branco.
+     */
     @Test
     void testIsWhiteReturnsTrueForWhitePiece() {
-        ChessPiece whiteKing = King.createKing(74, Type.KING_WHITE); // Valor <= 6
+        ChessPiece whiteKing = King.createKing(74, Type.KING_WHITE);
         assertTrue(whiteKing.isWhite());
     }
 
+    /**
+     * Testa se o método {@link ChessPiece#isWhite()} retorna {@code false}
+     * para uma peça do tipo preto.
+     */
     @Test
     void testIsWhiteReturnsFalseForBlackPiece() {
-        ChessPiece blackKing = King.createKing(04, Type.KING_BLACK); // Valor >= 7
+        ChessPiece blackKing = King.createKing(4, Type.KING_BLACK);
         assertFalse(blackKing.isWhite());
     }
 
+    /**
+     * Testa a criação correta de um rei utilizando {@link King#createKing(int, Type)}.
+     */
     @Test
     void testCreateKingValid() {
         King king = King.createKing(22, Type.KING_WHITE);
@@ -30,6 +57,10 @@ class KingTest {
         assertEquals(Type.KING_WHITE, king.getType());
     }
 
+    /**
+     * Testa os movimentos válidos do rei em um tabuleiro vazio,
+     * garantindo que ele possa se mover uma casa em todas as direções.
+     */
     @Test
     void testPossibleMovesEmptyBoard() {
         ChessPiece[][] board = new ChessPiece[8][8];
@@ -37,43 +68,51 @@ class KingTest {
         board[3][3] = king;
 
         List<Integer> moves = king.getPossibleMoves(board);
-        assertTrue(moves.contains(23)); //acima
-        assertTrue(moves.contains(43)); //abaixo
-        assertTrue(moves.contains(32)); //esquerda
-        assertTrue(moves.contains(34)); //direita
-        assertTrue(moves.contains(22)); // noroeste
-        assertTrue(moves.contains(44)); // sudeste
-        assertTrue(moves.contains(24)); // nordeste
-        assertTrue(moves.contains(42)); // sudoeste
-        assertFalse(moves.contains(33)); // onde ele ja ta
+        assertTrue(moves.contains(23));
+        assertTrue(moves.contains(43));
+        assertTrue(moves.contains(32));
+        assertTrue(moves.contains(34));
+        assertTrue(moves.contains(22));
+        assertTrue(moves.contains(44));
+        assertTrue(moves.contains(24));
+        assertTrue(moves.contains(42));
+        assertFalse(moves.contains(33));
     }
 
+    /**
+     * Testa se o rei evita casas ocupadas por peças da mesma cor.
+     */
     @Test
     void testPossibleMovesInvalidSameColor() {
         ChessPiece[][] board = new ChessPiece[8][8];
         King king = King.createKing(33, Type.KING_WHITE);
         board[3][3] = king;
-        board[2][2] = Pawn.createPawn(22, Type.PAWN_WHITE); // mesma cor
+        board[2][2] = Pawn.createPawn(22, Type.PAWN_WHITE);
         board[3][2] = Pawn.createPawn(32, Type.PAWN_WHITE);
 
         List<Integer> moves = king.getPossibleMoves(board);
         assertFalse(moves.contains(32));
-        assertFalse(moves.contains(22)); // n pode capturar peça propria
+        assertFalse(moves.contains(22));
     }
 
+    /**
+     * Testa se o rei pode capturar peças adversárias em casas adjacentes.
+     */
     @Test
     void testPossibleMovesCanCaptureOpponent() {
         ChessPiece[][] board = new ChessPiece[8][8];
         King king = King.createKing(33, Type.KING_WHITE);
         board[3][3] = king;
-        board[2][2] = Pawn.createPawn(22, Type.PAWN_BLACK); // inimigo
-
+        board[2][2] = Pawn.createPawn(22, Type.PAWN_BLACK);
 
         List<Integer> moves = king.getPossibleMoves(board);
         assertTrue(moves.contains(32));
-        assertTrue(moves.contains(22)); // pode capturar inimigo
+        assertTrue(moves.contains(22));
     }
 
+    /**
+     * Testa o movimento de roque (castling) do rei em situação válida.
+     */
     @Test
     void testPossibleMovesWithCastling() {
         ChessPiece[][] board = new ChessPiece[8][8];
@@ -84,25 +123,28 @@ class KingTest {
         board[7][0] = rook;
 
         List<Integer> moves = king.getPossibleMoves(board);
-
-        // roque de 74 p 72
         assertTrue(moves.contains(72));
     }
 
+    /**
+     * Testa se o roque é inválido quando o rei já se moveu anteriormente.
+     */
     @Test
     void testPossibleMovesNoCastlingKingMoved() {
         ChessPiece[][] board = new ChessPiece[8][8];
 
-        King king = new King(74, Type.KING_WHITE, 1);
+        King king = new King(74, Type.KING_WHITE, 1); // moveCount = 1
         Rook rook = Rook.createRook(77, Type.ROOK_WHITE);
         board[7][4] = king;
         board[7][7] = rook;
 
         List<Integer> moves = king.getPossibleMoves(board);
-
         assertFalse(moves.contains(76));
     }
 
+    /**
+     * Testa se o rei realiza corretamente um movimento normal (não roque).
+     */
     @Test
     void testMoveToNormalMove() {
         Board board = new Board();
@@ -112,7 +154,7 @@ class KingTest {
         pieces[7][4] = king;
         board.setPieces(pieces);
 
-        List<Integer> possibleMoves = List.of(75); // rei p direita, sem roque
+        List<Integer> possibleMoves = List.of(75);
 
         boolean result = king.moveTo(75, possibleMoves, board);
 
@@ -120,13 +162,14 @@ class KingTest {
         assertEquals(75, king.getPosition());
     }
 
+    /**
+     * Testa a execução de um roque válido e verifica a nova posição da torre após o movimento.
+     */
     @Test
     void testMoveToValidCastling() {
         Board board = new Board();
         ChessPiece[][] pieces = board.getPieces();
-
-        ChessPiece[][] empty = new ChessPiece[8][8];
-        board.setPieces(empty);
+        board.setPieces(new ChessPiece[8][8]);
 
         King king = King.createKing(34, Type.KING_WHITE);
         Rook rook = Rook.createRook(30, Type.ROOK_WHITE);
@@ -135,19 +178,19 @@ class KingTest {
         pieces[3][0] = rook;
         board.setPieces(pieces);
 
-
         List<Integer> moves = king.getPossibleMoves(pieces);
-
         boolean result = king.moveTo(32, moves, board);
 
         assertTrue(result);
-        assertEquals(32, king.getPosition()); //checa se o rei ta na posicao certa
-
+        assertEquals(32, king.getPosition());
         ChessPiece rookAfterMove = board.getPieces()[3][3];
-        assertNotNull(rookAfterMove); //ve se a torre se moveu tb
-        assertEquals(rook, rookAfterMove); //ve se foi a torre certa
+        assertNotNull(rookAfterMove);
+        assertEquals(rook, rookAfterMove);
     }
 
+    /**
+     * Testa o cenário em que o roque é inválido por haver uma peça bloqueando o caminho entre rei e torre.
+     */
     @Test
     void testMoveToInvalidCastling() {
         Board board = new Board();
@@ -163,13 +206,16 @@ class KingTest {
         board.setPieces(pieces);
 
         List<Integer> moves = king.getPossibleMoves(pieces);
-
         boolean result = king.moveTo(36, moves, board);
 
         assertFalse(result);
         assertEquals(34, king.getPosition());
     }
 
+    /**
+     * Testa o método {@link King#xequeMate(Board)} para verificar se o rei está em xeque-mate,
+     * ou seja, sem qualquer movimento possível que remova a ameaça.
+     */
     @Test
     void testXequeMate() {
         Board board = new Board();
@@ -188,7 +234,6 @@ class KingTest {
         board.setPieces(pieces);
 
         boolean result = king.xequeMate(board);
-
         assertTrue(result);
     }
 }

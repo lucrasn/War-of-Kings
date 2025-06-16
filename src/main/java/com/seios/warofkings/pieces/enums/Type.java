@@ -18,22 +18,31 @@ import com.seios.warofkings.board.enums.Turn;
  * @since 2025-05-14
  */
 public enum Type {
-
+    /** Peão Branco. */
     PAWN_WHITE(0),
+    /** Torre Branco. */
     ROOK_WHITE(1),
+    /** Cavalo Branco. */
     KNIGHT_WHITE(2),
+    /** Bispo Branco. */
     BISHOP_WHITE(3),
+    /** Rainha Branco. */
     QUEEN_WHITE(4),
+    /** Rei Branco. */
     KING_WHITE(5),
 
+    /** Peão Preto. */
     PAWN_BLACK(6),
+    /** Torre Preto. */
     ROOK_BLACK(7),
+    /** Cavalo Preto. */
     KNIGHT_BLACK(8),
+    /** Bispo Preto. */
     BISHOP_BLACK(9),
+    /** Rainha Preto. */
     QUEEN_BLACK(10),
+    /** Rei Preto. */
     KING_BLACK(11);
-
-
 
     /** Valor numérico associado ao tipo da peça. */
     private final int valor;

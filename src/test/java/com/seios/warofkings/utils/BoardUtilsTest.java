@@ -9,8 +9,29 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe de testes unitários para os métodos utilitários definidos em {@link BoardUtils},
+ * responsáveis por operações fundamentais sobre o estado do tabuleiro de xadrez.
+ *
+ * <p>Os testes validam funcionalidades como:</p>
+ * <ul>
+ *     <li>Busca por peças de determinado tipo;</li>
+ *     <li>Verificação de ocupação de posições;</li>
+ *     <li>Recuperação de peças por posição;</li>
+ *     <li>Limites válidos do tabuleiro;</li>
+ *     <li>Cópia da matriz de peças;</li>
+ *     <li>Verificação de caminhos livres em linha reta;</li>
+ *     <li>Identificação de peças aliadas.</li>
+ * </ul>
+ *
+ * @author Allan
+ * @version 1.0
+ * @since 2025-06-16
+ */
 class BoardUtilsTest {
-
+    /**
+     * Testa {@link BoardUtils#findPieces(ChessPiece[][], Type)} com peças compatíveis no tabuleiro.
+     */
     @Test
     void testFindPieces_withMatchingType() { // busca por peoes brancos, cavalo n eh adicionado
         ChessPiece[][] pieces = new ChessPiece[8][8];
@@ -23,6 +44,9 @@ class BoardUtilsTest {
         assertTrue(result.stream().allMatch(p -> p.getType() == Type.PAWN_WHITE));
     }
 
+    /**
+     * Testa {@link BoardUtils#findPieces(ChessPiece[][], Type)} sem peças do tipo buscado.
+     */
     @Test
     void testFindPieces_withNoMatch() { // busca por peao mas n tem
         ChessPiece[][] pieces = new ChessPiece[8][8];
@@ -32,6 +56,9 @@ class BoardUtilsTest {
         assertTrue(result.isEmpty());
     }
 
+    /**
+     * Verifica {@link BoardUtils#isPositionOccupied(ChessPiece[][], int)} em posição ocupada.
+     */
     @Test
     void testIsPositionOccupied_trueWhenOccupied() { // lugar ocupado
         ChessPiece[][] pieces = new ChessPiece[8][8];
@@ -39,18 +66,27 @@ class BoardUtilsTest {
         assertTrue(BoardUtils.isPositionOccupied(pieces, 23));
     }
 
+    /**
+     * Verifica {@link BoardUtils#isPositionOccupied(ChessPiece[][], int)} em posição vazia.
+     */
     @Test
     void testIsPositionOccupied_falseWhenEmpty() { // vazio
         ChessPiece[][] pieces = new ChessPiece[8][8];
         assertFalse(BoardUtils.isPositionOccupied(pieces, 23));
     }
 
+    /**
+     * Verifica {@link BoardUtils#isPositionOccupied(ChessPiece[][], int)} em posição inválida.
+     */
     @Test
     void testIsPositionOccupied_falseWhenOutOfBounds() { // fora do tabuleiro
         ChessPiece[][] pieces = new ChessPiece[8][8];
         assertFalse(BoardUtils.isPositionOccupied(pieces, 88));
     }
 
+    /**
+     * Testa {@link BoardUtils#getPieceAt(ChessPiece[][], int)} com peça existente na posição.
+     */
     @Test
     void testGetPieceAt_validPositionWithPiece() { // posicao com peca
         ChessPiece[][] pieces = new ChessPiece[8][8];
@@ -60,24 +96,37 @@ class BoardUtilsTest {
         assertEquals(knight, result);
     }
 
+    /**
+     * Testa {@link BoardUtils#getPieceAt(ChessPiece[][], int)} com posição vazia.
+     */
     @Test
     void testGetPieceAt_validPositionWithoutPiece() { //posicao sem peca
         ChessPiece[][] pieces = new ChessPiece[8][8];
         assertNull(BoardUtils.getPieceAt(pieces, 44));
     }
 
+    /**
+     * Testa {@link BoardUtils#isWithinBounds(int)} com posições válidas no tabuleiro.
+     */
     @Test
     void testIsWithinBounds_true() { // no tabuleiro
         assertTrue(BoardUtils.isWithinBounds(77));
         assertTrue(BoardUtils.isWithinBounds(0));
     }
 
+    /**
+     * Testa {@link BoardUtils#isWithinBounds(int)} com posições inválidas.
+     */
     @Test
     void testIsWithinBounds_false() { // fora do tabuleiro
         assertFalse(BoardUtils.isWithinBounds(-10));
         assertFalse(BoardUtils.isWithinBounds(88));
     }
 
+    /**
+     * Testa {@link BoardUtils#copyBoard(ChessPiece[][])} para garantir que a cópia
+     * mantém as referências às mesmas peças (shallow copy).
+     */
     @Test
     void testCopyBoardCreatesReferenceCopy() {
         ChessPiece[][] board = new ChessPiece[8][8];
@@ -90,6 +139,9 @@ class BoardUtilsTest {
         assertNull(copiedBoard[1][1]);
     }
 
+    /**
+     * Testa {@link BoardUtils#isPathClearHorizontally(int, int, ChessPiece[][])} quando o caminho está livre.
+     */
     @Test
     void testIsPathClearHorizontally() {
         ChessPiece[][] board = new ChessPiece[8][8];
@@ -100,6 +152,9 @@ class BoardUtilsTest {
         assertTrue(result);
     }
 
+    /**
+     * Testa {@link BoardUtils#isPathClearHorizontally(int, int, ChessPiece[][])} quando há obstrução.
+     */
     @Test
     void testIsPathNotClearHorizontally() {
         ChessPiece[][] board = new ChessPiece[8][8];
@@ -111,6 +166,11 @@ class BoardUtilsTest {
         boolean result = BoardUtils.isPathClearHorizontally(from, to, board);
         assertFalse(result);
     }
+
+    /**
+     * Testa {@link BoardUtils#getAliadas(ChessPiece, ChessPiece[][])} para garantir
+     * que apenas peças aliadas (mesmo tipo) sejam retornadas.
+     */
     @Test
     void testGetAliadas() {
         ChessPiece[][] board = new ChessPiece[8][8];
