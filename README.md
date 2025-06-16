@@ -88,7 +88,7 @@ Exemplo: A posição `43` indica linha 4, coluna 3. Isso permite movimentos usan
 
 ---
 
-## 📷 Capturas de Tela (opcional)
+## 📷 Capturas de Tela
 
 ![img.png](img.png)
 ![img_1.png](img_1.png)
